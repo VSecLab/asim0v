@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  asim0v-dataloader-container:
+    image: asim0v-dataloader:1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/asim0v-dataloader
+    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081 -jar /app/dataloader.jar
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks: 
+      - elastic
+       # running on a single node for development.
+  # prod settings here: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-cli-run-prod-mode
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.0
+    volumes:
+      - 'es_data:/usr/share/elasticsearch/data'
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks: 
+      - elastic
+    environment:
+      - bootstrap.memory_lock=true
+      - cluster.name=springelasticgenie
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+volumes:
+  es_data:
+networks: 
+  elastic:
+    driver: bridge

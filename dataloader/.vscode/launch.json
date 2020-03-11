@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-DataLoaderMain<dataloader>",
+            "request": "launch",
+            "mainClass": "com.asimov.dataloader.DataLoaderMain",
+            "projectName": "dataloader"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)-DataLoaderMain<dataloader>",
+            "projectName": "dataloader",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8081
+        },
+        {
+            "type": "java",
+            "name": "Run (Attach)-DataLoaderMain<dataloader>",
+            "projectName": "dataloader",
+            "request": "launch",
+            "mainClass": "org.springframework.boot.devtools.RemoteSpringApplication",
+            "args": "http://localhost:8080"
+        }
+    ]
+}
