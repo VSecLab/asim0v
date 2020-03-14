@@ -18,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.10.2'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.10.2'
 	implementation files('src/main/resources/stix-v0.10.0.jar')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
