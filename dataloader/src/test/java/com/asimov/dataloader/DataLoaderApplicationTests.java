@@ -84,16 +84,16 @@ class DataLoaderApplicationTests {
 		MappingIterator<Map<String, Object>> it = csvMapper.readerFor(Map.class).with(schema).readValues(csvFile);
 		while (it.hasNext()) {
 			Map<String, Object> rowAsMap = it.next();
-			// access by column name, as defined in the header row...
-			// add x-weakness-id
-			Map<String, Object> cweMap = rowAsMap.entrySet().stream()
-            .collect(Collectors.toMap(entry -> "x_"+entry.getKey().toLowerCase().replaceAll(" ","_"), entry -> entry.getValue()));
+			Map<String, Object> cweMap = rowAsMap.entrySet().stream().filter(x-> !x.getKey().matches("^.*?(Name|Description).*$"))
+			.collect(Collectors.toMap(entry -> "x_"+entry.getKey().toLowerCase().replaceAll(" ","_"), entry -> entry.getValue()));
 			cweMap.put("id","x-cwe--".concat(UUID.randomUUID().toString()));
 			cweMap.put("type","x-cwe");
 			cweMap.put("external_references", List.of(Map.of(
 				"external_id", cweMap.get("x_cwe-id"),
 				"source_name", "cwe",
 				"url", "https://cwe.mitre.org/data/definitions/"+cweMap.get("x_cwe-id")+".html")));
+			cweMap.put("name",rowAsMap.get("Name"));
+			cweMap.put("description",rowAsMap.get("Description"));
 			String cweJSON = mapper.writeValueAsString(cweMap);
 			StixCustomObject stixCustomObject = StixParsers.parse(cweJSON, CustomObject.class);
 			System.out.println(cweJSON);
