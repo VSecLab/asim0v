@@ -5,19 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.asimov.dataloader.service.DataLoaderService;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ import io.digitalstate.stix.json.StixParsers;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
 
 @SpringBootTest
-class DemoApplicationTests {
+class DataLoaderApplicationTests {
 
 	@Autowired
 	DataLoaderService dataloaderservice;
@@ -45,7 +45,7 @@ class DemoApplicationTests {
 	// multiple CWE values
 	@Test
 	void readVulnerabilityFromCVE() throws IOException {
-		JsonNode cveJSON = mapper.readTree(new ClassPathResource("nvdcve-1.1-2019.json").getInputStream());
+		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve/nvdcve-1.1-2019.json").getInputStream());
 
 		ArrayNode cveItems = cveJSON.withArray("CVE_Items");
 		Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
@@ -66,7 +66,7 @@ class DemoApplicationTests {
 	@Test
 	void parseVulnerabilityFromJavaObject() throws StixParserValidationException, IOException {
 		// check it's a valid json
-		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve.json").getInputStream());
+		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve/cve.json").getInputStream());
 		Vulnerability vulnerability = dataloaderservice.parse(cveJSON.get("cve"));
 		String jsonString = vulnerability.toJsonString();
 		Vulnerability parsedVulnerability = (Vulnerability) StixParsers.parseObject(jsonString);
@@ -75,17 +75,29 @@ class DemoApplicationTests {
 
 	@Test
 	void readWeaknessFromCSV() throws IOException {
-		File csvFile = new ClassPathResource("cwe1000_researchConcepts.csv").getFile();
-		// File csvFile = new ClassPathResource("cwe.csv").getFile();
+		File csvFile = new ClassPathResource("cwe/cwe699_softwaredevelopment.csv").getFile();
+		// File csvFile = new ClassPathResource("cwe/cwe1000_researchConcepts.csv").getFile();
+		// File csvFile = new ClassPathResource("cwe/cwe1194_hardwareDesign.csv").getFile();
+		// File csvFile = new ClassPathResource("cwe/cwe.csv").getFile();
 		CsvMapper csvMapper = new CsvMapper();
 		CsvSchema schema = CsvSchema.emptySchema().withHeader(); // use first row as header; otherwise defaults are fine
-		MappingIterator<Map<String,String>> it = csvMapper.readerFor(Map.class)
-		   .with(schema)
-		   .readValues(csvFile);
+		MappingIterator<Map<String, Object>> it = csvMapper.readerFor(Map.class).with(schema).readValues(csvFile);
 		while (it.hasNext()) {
-		  Map<String,String> rowAsMap = it.next();
-		  // access by column name, as defined in the header row...
-		  System.out.println(mapper.writeValueAsString(rowAsMap));
+			Map<String, Object> rowAsMap = it.next();
+			// access by column name, as defined in the header row...
+			// add x-weakness-id
+			Map<String, Object> cweMap = rowAsMap.entrySet().stream()
+            .collect(Collectors.toMap(entry -> "x_"+entry.getKey().toLowerCase().replaceAll(" ","_"), entry -> entry.getValue()));
+			cweMap.put("id","x-cwe--".concat(UUID.randomUUID().toString()));
+			cweMap.put("type","x-cwe");
+			cweMap.put("external_references", List.of(Map.of(
+				"external_id", cweMap.get("x_cwe-id"),
+				"source_name", "cwe",
+				"url", "https://cwe.mitre.org/data/definitions/"+cweMap.get("x_cwe-id")+".html")));
+			String cweJSON = mapper.writeValueAsString(cweMap);
+			StixCustomObject stixCustomObject = StixParsers.parse(cweJSON, CustomObject.class);
+			System.out.println(cweJSON);
+			System.out.println(stixCustomObject.toJsonString());
 		}
 	}
 }
