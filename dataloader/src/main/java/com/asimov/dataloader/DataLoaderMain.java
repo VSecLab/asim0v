@@ -1,27 +1,39 @@
 package com.asimov.dataloader;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import com.asimov.dataloader.repository.DataLoaderRepository;
 import com.asimov.dataloader.service.DataLoaderService;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.digitalstate.stix.sdo.objects.Vulnerability;
+import io.digitalstate.stix.custom.StixCustomObject;
+import io.digitalstate.stix.sdo.DomainObject;
 
 @SpringBootApplication
 @RestController
@@ -31,6 +43,11 @@ public class DataLoaderMain {
 
 	@Autowired
 	DataLoaderService dataLoaderService;
+	@Autowired
+	DataLoaderRepository dataLoaderRepository;
+	@Autowired
+	private Environment env;
+
 	ObjectMapper mapper = new ObjectMapper();
 
 	@RequestMapping("/hello")
@@ -39,18 +56,57 @@ public class DataLoaderMain {
 		return "Hello " + name;
 	}
 
-	@RequestMapping("/load")
-	public String load() throws IOException {
-		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve.json").getInputStream());
+	@RequestMapping("/cves")
+	@PostMapping
+	public List<File> loadCVEFiles() throws IOException {
+		List<File> files;
+		try (Stream<Path> walk = Files.walk(Paths.get(env.getProperty("cve.path")))) {
+			files = walk.filter(Files::isRegularFile).map(x -> x.toFile()).collect(Collectors.toList());
+		}
+		files.parallelStream().forEach(file -> {
+			logger.info("loading file {}", file);
+			JsonNode cveJSON = null;
+			try {
+				cveJSON = mapper.readTree(file);
+			} catch (IOException e) {
+				logger.error("the file {} does not contain valid json", file, e);
+				throw new RuntimeException(e);
+			}
+			ArrayNode cveItems = cveJSON.withArray("CVE_Items");
+			Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
+			List<DomainObject> vulnerabilities = nodes.parallel().map(cve -> dataLoaderService.parse(cve.get("cve")))
+					.collect(Collectors.toCollection(ArrayList::new));
+			dataLoaderRepository.bulkLoadRequest(vulnerabilities, "cve");
+		});
+		return files;
+	}
 
-		ArrayNode cveItems = cveJSON.withArray("CVE_Items");
-		Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
-		ArrayList<Vulnerability> vulnerabilities = nodes.parallel().map(cve -> dataLoaderService.parse(cve.get("cve")))
-				.collect(Collectors.toCollection(ArrayList::new));
-		// vulnerabilities.forEach(vulnerability ->
-		// System.out.println(vulnerability.toJsonString()));
-		dataLoaderService.bulkLoadRequest(vulnerabilities);
-		return "Loaded " + vulnerabilities.size();
+	@RequestMapping("/cwes")
+	public List<File> loadCWEFiles() throws IOException {
+		CsvMapper csvMapper = new CsvMapper();
+		CsvSchema schema = CsvSchema.emptySchema().withHeader(); // use first row as header; otherwise defaults are fine
+		List<File> files;
+		try (Stream<Path> walk = Files.walk(Paths.get(env.getProperty("cwe.path")))) {
+			files = walk.filter(Files::isRegularFile).map(x -> x.toFile()).collect(Collectors.toList());
+		}
+		files.parallelStream().forEach(file -> {
+			MappingIterator<Map<String, Object>> it;
+			try {
+				it = csvMapper.readerFor(Map.class).with(schema).readValues(file);
+			} catch (IOException e) {
+				logger.error("the file {} does not contain valid csv", file, e);
+				throw new RuntimeException(e);
+			}
+			List<StixCustomObject> weaknesses = new ArrayList<>();
+			while (it.hasNext()) {
+				Map<String, Object> cweFromCSV = it.next();
+				StixCustomObject cwe = dataLoaderService.parse(cweFromCSV);
+				weaknesses.add(cwe);
+			}
+			logger.info("Loaded {} weaknesses", weaknesses.size());
+			dataLoaderRepository.bulkLoadRequest(weaknesses, "cwe");
+		});
+		return files;
 	}
 
 	public static void main(final String[] args) {

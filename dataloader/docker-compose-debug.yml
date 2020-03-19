@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /data/asim0v-dataloader
+      - ./:/data/asim0v-dataloader
     command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081 -jar /app/dataloader.jar
     ports:
       - "8080:8080"

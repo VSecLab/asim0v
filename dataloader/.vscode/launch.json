@@ -14,14 +14,15 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-DataLoaderMain<dataloader>",
+            "name": "Local Debug (Launch)-DataLoaderMain<dataloader>",
             "request": "launch",
             "mainClass": "com.asimov.dataloader.DataLoaderMain",
-            "projectName": "dataloader"
+            "projectName": "dataloader",
+            "args": "--spring.profiles.active=local"
         },
         {
             "type": "java",
-            "name": "Debug (Attach)-DataLoaderMain<dataloader>",
+            "name": "Remote Debug (Attach)-DataLoaderMain<dataloader>",
             "projectName": "dataloader",
             "request": "attach",
             "hostName": "localhost",
@@ -29,7 +30,7 @@
         },
         {
             "type": "java",
-            "name": "Run (Attach)-DataLoaderMain<dataloader>",
+            "name": "Remote Run LiveReload (Attach)-DataLoaderMain<dataloader>",
             "projectName": "dataloader",
             "request": "launch",
             "mainClass": "org.springframework.boot.devtools.RemoteSpringApplication",

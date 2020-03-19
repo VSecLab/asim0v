@@ -29,6 +29,7 @@ import io.digitalstate.stix.custom.StixCustomObject;
 import io.digitalstate.stix.custom.objects.CustomObject;
 import io.digitalstate.stix.json.StixParserValidationException;
 import io.digitalstate.stix.json.StixParsers;
+import io.digitalstate.stix.sdo.DomainObject;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
 
 @SpringBootTest
@@ -49,7 +50,7 @@ class DataLoaderApplicationTests {
 
 		ArrayNode cveItems = cveJSON.withArray("CVE_Items");
 		Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
-		ArrayList<Vulnerability> vulnerabilities = nodes.parallel().map(cve -> dataloaderservice.parse(cve.get("cve")))
+		List<DomainObject> vulnerabilities = nodes.parallel().map(cve -> dataloaderservice.parse(cve.get("cve")))
 				.collect(Collectors.toCollection(ArrayList::new));
 		vulnerabilities.forEach(vulnerability -> {
 			Vulnerability parsedVulnerability = null;
@@ -91,7 +92,7 @@ class DataLoaderApplicationTests {
 			cweMap.put("external_references", List.of(Map.of(
 				"external_id", cweMap.get("x_cwe-id"),
 				"source_name", "cwe",
-				"url", "https://cwe.mitre.org/data/definitions/"+cweMap.get("x_cwe-id")+".html")));
+				"url", "https://cwe.mitre.org/data/definitions6yt/"+cweMap.get("x_cwe-id")+".html")));
 			cweMap.put("name",rowAsMap.get("Name"));
 			cweMap.put("description",rowAsMap.get("Description"));
 			String cweJSON = mapper.writeValueAsString(cweMap);
