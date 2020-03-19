@@ -22,7 +22,7 @@
 *.nar
 *.ear
 *.zip
-!dataloader/src/main/resources/*.zip
+!*/resources/*.zip
 *.tar.gz
 *.rar
 
