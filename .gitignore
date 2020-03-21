@@ -22,7 +22,7 @@
 *.nar
 *.ear
 *.zip
-!*/resources/*.zip
+!dataloader/src/main/resources/cve/*.zip
 *.tar.gz
 *.rar
 
