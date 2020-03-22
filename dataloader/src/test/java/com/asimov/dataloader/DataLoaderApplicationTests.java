@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 
+import io.digitalstate.stix.bundle.BundleableObject;
 import io.digitalstate.stix.custom.StixCustomObject;
 import io.digitalstate.stix.custom.objects.CustomObject;
 import io.digitalstate.stix.json.StixParserValidationException;
@@ -43,6 +44,12 @@ class DataLoaderApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void loadCAPEC() throws IOException {
+		JsonNode bundleJSON = mapper.readTree(new ClassPathResource("capec/stix-capec.json").getInputStream());
+		BundleableObject bundle = StixParsers.parseObject(bundleJSON.asText());
+		System.out.println(bundle.toJsonString());
+	}
 	// multiple CWE values
 	@Test
 	void readVulnerabilityFromCVE() throws IOException {
