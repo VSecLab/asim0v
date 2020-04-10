@@ -6,9 +6,11 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    #mount local folder inside container
     volumes:
       - ./:/data/asim0v-dataloader
-    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081 -jar /app/dataloader.jar
+    #enable remote debug, not needed for live reload
+    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081 -Xms512m -Xmx1024m -jar /app/dataloader.jar
     ports:
       - "8080:8080"
       - "8081:8081"

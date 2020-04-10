@@ -16,5 +16,5 @@ FROM openjdk:13.0.2-slim
 EXPOSE 8080
 RUN mkdir app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/dataloader.jar
-CMD [ "java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/dataloader.jar", "-Dspring.devtools.remote.secret=testSecret" ]
-#ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/dataloader.jar"]
+CMD [ "java","-jar","/app/dataloader.jar"]
+# ENTRYPOINT ["java", "-jar","/app/dataloader.jar"]

@@ -16,7 +16,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Service;
 
 import io.digitalstate.stix.common.StixCommonProperties;
-import io.digitalstate.stix.sdo.DomainObject;
 
 /**
  * DataLoaderService

@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -27,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +36,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.digitalstate.stix.custom.StixCustomObject;
 import io.digitalstate.stix.sdo.DomainObject;
+import io.digitalstate.stix.sdo.objects.AttackPattern;
+import io.digitalstate.stix.sdo.objects.CourseOfAction;
+import io.digitalstate.stix.sro.objects.Relationship;
 
 @SpringBootApplication
 @RestController
@@ -56,12 +61,12 @@ public class DataLoaderMain {
 		return "Hello " + name;
 	}
 
-	@RequestMapping("/cves")
+	@RequestMapping("/cve")
 	@PostMapping
 	public List<File> loadCVEFiles() throws IOException {
 		List<File> files;
 		try (Stream<Path> walk = Files.walk(Paths.get(env.getProperty("cve.path")))) {
-			files = walk.filter(Files::isRegularFile).map(x -> x.toFile()).collect(Collectors.toList());
+			files = walk.filter(Files::isRegularFile).map(x -> x.toFile()).filter(f -> f.getName().endsWith("json")).collect(Collectors.toList());
 		}
 		files.parallelStream().forEach(file -> {
 			logger.info("loading file {}", file);
@@ -74,14 +79,42 @@ public class DataLoaderMain {
 			}
 			ArrayNode cveItems = cveJSON.withArray("CVE_Items");
 			Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
-			List<DomainObject> vulnerabilities = nodes.parallel().map(cve -> dataLoaderService.parse(cve.get("cve")))
+			List<DomainObject> vulnerabilities = nodes.parallel()
+					.map(cve -> dataLoaderService.parseVulnerability(cve.get("cve")))
 					.collect(Collectors.toCollection(ArrayList::new));
 			dataLoaderRepository.bulkLoadRequest(vulnerabilities, "cve");
 		});
 		return files;
 	}
 
-	@RequestMapping("/cwes")
+	@RequestMapping("/capec")
+	@PostMapping
+	public String loadCAPECFile() throws IOException {
+		String file = env.getProperty("capec.path");
+		JsonNode bundleJSON = mapper.readTree(new ClassPathResource(file).getInputStream());
+		ArrayNode capecItems = bundleJSON.withArray("objects");
+		Supplier<Stream<JsonNode>> streamSupplier = () -> IntStream.range(0, capecItems.size())
+				.mapToObj(capecItems::get);
+		List<AttackPattern> attackPatterns = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("attack-pattern"))
+				.map(attackPattern -> dataLoaderService.parseAttackPattern(attackPattern))
+				.collect(Collectors.toCollection(ArrayList::new));
+		List<Relationship> relationships = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("relationship"))
+				.map(relationship -> dataLoaderService.parseRelationship(relationship))
+				.collect(Collectors.toCollection(ArrayList::new));
+		List<CourseOfAction> courseofactions = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("course-of-action"))
+				.map(courseOfAction -> dataLoaderService.parseCourseOfAction(courseOfAction))
+				.collect(Collectors.toCollection(ArrayList::new));
+			dataLoaderRepository.bulkLoadRequest(attackPatterns, "attackpattern");
+			dataLoaderRepository.bulkLoadRequest(relationships, "relationship");
+			dataLoaderRepository.bulkLoadRequest(courseofactions, "courseofaction");
+		return file;
+	}
+
+	@RequestMapping("/cwe")
+	@PostMapping
 	public List<File> loadCWEFiles() throws IOException {
 		CsvMapper csvMapper = new CsvMapper();
 		CsvSchema schema = CsvSchema.emptySchema().withHeader(); // use first row as header; otherwise defaults are fine

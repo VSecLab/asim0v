@@ -1,6 +1,7 @@
 package com.asimov.dataloader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -31,7 +33,10 @@ import io.digitalstate.stix.custom.objects.CustomObject;
 import io.digitalstate.stix.json.StixParserValidationException;
 import io.digitalstate.stix.json.StixParsers;
 import io.digitalstate.stix.sdo.DomainObject;
+import io.digitalstate.stix.sdo.objects.AttackPattern;
+import io.digitalstate.stix.sdo.objects.CourseOfAction;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
+import io.digitalstate.stix.sro.objects.Relationship;
 
 @SpringBootTest
 class DataLoaderApplicationTests {
@@ -45,19 +50,31 @@ class DataLoaderApplicationTests {
 	}
 
 	@Test
-	void loadCAPEC() throws IOException {
+	void loadCAPECTest() throws IOException {
 		JsonNode bundleJSON = mapper.readTree(new ClassPathResource("capec/stix-capec.json").getInputStream());
-		BundleableObject bundle = StixParsers.parseObject(bundleJSON.asText());
-		System.out.println(bundle.toJsonString());
+		ArrayNode capecItems = bundleJSON.withArray("objects");
+		Supplier<Stream<JsonNode>> streamSupplier = () ->IntStream.range(0, capecItems.size()).mapToObj(capecItems::get);
+		List<AttackPattern> attackPatterns = streamSupplier.get().parallel().filter(x->x.get("type").asText().equals("attack-pattern"))
+											.map(attackPattern -> dataloaderservice.parseAttackPattern(attackPattern))
+											.collect(Collectors.toCollection(ArrayList::new));
+		List<Relationship> relationships = streamSupplier.get().parallel().filter(x->x.get("type").asText().equals("relationship"))
+											.map(relationship -> dataloaderservice.parseRelationship(relationship))
+											.collect(Collectors.toCollection(ArrayList::new));
+		List<CourseOfAction> courseofactions = streamSupplier.get().filter(x->x.get("type").asText().equals("course-of-action"))
+											.map(courseOfAction -> dataloaderservice.parseCourseOfAction(courseOfAction))
+											.collect(Collectors.toCollection(ArrayList::new));
+		System.out.println(attackPatterns.size());
+		System.out.println(relationships.size());
+		System.out.println(courseofactions.size());
 	}
-	// multiple CWE values
+		// multiple CWE values
 	@Test
 	void readVulnerabilityFromCVE() throws IOException {
 		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve/nvdcve-1.1-2019.json").getInputStream());
 
 		ArrayNode cveItems = cveJSON.withArray("CVE_Items");
 		Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
-		List<DomainObject> vulnerabilities = nodes.parallel().map(cve -> dataloaderservice.parse(cve.get("cve")))
+		List<DomainObject> vulnerabilities = nodes.parallel().map(cve -> dataloaderservice.parseVulnerability(cve.get("cve")))
 				.collect(Collectors.toCollection(ArrayList::new));
 		vulnerabilities.forEach(vulnerability -> {
 			Vulnerability parsedVulnerability = null;
@@ -75,7 +92,7 @@ class DataLoaderApplicationTests {
 	void parseVulnerabilityFromJavaObject() throws StixParserValidationException, IOException {
 		// check it's a valid json
 		JsonNode cveJSON = mapper.readTree(new ClassPathResource("cve/cve.json").getInputStream());
-		Vulnerability vulnerability = dataloaderservice.parse(cveJSON.get("cve"));
+		Vulnerability vulnerability = dataloaderservice.parseVulnerability(cveJSON.get("cve"));
 		String jsonString = vulnerability.toJsonString();
 		Vulnerability parsedVulnerability = (Vulnerability) StixParsers.parseObject(jsonString);
 		assertEquals(jsonString, parsedVulnerability.toJsonString());
@@ -99,13 +116,12 @@ class DataLoaderApplicationTests {
 			cweMap.put("external_references", List.of(Map.of(
 				"external_id", cweMap.get("x_cwe-id"),
 				"source_name", "cwe",
-				"url", "https://cwe.mitre.org/data/definitions6yt/"+cweMap.get("x_cwe-id")+".html")));
+				"url", "https://cwe.mitre.org/data/definitions/"+cweMap.get("x_cwe-id")+".html")));
 			cweMap.put("name",rowAsMap.get("Name"));
 			cweMap.put("description",rowAsMap.get("Description"));
 			String cweJSON = mapper.writeValueAsString(cweMap);
 			StixCustomObject stixCustomObject = StixParsers.parse(cweJSON, CustomObject.class);
-			System.out.println(cweJSON);
-			System.out.println(stixCustomObject.toJsonString());
+			assertNotNull(stixCustomObject.toJsonString());
 		}
 	}
 }

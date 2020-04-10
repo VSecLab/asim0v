@@ -8,18 +8,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.asimov.dataloader.repository.ElasticSeachRestClientConfig;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +24,10 @@ import io.digitalstate.stix.custom.StixCustomObject;
 import io.digitalstate.stix.custom.objects.CustomObject;
 import io.digitalstate.stix.json.StixParserValidationException;
 import io.digitalstate.stix.json.StixParsers;
-import io.digitalstate.stix.sdo.DomainObject;
+import io.digitalstate.stix.sdo.objects.AttackPattern;
+import io.digitalstate.stix.sdo.objects.CourseOfAction;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
+import io.digitalstate.stix.sro.objects.Relationship;
 
 /**
  * DataLoaderService
@@ -61,7 +57,7 @@ public class DataLoaderService {
                 String cweJSON = null;
                 StixCustomObject stixCustomObject = null;
                 try {
-                        cweJSON = mapper.writeValueAsString(cweMap); 
+                        cweJSON = mapper.writeValueAsString(cweMap);
                         stixCustomObject = StixParsers.parse(cweJSON, CustomObject.class);
                 } catch (StixParserValidationException | IOException e) {
                         logger.error("Parsed CWE is not a valid JSON", e);
@@ -69,7 +65,7 @@ public class DataLoaderService {
                 return stixCustomObject;
         }
 
-        public Vulnerability parse(JsonNode cveNode) {
+        public Vulnerability parseVulnerability(JsonNode cveNode) {
                 String vulnerabilityName = cveNode.get("CVE_data_meta").get("ID").asText();
                 List<String> descriptions = cveNode.get("description").withArray("description_data")
                                 .findValuesAsText("value");
@@ -91,6 +87,36 @@ public class DataLoaderService {
                                 .build();
                 return vulnerability;
 
+        }
+
+        public AttackPattern parseAttackPattern(JsonNode attackPatternNode) {
+                AttackPattern attackPattern = null;
+                try {
+                        attackPattern = (AttackPattern) StixParsers.parseObject(attackPatternNode.toString());
+                } catch (StixParserValidationException | IOException e) {
+                        logger.error("Parsed AttackPattern is not a valid JSON", e);
+                }
+                return attackPattern;
+        }
+
+        public Relationship parseRelationship(JsonNode relationshipNode) {
+                Relationship relationship = null;
+                try {
+                        relationship = (Relationship) StixParsers.parseObject(relationshipNode.toString());
+                } catch (StixParserValidationException | IOException e) {
+                        logger.error("Parsed Relationship is not a valid JSON", e);
+                }
+                return relationship;
+        }
+
+        public CourseOfAction parseCourseOfAction(JsonNode courseOfActionNode) {
+                CourseOfAction courseOfAction = null;
+                try {
+                        courseOfAction = (CourseOfAction) StixParsers.parseObject(courseOfActionNode.toString());
+                } catch (StixParserValidationException | IOException e) {
+                        logger.error("Parsed CourseOfAction is not a valid JSON", e);
+                }
+                return courseOfAction;
         }
 
 }
