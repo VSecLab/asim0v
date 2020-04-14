@@ -87,6 +87,32 @@ public class DataLoaderMain {
 		return files;
 	}
 
+	@RequestMapping("/enterpriseattack")
+	@PostMapping
+	public String loadEnterpriseAttackFile() throws IOException {
+		String file = env.getProperty("enterprise-attack.path");
+		JsonNode bundleJSON = mapper.readTree(new ClassPathResource(file).getInputStream());
+		ArrayNode enterpriseAttackItems = bundleJSON.withArray("objects");
+		Supplier<Stream<JsonNode>> streamSupplier = () -> IntStream.range(0, enterpriseAttackItems.size())
+				.mapToObj(enterpriseAttackItems::get);
+		List<AttackPattern> attackPatterns = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("attack-pattern"))
+				.map(attackPattern -> dataLoaderService.parseAttackPattern(attackPattern))
+				.collect(Collectors.toCollection(ArrayList::new));
+		List<Relationship> relationships = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("relationship") && x.get("relationship_type").asText().equals("mitigates"))
+				.map(relationship -> dataLoaderService.parseRelationship(relationship))
+				.collect(Collectors.toCollection(ArrayList::new));
+		List<CourseOfAction> courseofactions = streamSupplier.get().parallel()
+				.filter(x -> x.get("type").asText().equals("course-of-action"))
+				.map(courseOfAction -> dataLoaderService.parseCourseOfAction(courseOfAction))
+				.collect(Collectors.toCollection(ArrayList::new));
+			dataLoaderRepository.bulkLoadRequest(attackPatterns, "attackpattern");
+			dataLoaderRepository.bulkLoadRequest(relationships, "relationship");
+			dataLoaderRepository.bulkLoadRequest(courseofactions, "courseofaction");
+		return file;
+	}
+
 	@RequestMapping("/capec")
 	@PostMapping
 	public String loadCAPECFile() throws IOException {

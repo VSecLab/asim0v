@@ -20,10 +20,14 @@ dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.10.2'
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.10.2'
 	implementation files('src/main/resources/stix-v0.10.0.jar')
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') 
+	{exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'}
+	//fix for vscode sudden java.lang.ClassNotFoundException: org.junit.platform.engine.EngineDiscoveryListener
+	testImplementation('org.junit.platform:junit-platform-launcher').version{
+		strictly('1.4.2')
 	}
 }
+
 ext['elasticsearch.version'] = '7.6.0'
 bootJar {
 		excludeDevtools = false;
