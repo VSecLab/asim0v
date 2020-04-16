@@ -22,6 +22,7 @@
 *.nar
 *.ear
 *.zip
+!dataloader/src/main/resources/stix-v0.10.0.jar
 dataloader/src/main/resources/cve/*.json
 !dataloader/src/main/resources/cve/*.zip
 *.tar.gz
