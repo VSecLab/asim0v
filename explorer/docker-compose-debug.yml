@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  asim0v-explorer-container:
+    image: asim0v-explorer:1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    #mount local folder inside container
+    volumes:
+      - ./:/data/asim0v-explorer
+    #enable remote debug, not needed for live reload
+    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081 -Xms512m -Xmx1024m -jar /app/explorer.jar
+    ports:
+      - "9090:9090"
+      - "9091:9091"
+    networks: 
+      - elastic
+networks: 
+  elastic:
+    driver: bridge

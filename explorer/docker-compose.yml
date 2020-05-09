@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  asim0v-explorer-container:
+    image: asim0v-explorer:1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/asim0v-explorer
+    ports:
+      - "9090:9090"
+      - "9091:9091"
+    networks: 
+      - dataloader_elastic
+networks: 
+  dataloader_elastic:
+    external: true

@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Local Debug (Launch)-ExplorerMain<explorer>",
+            "request": "launch",
+            "mainClass": "com.asimov.explorer.ExplorerMain",
+            "projectName": "explorer",
+            "args": "--spring.profiles.active=local"
+        },
+        {
+            "type": "java",
+            "name": "Remote Debug (Attach)-ExplorerMain<explorer>",
+            "projectName": "explorer",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 9091
+        },
+        {
+            "type": "java",
+            "name": "Remote Run LiveReload (Attach)-ExplorerMain<explorer>",
+            "projectName": "explorer",
+            "request": "launch",
+            "mainClass": "org.springframework.boot.devtools.RemoteSpringApplication",
+            "args": "http://localhost:9090"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.asimov'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.elasticsearch:elasticsearch:7.6.0'
+	implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.0'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.10.2'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.10.2'
+	implementation files('src/main/resources/stix-v0.10.0.jar')
+	testImplementation('org.springframework.boot:spring-boot-starter-test') 
+	{exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'}
+	//fix for vscode sudden java.lang.ClassNotFoundException: org.junit.platform.engine.EngineDiscoveryListener
+	testImplementation('org.junit.platform:junit-platform-launcher').version{
+		strictly('1.4.2')
+	}
+}
+
+ext['elasticsearch.version'] = '7.6.0'
+bootJar {
+		excludeDevtools = false;
+		mainClassName = "com.asimov.explorer.ExplorerMain"
+}
+
+test {
+	useJUnitPlatform()
+}
