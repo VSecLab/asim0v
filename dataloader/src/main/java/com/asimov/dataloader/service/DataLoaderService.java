@@ -47,7 +47,8 @@ public class DataLoaderService {
                                 .collect(Collectors.toMap(
                                                 entry -> "x_" + entry.getKey().toLowerCase().replaceAll(" ", "_"),
                                                 entry -> entry.getValue()));
-                cweMap.put("id", "x-cwe--".concat(UUID.randomUUID().toString()));
+                // cweMap.put("id", "x-cwe--".concat(UUID.randomUUID().toString()));
+                cweMap.put("id", "x-cwe--".concat(UUID.nameUUIDFromBytes(("CWE"+(String)cweMap.get("x_cwe-id")).getBytes()).toString()));
                 cweMap.put("type", "x-cwe");
                 cweMap.put("external_references", List.of(Map.of("external_id", cweMap.get("x_cwe-id"), "source_name",
                                 "cwe", "url",
@@ -84,6 +85,7 @@ public class DataLoaderService {
                                                                 .collect(Collectors.toCollection(ArrayList::new)),
                                                 "x_data_type", cveNode.get("data_type").asText(), "x_references",
                                                 mapper.convertValue(otherReferences, ArrayList.class)))
+                                .id("vulnerability--".concat(UUID.nameUUIDFromBytes(vulnerabilityName.getBytes()).toString()))
                                 .build();
                 return vulnerability;
 

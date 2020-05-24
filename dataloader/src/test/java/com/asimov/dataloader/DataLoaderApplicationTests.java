@@ -50,9 +50,11 @@ class DataLoaderApplicationTests {
 	void contextLoads() {
 		System.out.println("test");
 	}
+
 	@Test
-	void loadEnterpriseAttackTest() throws IOException{
-	JsonNode bundleJSON = mapper.readTree(new ClassPathResource("enterprise-attack/enterprise-attack.json").getInputStream());
+	void loadEnterpriseAttackTest() throws IOException {
+		JsonNode bundleJSON = mapper
+				.readTree(new ClassPathResource("enterprise-attack/enterprise-attack.json").getInputStream());
 		ArrayNode enterpriseAttackItems = bundleJSON.withArray("objects");
 		Supplier<Stream<JsonNode>> streamSupplier = () -> IntStream.range(0, enterpriseAttackItems.size())
 				.mapToObj(enterpriseAttackItems::get);
@@ -61,18 +63,20 @@ class DataLoaderApplicationTests {
 				.map(attackPattern -> dataloaderService.parseAttackPattern(attackPattern))
 				.collect(Collectors.toCollection(ArrayList::new));
 		List<Relationship> relationships = streamSupplier.get().parallel()
-				.filter(x -> x.get("type").asText().equals("relationship") && x.get("relationship_type").asText().equals("mitigates"))
+				.filter(x -> x.get("type").asText().equals("relationship")
+						&& x.get("relationship_type").asText().equals("mitigates"))
 				.map(relationship -> dataloaderService.parseRelationship(relationship))
 				.collect(Collectors.toCollection(ArrayList::new));
 		List<CourseOfAction> courseofactions = streamSupplier.get().parallel()
 				.filter(x -> x.get("type").asText().equals("course-of-action"))
 				.map(courseOfAction -> dataloaderService.parseCourseOfAction(courseOfAction))
 				.collect(Collectors.toCollection(ArrayList::new));
-				assertNotEquals(0, attackPatterns.size(), "found 0 techniques");
-				assertNotEquals(0, relationships.size(), "found 0 relationships");
-				assertNotEquals(0, courseofactions.size(), "found 0 mitigations");
+		assertNotEquals(0, attackPatterns.size(), "found 0 techniques");
+		assertNotEquals(0, relationships.size(), "found 0 relationships");
+		assertNotEquals(0, courseofactions.size(), "found 0 mitigations");
 
 	}
+
 	@Test
 	void loadCAPECTest() throws IOException {
 		JsonNode bundleJSON = mapper.readTree(new ClassPathResource("capec/stix-capec.json").getInputStream());
@@ -91,9 +95,9 @@ class DataLoaderApplicationTests {
 				.filter(x -> x.get("type").asText().equals("course-of-action"))
 				.map(courseOfAction -> dataloaderService.parseCourseOfAction(courseOfAction))
 				.collect(Collectors.toCollection(ArrayList::new));
-				assertNotEquals(0, attackPatterns.size(), "found 0 attacks");
-				assertNotEquals(0, relationships.size(), "found 0 relationships");
-				assertNotEquals(0, courseofactions.size(), "found 0 mitigations");
+		assertNotEquals(0, attackPatterns.size(), "found 0 attacks");
+		assertNotEquals(0, relationships.size(), "found 0 relationships");
+		assertNotEquals(0, courseofactions.size(), "found 0 mitigations");
 	}
 
 	// multiple CWE values
@@ -145,7 +149,8 @@ class DataLoaderApplicationTests {
 					.filter(x -> !x.getKey().matches("^.*?(Name|Description).*$"))
 					.collect(Collectors.toMap(entry -> "x_" + entry.getKey().toLowerCase().replaceAll(" ", "_"),
 							entry -> entry.getValue()));
-			cweMap.put("id", "x-cwe--".concat(UUID.randomUUID().toString()));
+			cweMap.put("id", "x-cwe--".concat(UUID.nameUUIDFromBytes(("CWE"+(String)cweMap.get("x_cwe-id")).getBytes()).toString()));
+			cweMap.put("_id", "CWE-"+(String)cweMap.get("cwe-id"));
 			cweMap.put("type", "x-cwe");
 			cweMap.put("external_references", List.of(Map.of("external_id", cweMap.get("x_cwe-id"), "source_name",
 					"cwe", "url", "https://cwe.mitre.org/data/definitions/" + cweMap.get("x_cwe-id") + ".html")));
@@ -155,5 +160,13 @@ class DataLoaderApplicationTests {
 			StixCustomObject stixCustomObject = StixParsers.parse(cweJSON, CustomObject.class);
 			assertNotNull(stixCustomObject.toJsonString());
 		}
+	}
+
+	@Test
+	void generateUUIDfromCWE() {
+		UUID.randomUUID().toString();
+		String aString = "CWE-307";
+		String result = UUID.nameUUIDFromBytes(aString.getBytes()).toString();
+		System.out.println(result);
 	}
 }
