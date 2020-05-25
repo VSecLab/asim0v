@@ -28,7 +28,7 @@ public class DataLoaderRepository {
         RestHighLevelClient esclient;
         Logger logger = LoggerFactory.getLogger(DataLoaderRepository.class);
 
-        public <T> BulkResponse bulkLoadRequest(List<T> stixObjects, String elasticSearchIndex) {
+        public <T> BulkResponse bulkLoadRequest(List<T> stixObjects, String elasticSearchIndex) throws IOException {
                 BulkRequest request = new BulkRequest();
                 for (T stixObject : stixObjects) {
                         IndexRequest indexRequest = new IndexRequest(elasticSearchIndex)
@@ -40,6 +40,7 @@ public class DataLoaderRepository {
                         bulkResponse = esclient.bulk(request, RequestOptions.DEFAULT);
                 } catch (IOException e) {
                         logger.error("error while inserting data into elasticsearchIndex {}", elasticSearchIndex, e);
+                        throw e;
                 }
                 return bulkResponse;
 

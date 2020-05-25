@@ -29,10 +29,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import io.digitalstate.stix.custom.StixCustomObject;
 import io.digitalstate.stix.sdo.DomainObject;
@@ -75,14 +78,19 @@ public class DataLoaderMain {
 				cveJSON = mapper.readTree(file);
 			} catch (IOException e) {
 				logger.error("the file {} does not contain valid json", file, e);
-				throw new RuntimeException(e);
+				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			ArrayNode cveItems = cveJSON.withArray("CVE_Items");
 			Stream<JsonNode> nodes = IntStream.range(0, cveItems.size()).mapToObj(cveItems::get);
 			List<DomainObject> vulnerabilities = nodes.parallel()
 					.map(cve -> dataLoaderService.parseVulnerability(cve.get("cve")))
 					.collect(Collectors.toCollection(ArrayList::new));
-			dataLoaderRepository.bulkLoadRequest(vulnerabilities, "cve");
+			try {
+				dataLoaderRepository.bulkLoadRequest(vulnerabilities, "cve");
+			} catch (IOException e) {
+				logger.error("the file {} does not contain valid json", file, e);
+				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 		});
 		return files;
 	}
@@ -133,9 +141,9 @@ public class DataLoaderMain {
 				.filter(x -> x.get("type").asText().equals("course-of-action"))
 				.map(courseOfAction -> dataLoaderService.parseCourseOfAction(courseOfAction))
 				.collect(Collectors.toCollection(ArrayList::new));
-			dataLoaderRepository.bulkLoadRequest(attackPatterns, "attackpattern");
-			dataLoaderRepository.bulkLoadRequest(relationships, "relationship");
-			dataLoaderRepository.bulkLoadRequest(courseofactions, "courseofaction");
+			dataLoaderRepository.bulkLoadRequest(attackPatterns, "capec_attackpattern");
+			dataLoaderRepository.bulkLoadRequest(relationships, "capec_relationship");
+			dataLoaderRepository.bulkLoadRequest(courseofactions, "capec_courseofaction");
 		return file;
 	}
 
@@ -154,7 +162,7 @@ public class DataLoaderMain {
 				it = csvMapper.readerFor(Map.class).with(schema).readValues(file);
 			} catch (IOException e) {
 				logger.error("the file {} does not contain valid csv", file, e);
-				throw new RuntimeException(e);
+				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			List<StixCustomObject> weaknesses = new ArrayList<>();
 			while (it.hasNext()) {
@@ -163,13 +171,23 @@ public class DataLoaderMain {
 				weaknesses.add(cwe);
 			}
 			logger.info("Loaded {} weaknesses", weaknesses.size());
-			dataLoaderRepository.bulkLoadRequest(weaknesses, "cwe");
+			try {
+				dataLoaderRepository.bulkLoadRequest(weaknesses, "cwe");
+			} catch (IOException e) {
+				logger.error("the file {} does not contain valid json", file, e);
+				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 		});
 		return files;
 	}
 
 	public static void main(final String[] args) {
 		SpringApplication.run(DataLoaderMain.class, args);
+	}
+
+	@ExceptionHandler({RuntimeException.class,IOException.class})
+	public void handleException(){
+
 	}
 
 }
