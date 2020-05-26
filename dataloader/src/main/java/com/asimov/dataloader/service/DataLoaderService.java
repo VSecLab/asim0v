@@ -51,10 +51,11 @@ public class DataLoaderService {
                 cweMap.put("id", "x-cwe--".concat(UUID.nameUUIDFromBytes(("CWE"+(String)cweMap.get("x_cwe-id")).getBytes()).toString()));
                 cweMap.put("type", "x-cwe");
                 cweMap.put("external_references", List.of(Map.of("external_id", cweMap.get("x_cwe-id"), "source_name",
-                                "cwe", "url",
-                                "https://cwe.mitre.org/data/definitions/" + cweMap.get("x_cwe-id") + ".html")));
+                "cwe", "url",
+                "https://cwe.mitre.org/data/definitions/" + cweMap.get("x_cwe-id") + ".html")));
                 cweMap.put("name", cweFromCSV.get("Name"));
                 cweMap.put("description", cweFromCSV.get("Description"));
+                cweMap.put("x_cwe-id", "CWE-"+cweMap.get("x_cwe-id"));
                 String cweJSON = null;
                 StixCustomObject stixCustomObject = null;
                 try {

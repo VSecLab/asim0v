@@ -1,5 +1,9 @@
 package com.asimov.explorer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.asimov.explorer.exception.ExplorerCustomException;
 import com.asimov.explorer.repository.ExplorerRepository;
 import com.asimov.explorer.service.ExplorerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.digitalstate.stix.bundle.Bundle;
+import io.digitalstate.stix.custom.objects.CustomObject;
+import io.digitalstate.stix.sdo.objects.AttackPattern;
+import io.digitalstate.stix.sdo.objects.Vulnerability;
+import io.digitalstate.stix.sro.objects.Relationship;
+
 @SpringBootApplication
 @RestController
 public class ExplorerMain {
@@ -24,9 +34,7 @@ public class ExplorerMain {
 	Logger logger = LoggerFactory.getLogger(ExplorerMain.class);
 
 	@Autowired
-	ExplorerService explorerService;
-	@Autowired
-	ExplorerRepository explorerRepository;
+	ExplorerService service;
 	@Autowired
 	private Environment env;
 
@@ -39,13 +47,29 @@ public class ExplorerMain {
 	}
 
 	@RequestMapping("/search")
-	public String search(String index, String field, String value) {
-		logger.info("searching {}, {}, {}", index, field, value);
-		SearchResponse search = explorerRepository.search(field, value, index);
-		SearchHits searchHits = search.getHits();
-		SearchHit[] hits = searchHits.getHits();
-		hits[0].getSourceAsString();
-		return hits[0].getSourceAsString();
+	public String search(String cve) throws ExplorerCustomException {
+		Vulnerability vulnerability = service.findVulnerability(cve);
+		List<CustomObject> cwes = service.findCWE(vulnerability);
+		List<AttackPattern> capecAttacks = service.findCapecAttacks(cwes);
+		List<AttackPattern> mitreAttacks = service.findMitreAttacks(capecAttacks);
+		mitreAttacks.forEach(x -> System.out.println(x.getExternalReferences()));
+		List<Relationship> relationships = new ArrayList<>();
+		for (AttackPattern attackPattern : capecAttacks) {
+			Relationship relationship = Relationship.builder().sourceRef(attackPattern).relationshipType("targets")
+					.targetRef(vulnerability).build();
+			relationships.add(relationship);
+		}
+
+		for (AttackPattern capecAttack : capecAttacks)
+			for (AttackPattern attackPattern : mitreAttacks) {
+				Relationship relationship = Relationship.builder().sourceRef(attackPattern).relationshipType("related-to")
+						.targetRef(capecAttack).build();
+				relationships.add(relationship);
+			}
+
+		Bundle bundle = Bundle.builder().addObjects(vulnerability).addAllObjects(relationships).addAllObjects(mitreAttacks)
+				.addAllObjects(capecAttacks).build();
+		return bundle.toJsonString();
 	}
 
 	public static void main(final String[] args) {
