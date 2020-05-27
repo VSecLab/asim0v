@@ -2,6 +2,8 @@ package com.asimov.explorer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.asimov.explorer.exception.ExplorerCustomException;
 import com.asimov.explorer.repository.ExplorerRepository;
@@ -49,6 +51,9 @@ public class ExplorerMain {
 	@RequestMapping("/search")
 	public String search(String cve) throws ExplorerCustomException {
 		Vulnerability vulnerability = service.findVulnerability(cve);
+		if(vulnerability== null){
+			return "{\"error\":\"vulnerability not found\"}";
+		}
 		List<CustomObject> cwes = service.findCWE(vulnerability);
 		List<AttackPattern> capecAttacks = service.findCapecAttacks(cwes);
 		List<AttackPattern> mitreAttacks = service.findMitreAttacks(capecAttacks);
@@ -62,13 +67,20 @@ public class ExplorerMain {
 
 		for (AttackPattern capecAttack : capecAttacks)
 			for (AttackPattern attackPattern : mitreAttacks) {
-				Relationship relationship = Relationship.builder().sourceRef(attackPattern).relationshipType("related-to")
-						.targetRef(capecAttack).build();
-				relationships.add(relationship);
+				String capecID = capecAttack.getExternalReferences().asList().get(0).getExternalId().get();
+				List<Optional<String>> refs = attackPattern.getExternalReferences().asList().stream()
+						.map(x -> x.getExternalId()).collect(Collectors.toList());
+				List<String> filteredList = refs.stream().filter(Optional::isPresent).map(Optional::get)
+						.collect(Collectors.toList());
+				if (filteredList.contains(capecID)) {
+					Relationship relationship = Relationship.builder().sourceRef(attackPattern)
+							.relationshipType("related-to").targetRef(capecAttack).build();
+					relationships.add(relationship);
+				}
 			}
 
-		Bundle bundle = Bundle.builder().addObjects(vulnerability).addAllObjects(relationships).addAllObjects(mitreAttacks)
-				.addAllObjects(capecAttacks).build();
+		Bundle bundle = Bundle.builder().addObjects(vulnerability).addAllObjects(relationships)
+				.addAllObjects(mitreAttacks).addAllObjects(capecAttacks).build();
 		return bundle.toJsonString();
 	}
 

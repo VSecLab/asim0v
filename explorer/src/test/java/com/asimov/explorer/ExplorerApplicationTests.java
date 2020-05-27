@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import com.asimov.explorer.repository.ExplorerRepository;
 import com.asimov.explorer.service.ExplorerService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -39,6 +41,7 @@ import io.digitalstate.stix.json.StixParserValidationException;
 import io.digitalstate.stix.json.StixParsers;
 import io.digitalstate.stix.sdo.objects.AttackPattern;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
+import io.digitalstate.stix.sdo.types.ExternalReferenceType;
 import io.digitalstate.stix.sro.objects.Relationship;
 import io.digitalstate.stix.sro.objects.Sighting;
 
@@ -115,13 +118,20 @@ class ExplorerApplicationTests {
 
 		for (AttackPattern capecAttack : capecAttacks)
 			for (AttackPattern attackPattern : mitreAttacks) {
-				Relationship relationship = Relationship.builder().sourceRef(attackPattern).relationshipType("related-to")
-						.targetRef(capecAttack).build();
-				relationships.add(relationship);
+				String capecID = capecAttack.getExternalReferences().asList().get(0).getExternalId().get();
+				List<Optional<String>> refs = attackPattern.getExternalReferences().asList().stream()
+						.map(x -> x.getExternalId()).collect(Collectors.toList());
+				List<String> filteredList = refs.stream().filter(Optional::isPresent).map(Optional::get)
+						.collect(Collectors.toList());
+				if (filteredList.contains(capecID)) {
+					Relationship relationship = Relationship.builder().sourceRef(attackPattern)
+							.relationshipType("related-to").targetRef(capecAttack).build();
+					relationships.add(relationship);
+				}
 			}
 
-		Bundle bundle = Bundle.builder().addObjects(vulnerability).addAllObjects(relationships).addAllObjects(mitreAttacks)
-				.addAllObjects(capecAttacks).build();
+		Bundle bundle = Bundle.builder().addObjects(vulnerability).addAllObjects(relationships)
+				.addAllObjects(mitreAttacks).addAllObjects(capecAttacks).build();
 		System.out.println(bundle.toJsonString());
 	}
 

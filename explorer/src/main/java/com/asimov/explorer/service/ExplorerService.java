@@ -44,12 +44,15 @@ public class ExplorerService {
                 SearchHit[] hits = searchHits.getHits();
                 logger.info("found {} vulnerabilities", hits.length);
                 Vulnerability vulnerability = null;
-                try {
-                        vulnerability = (Vulnerability) StixParsers.parseObject(hits[0].getSourceAsString());
-                } catch (StixParserValidationException | IOException e) {
-                        logger.error("parsing exception after fetching vulnerability", hits[0].getSourceAsString(), e);
-                        throw new ExplorerCustomException("Parsing Error, wrong data on elasticsearch?", e);
+                if (hits.length != 0) {
+                        try {
+                                vulnerability = (Vulnerability) StixParsers.parseObject(hits[0].getSourceAsString());
+                        } catch (StixParserValidationException | IOException e) {
+                                logger.error("parsing exception after fetching vulnerability",
+                                                hits[0].getSourceAsString(), e);
+                                throw new ExplorerCustomException("Parsing Error, wrong data on elasticsearch?", e);
 
+                        }
                 }
                 return vulnerability;
 
