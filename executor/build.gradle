@@ -13,8 +13,9 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.elasticsearch:elasticsearch:7.6.0'
-	implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.0'
+	// https://mvnrepository.com/artifact/com.github.arteam/simple-json-rpc-client
+	implementation 'com.github.arteam:simple-json-rpc-client:1.0'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.12'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.10.2'
@@ -31,10 +32,10 @@ dependencies {
 ext['elasticsearch.version'] = '7.6.0'
 bootJar {
 		excludeDevtools = false;
-		mainClassName = "com.asimov.explorer.ExplorerMain"
+		mainClassName = "com.asimov.executor.executorMain"
 }
 
 test {
 	useJUnitPlatform()
-	exclude '**/*'
+	    exclude '**/*'
 }

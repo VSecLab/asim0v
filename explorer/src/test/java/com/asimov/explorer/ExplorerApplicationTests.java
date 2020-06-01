@@ -14,9 +14,6 @@ import java.util.stream.Collectors;
 import com.asimov.explorer.exception.ExplorerCustomException;
 import com.asimov.explorer.repository.ExplorerRepository;
 import com.asimov.explorer.service.ExplorerService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableList;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -26,24 +23,18 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.joda.time.Instant;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ActiveProfiles;
 
 import io.digitalstate.stix.bundle.Bundle;
-import io.digitalstate.stix.bundle.BundleableObject;
-import io.digitalstate.stix.common.StixInstant;
 import io.digitalstate.stix.custom.objects.CustomObject;
 import io.digitalstate.stix.json.StixParserValidationException;
 import io.digitalstate.stix.json.StixParsers;
 import io.digitalstate.stix.sdo.objects.AttackPattern;
 import io.digitalstate.stix.sdo.objects.Vulnerability;
-import io.digitalstate.stix.sdo.types.ExternalReferenceType;
 import io.digitalstate.stix.sro.objects.Relationship;
-import io.digitalstate.stix.sro.objects.Sighting;
 
 @SpringBootTest
 @ActiveProfiles("local")
@@ -71,13 +62,6 @@ class ExplorerApplicationTests {
 		vulnerability.getCustomProperties().get("x_CWE");
 		System.out.println(vulnerability.toJsonString());
 		assertEquals(vulnerability.toJsonString(), hits[0].getSourceAsString(), "parsed vs elasticsearch");
-	}
-
-	@Test
-	public void bundleTest() throws StixParserValidationException, IOException {
-		JsonNode bundleJSON = new ObjectMapper().readTree(new ClassPathResource("bundle.json").getInputStream());
-		BundleableObject bundle = StixParsers.parseObject(bundleJSON.toPrettyString());
-		System.err.println(bundle.toJsonString());
 	}
 
 	@Test

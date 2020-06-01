@@ -1,0 +1,5 @@
+useful commands
+DELETE everything from ElasticSearch
+curl -X DELETE 'http://localhost:9200/_all'
+Unzip all files in a folder e.g. src/main/resources/cve
+unzip "*.zip"
