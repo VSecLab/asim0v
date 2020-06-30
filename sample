@@ -1,0 +1,954 @@
+{
+    "id": "bundle--54259f69-f17d-4b5d-94e7-0342e247c213",
+    "objects": [
+        {
+            "created": "2020-05-24T00:01:24.627Z",
+            "description": "A vulnerability in the Gleez CMS 1.2.0 login page could allow an unauthenticated, remote attacker to perform multiple user enumerations, which can further help an attacker to perform login attempts in excess of the configured login attempt limit. The vulnerability is due to insufficient server-side access control and login attempt limit enforcement. An attacker could exploit this vulnerability by sending modified login attempts to the Portal login page. An exploit could allow the attacker to identify existing users and perform brute-force password attacks on the Portal, as demonstrated by navigating to the user/4 URI.",
+            "external_references": [
+                {
+                    "external_id": "CVE-2018-16703",
+                    "source_name": "cve"
+                }
+            ],
+            "id": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "modified": "2020-05-24T00:01:24.627Z",
+            "name": "CVE-2018-16703",
+            "type": "vulnerability",
+            "x_CWE": [
+                "CWE-307",
+                "CWE-521",
+                "CWE-732"
+            ],
+            "x_data_type": "CVE",
+            "x_references": [
+                {
+                    "name": "https://github.com/gleez/cms/issues/802",
+                    "refsource": "MISC",
+                    "tags": [
+                        "Third Party Advisory"
+                    ],
+                    "url": "https://github.com/gleez/cms/issues/802"
+                }
+            ]
+        },
+        {
+            "created": "2020-06-02T22:59:22.635Z",
+            "id": "relationship--dc600d51-785d-4c4b-b2c9-6b7e3effd453",
+            "modified": "2020-06-02T22:59:22.635Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--92cdcd3d-d734-4442-afc3-4599f261498b",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.636Z",
+            "id": "relationship--80a350af-d1dc-4b2c-966d-01085266dcfe",
+            "modified": "2020-06-02T22:59:22.636Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--7b423196-9de6-400f-91de-a1f26b3f19f1",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.637Z",
+            "id": "relationship--3b3b1093-d3c0-41f3-8b2c-27a36b39991e",
+            "modified": "2020-06-02T22:59:22.637Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--fd669b7d-0e79-473c-9808-a860dfb0c871",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.637Z",
+            "id": "relationship--61965bcf-d1d8-4580-af28-8d74ff0aa5ef",
+            "modified": "2020-06-02T22:59:22.637Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--62c46d1c-f091-467e-a4b0-61927db31f38",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.638Z",
+            "id": "relationship--f86f48fa-37e1-41f6-960d-df468d4b7868",
+            "modified": "2020-06-02T22:59:22.638Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--a9dc4914-409a-4f71-80df-c5cc3923d112",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.638Z",
+            "id": "relationship--1cf7c528-ad22-4c18-a8ea-8bfb24cf106c",
+            "modified": "2020-06-02T22:59:22.638Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--9ad2c2eb-9939-4590-9683-2e789692d262",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.638Z",
+            "id": "relationship--7b767c4d-d430-4a6a-b96b-fcade5cc7169",
+            "modified": "2020-06-02T22:59:22.638Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--aac17300-6cdd-4f50-82c3-da5a01d225ac",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.639Z",
+            "id": "relationship--5b49309a-a1c9-48e5-a4a5-6d1974f32497",
+            "modified": "2020-06-02T22:59:22.639Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--3c71639a-ebbd-43a4-8d0d-8a0e4cf9ade3",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.639Z",
+            "id": "relationship--2ac72ab9-eb1a-496e-b49c-2a3eb65a6b91",
+            "modified": "2020-06-02T22:59:22.639Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--9f1d96c7-fcc8-4708-b98d-23f1fd86e07b",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.640Z",
+            "id": "relationship--028fa6cb-c51d-4efe-a26b-1940a936dd13",
+            "modified": "2020-06-02T22:59:22.640Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--8d88a81c-bde9-4fb3-acbe-901c783d6427",
+            "target_ref": "vulnerability--0aee34fe-b2d8-330c-ba51-7c05a8fea268",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.644Z",
+            "id": "relationship--1cdf5153-0c6d-4a06-97fa-470e192e4669",
+            "modified": "2020-06-02T22:59:22.644Z",
+            "relationship_type": "related-to",
+            "source_ref": "attack-pattern--0ca7beef-9bbc-4e35-97cf-437384ddce6a",
+            "target_ref": "attack-pattern--9ad2c2eb-9939-4590-9683-2e789692d262",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-02T22:59:22.644Z",
+            "id": "relationship--382689e4-ae07-4dbc-a790-0265e314969e",
+            "modified": "2020-06-02T22:59:22.645Z",
+            "relationship_type": "related-to",
+            "source_ref": "attack-pattern--a93494bb-4b80-4ea1-8695-3236a49916fd",
+            "target_ref": "attack-pattern--8d88a81c-bde9-4fb3-acbe-901c783d6427",
+            "type": "relationship"
+        },
+        {
+            "created": "2017-05-31T21:31:22.767Z",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "description": "Adversaries may use brute force techniques to attempt access to accounts when passwords are unknown or when password hashes are obtained.\n\n[Credential Dumping](https://attack.mitre.org/techniques/T1003) is used to obtain password hashes, this may only get an adversary so far when [Pass the Hash](https://attack.mitre.org/techniques/T1075) is not an option. Techniques to systematically guess the passwords used to compute hashes are available, or the adversary may use a pre-computed rainbow table to crack hashes. Cracking hashes is usually done on adversary-controlled systems outside of the target network. (Citation: Wikipedia Password cracking)\n\nAdversaries may attempt to brute force logins without knowledge of passwords or hashes during an operation either with zero knowledge or by attempting a list of known or possible passwords. This is a riskier option because it could cause numerous authentication failures and account lockouts, depending on the organization's login failure policies. (Citation: Cylance Cleaver)\n\nA related technique called password spraying uses one password (e.g. 'Password01'), or a small list of passwords, that matches the complexity policy of the domain and may be a commonly used password. Logins are attempted with that password and many different accounts on a network to avoid account lockouts that would normally occur when brute forcing a single account with many passwords. (Citation: BlackHillsInfosec Password Spraying)\n\nTypically, management services over commonly used ports are used when password spraying. Commonly targeted services include the following:\n\n* SSH (22/TCP)\n* Telnet (23/TCP)\n* FTP (21/TCP)\n* NetBIOS / SMB / Samba (139/TCP & 445/TCP)\n* LDAP (389/TCP)\n* Kerberos (88/TCP)\n* RDP / Terminal Services (3389/TCP)\n* HTTP/HTTP Management Services (80/TCP & 443/TCP)\n* MSSQL (1433/TCP)\n* Oracle (1521/TCP)\n* MySQL (3306/TCP)\n* VNC (5900/TCP)\n\nIn addition to management services, adversaries may \"target single sign-on (SSO) and cloud-based applications utilizing federated authentication protocols,\" as well as externally facing email applications, such as Office 365.(Citation: US-CERT TA18-068A 2018)\n\n\nIn default environments, LDAP and Kerberos connection attempts are less likely to trigger events over SMB, which creates Windows \"logon failure\" event ID 4625.",
+            "external_references": [
+                {
+                    "external_id": "T1110",
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1110"
+                },
+                {
+                    "external_id": "CAPEC-49",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/49.html"
+                },
+                {
+                    "description": "Wikipedia. (n.d.). Password cracking. Retrieved December 23, 2015.",
+                    "source_name": "Wikipedia Password cracking",
+                    "url": "https://en.wikipedia.org/wiki/Password_cracking"
+                },
+                {
+                    "description": "Cylance. (2014, December). Operation Cleaver. Retrieved September 14, 2017.",
+                    "source_name": "Cylance Cleaver",
+                    "url": "https://www.cylance.com/content/dam/cylance/pages/operation-cleaver/Cylance_Operation_Cleaver_Report.pdf"
+                },
+                {
+                    "description": "Thyer, J. (2015, October 30). Password Spraying & Other Fun with RPCCLIENT. Retrieved April 25, 2017.",
+                    "source_name": "BlackHillsInfosec Password Spraying",
+                    "url": "http://www.blackhillsinfosec.com/?p=4645"
+                },
+                {
+                    "description": "US-CERT. (2018, March 27). TA18-068A Brute Force Attacks Conducted by Cyber Actors. Retrieved October 2, 2019.",
+                    "source_name": "US-CERT TA18-068A 2018",
+                    "url": "https://www.us-cert.gov/ncas/alerts/TA18-086A"
+                },
+                {
+                    "description": "Metcalf, S. (2018, May 6). Trimarc Research: Detecting Password Spraying with Security Event Auditing. Retrieved January 16, 2019.",
+                    "source_name": "Trimarc Detecting Password Spraying",
+                    "url": "https://www.trimarcsecurity.com/single-post/2018/05/06/Trimarc-Research-Detecting-Password-Spraying-with-Security-Event-Auditing"
+                }
+            ],
+            "id": "attack-pattern--a93494bb-4b80-4ea1-8695-3236a49916fd",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "credential-access"
+                }
+            ],
+            "modified": "2019-10-09T20:58:13.919Z",
+            "name": "Brute Force",
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "type": "attack-pattern",
+            "x_mitre_contributors": [
+                "Microsoft Threat Intelligence Center (MSTIC)",
+                "John Strand",
+                "Ed Williams, Trustwave, SpiderLabs"
+            ],
+            "x_mitre_data_sources": [
+                "Office 365 account logs",
+                "Authentication logs"
+            ],
+            "x_mitre_detection": "It is difficult to detect when hashes are cracked, since this is generally done outside the scope of the target network. \n\nMonitor authentication logs for system and application login failures of [Valid Accounts](https://attack.mitre.org/techniques/T1078). If authentication failures are high, then there may be a brute force attempt to gain access to a system using legitimate credentials.\n\nAlso monitor for many failed authentication attempts across various accounts that may result from password spraying attempts.\n\nFor password spraying consider the following(Citation: Trimarc Detecting Password Spraying):\n\n* Domain Controllers: \"Audit Logon\" (Success & Failure) for event ID 4625.\n* Domain Controllers: \"Audit Kerberos Authentication Service\" (Success & Failure) for event ID 4771.\n* All systems: \"Audit Logon\" (Success & Failure) for event ID 4648.",
+            "x_mitre_permissions_required": [
+                "User"
+            ],
+            "x_mitre_platforms": [
+                "Linux",
+                "macOS",
+                "Windows",
+                "Office 365",
+                "Azure AD",
+                "SaaS"
+            ],
+            "x_mitre_version": "2.0"
+        },
+        {
+            "created": "2017-05-31T21:30:43.063Z",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "description": "Processes may automatically execute specific binaries as part of their functionality or to perform other actions. If the permissions on the file system directory containing a target binary, or permissions on the binary itself, are improperly set, then the target binary may be overwritten with another binary using user-level permissions and executed by the original process. If the original process and thread are running under a higher permissions level, then the replaced binary will also execute under higher-level permissions, which could include SYSTEM.\n\nAdversaries may use this technique to replace legitimate binaries with malicious ones as a means of executing code at a higher permissions level. If the executing process is set to run at a specific time or during a certain event (e.g., system bootup) then this technique can also be used for persistence.\n\n### Services\n\nManipulation of Windows service binaries is one variation of this technique. Adversaries may replace a legitimate service executable with their own executable to gain persistence and/or privilege escalation to the account context the service is set to execute under (local/domain account, SYSTEM, LocalService, or NetworkService). Once the service is started, either directly by the user (if appropriate access is available) or through some other means, such as a system restart if the service starts on bootup, the replaced executable will run instead of the original service executable.\n\n### Executable Installers\n\nAnother variation of this technique can be performed by taking advantage of a weakness that is common in executable, self-extracting installers. During the installation process, it is common for installers to use a subdirectory within the <code>%TEMP%</code> directory to unpack binaries such as DLLs, EXEs, or other payloads. When installers create subdirectories and files they often do not set appropriate permissions to restrict write access, which allows for execution of untrusted code placed in the subdirectories or overwriting of binaries used in the installation process. This behavior is related to and may take advantage of [DLL Search Order Hijacking](https://attack.mitre.org/techniques/T1038). Some installers may also require elevated privileges that will result in privilege escalation when executing adversary controlled code. This behavior is related to [Bypass User Account Control](https://attack.mitre.org/techniques/T1088). Several examples of this weakness in existing common installers have been reported to software vendors. (Citation: Mozilla Firefox Installer DLL Hijack) (Citation: Seclists Kanthak 7zip Installer)",
+            "external_references": [
+                {
+                    "external_id": "T1044",
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1044"
+                },
+                {
+                    "external_id": "CAPEC-17",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/17.html"
+                },
+                {
+                    "description": "Kugler, R. (2012, November 20). Mozilla Foundation Security Advisory 2012-98. Retrieved March 10, 2017.",
+                    "source_name": "Mozilla Firefox Installer DLL Hijack",
+                    "url": "https://www.mozilla.org/en-US/security/advisories/mfsa2012-98/"
+                },
+                {
+                    "description": "Kanthak, S. (2015, December 8). Executable installers are vulnerable^WEVIL (case 7): 7z*.exe\tallows remote code execution with escalation of privilege. Retrieved March 10, 2017.",
+                    "source_name": "Seclists Kanthak 7zip Installer",
+                    "url": "http://seclists.org/fulldisclosure/2015/Dec/34"
+                }
+            ],
+            "id": "attack-pattern--0ca7beef-9bbc-4e35-97cf-437384ddce6a",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "modified": "2019-07-17T21:22:37.100Z",
+            "name": "File System Permissions Weakness",
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "type": "attack-pattern",
+            "x_mitre_contributors": [
+                "Stefan Kanthak",
+                "Travis Smith, Tripwire"
+            ],
+            "x_mitre_data_sources": [
+                "File monitoring",
+                "Services",
+                "Process command-line parameters"
+            ],
+            "x_mitre_detection": "Look for changes to binaries and service executables that may normally occur during software updates. If an executable is written, renamed, and/or moved to match an existing service executable, it could be detected and correlated with other suspicious behavior. Hashing of binaries and service executables could be used to detect replacement against historical data.\n\nLook for abnormal process call trees from typical processes and services and for execution of other commands that could relate to Discovery or other adversary techniques.",
+            "x_mitre_effective_permissions": [
+                "SYSTEM",
+                "User",
+                "Administrator"
+            ],
+            "x_mitre_permissions_required": [
+                "Administrator",
+                "User"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "In applications, particularly web applications, access to functionality is mitigated by an authorization framework. This framework maps Access Control Lists (ACLs) to elements of the application's functionality; particularly URL's for web apps. In the case that the administrator failed to specify an ACL for a particular element, an attacker may be able to access it with impunity. An attacker with the ability to access functionality not properly constrained by ACLs can obtain sensitive information and possibly compromise the entire application. Such an attacker can access resources that must be available only to users at a higher privilege level, can access management sections of the application, or can run queries for data that they otherwise not supposed to.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-1",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/1.html"
+                },
+                {
+                    "external_id": "CWE-285",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/285.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "external_id": "CWE-276",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/276.html"
+                },
+                {
+                    "external_id": "CWE-693",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html"
+                },
+                {
+                    "external_id": "CWE-721",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/721.html"
+                },
+                {
+                    "external_id": "CWE-434",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/434.html"
+                }
+            ],
+            "id": "attack-pattern--92cdcd3d-d734-4442-afc3-4599f261498b",
+            "modified": "2017-08-04T00:00:00.000Z",
+            "name": "Accessing Functionality Not Properly Constrained by ACLs",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Standard",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>Implementing the Model-View-Controller (MVC) within Java EE's Servlet paradigm using a \"Single front controller\" pattern that demands that brokered HTTP requests be authenticated before hand-offs to other Action Servlets.</xhtml:p>\n               <xhtml:p>If no security-constraint is placed on those Action Servlets, such that positively no one can access them, the front controller can be subverted.</xhtml:p>\n            "
+            ],
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_prerequisites": [
+                "The application must be navigable in a manner that associates elements (subsections) of the application with ACLs.",
+                "The various resources, or individual URLs, must be somehow discoverable by the attacker",
+                "The administrator must have forgotten to associate an ACL or has associated an inappropriately permissive ACL with a particular navigable resource."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack."
+            ],
+            "x_capec_skills_required": {
+                "Low": "In order to discover unrestricted resources, the attacker does not need special tools or skills. He only has to observe the resources or access mechanisms invoked as each action is performed and then try and access those access mechanisms directly."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "In this attack, some asset (information, functionality, identity, etc.) is protected by a finite secret value. The attacker attempts to gain access to this asset by using trial-and-error to exhaustively explore all the possible secret values in the hope of finding the secret (or a value that is functionally equivalent) that will unlock the asset. Examples of secrets can include, but are not limited to, passwords, encryption keys, database lookup keys, and initial values to one-way functions. The key factor in this attack is the attackers' ability to explore the possible secret space rapidly. This, in turn, is a function of the size of the secret space and the computational power the attacker is able to bring to bear on the problem. If the attacker has modest resources and the secret space is large, the challenge facing the attacker is intractable. While the defender cannot control the resources available to an attacker, they can control the size of the secret space. Creating a large secret space involves selecting one's secret from as large a field of equally likely alternative secrets as possible and ensuring that an attacker is unable to reduce the size of this field using available clues or cryptanalysis. Doing this is more difficult than it sounds since elimination of patterns (which, in turn, would provide an attacker clues that would help them reduce the space of potential secrets) is difficult to do using deterministic machines, such as computers. Assuming a finite secret space, a brute force attack will eventually succeed. The defender must rely on making sure that the time and resources necessary to do so will exceed the value of the information. For example, a secret space that will likely take hundreds of years to explore is likely safe from raw-brute force attacks.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-112",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/112.html"
+                },
+                {
+                    "external_id": "CWE-330",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/330.html"
+                },
+                {
+                    "external_id": "CWE-326",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/326.html"
+                },
+                {
+                    "external_id": "CWE-521",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/521.html"
+                }
+            ],
+            "id": "attack-pattern--7b423196-9de6-400f-91de-a1f26b3f19f1",
+            "modified": "2017-08-04T00:00:00.000Z",
+            "name": "Brute Force",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Meta",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Read Data",
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_prerequisites": [
+                "The attacker must be able to determine when they have successfully guessed the secret. As such, one-time pads are immune to this type of attack since there is no way to determine when a guess is correct."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack. Ultimately, the speed with which an attacker discovers a secret is directly proportional to the computational resources the attacker has at their disposal. This attack method is resource expensive: having large amounts of computational power do not guarantee timely success, but having only minimal resources makes the problem intractable against all but the weakest secret selection procedures."
+            ],
+            "x_capec_skills_required": {
+                "Low": "The attack simply requires basic scripting ability to automate the exploration of the search space. More sophisticated attackers may be able to use more advanced methods to reduce the search space and increase the speed with which the secret is located."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An adversary is able to exploit features of the target that should be reserved for privileged users or administrators but are exposed to use by lower or non-privileged accounts. Access to sensitive information and functionality must be controlled to ensure that only authorized users are able to access these resources. If access control mechanisms are absent or misconfigured, a user may be able to access resources that are intended only for higher level users. An adversary may be able to exploit this to utilize a less trusted account to gain information and perform activities reserved for more trusted accounts. This attack differs from privilege escalation and other privilege stealing attacks in that the adversary never actually escalates their privileges but instead is able to use a lesser degree of privilege to access resources that should be (but are not) reserved for higher privilege accounts. Likewise, the adversary does not exploit trust or subvert systems - all control functionality is working as configured but the configuration does not adequately protect sensitive resources at an appropriate level.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-122",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/122.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "external_id": "CWE-269",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/269.html"
+                }
+            ],
+            "id": "attack-pattern--fd669b7d-0e79-473c-9808-a860dfb0c871",
+            "modified": "2019-04-04T00:00:00.000Z",
+            "name": "Privilege Abuse",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Meta",
+            "x_capec_prerequisites": [
+                "The target must have misconfigured their access control mechanisms such that sensitive information, which should only be accessible to more trusted users, remains accessible to less trusted users.",
+                "The adversary must have access to the target, albeit with an account that is less privileged than would be appropriate for the targeted resources."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack. The ability to access the target is required."
+            ],
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Medium",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An adversary crafts a request to a target that results in the target listing/indexing the content of a directory as output. One common method of triggering directory contents as output is to construct a request containing a path that terminates in a directory name rather than a file name since many applications are configured to provide a list of the directory's contents when such a request is received. An adversary can use this to explore the directory tree on a target as well as learn the names of files. This can often end up revealing test files, backup files, temporary files, hidden files, configuration files, user accounts, script contents, as well as naming conventions, all of which can be used by an attacker to mount additional attacks.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-127",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/127.html"
+                },
+                {
+                    "external_id": "CWE-424",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/424.html"
+                },
+                {
+                    "external_id": "CWE-425",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/425.html"
+                },
+                {
+                    "external_id": "CWE-288",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/288.html"
+                },
+                {
+                    "external_id": "CWE-285",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/285.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "external_id": "CWE-276",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/276.html"
+                },
+                {
+                    "external_id": "CWE-693",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html"
+                },
+                {
+                    "external_id": "CWE-721",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/721.html"
+                },
+                {
+                    "description": "WASC Threat Classification 2.0, 2010, The Web Application Security Consortium (WASC)",
+                    "external_id": "REF-11",
+                    "source_name": "reference_from_CAPEC",
+                    "url": "http://projects.webappsec.org/Directory-Indexing"
+                }
+            ],
+            "id": "attack-pattern--62c46d1c-f091-467e-a4b0-61927db31f38",
+            "modified": "2018-07-31T00:00:00.000Z",
+            "name": "Directory Indexing",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Detailed",
+            "x_capec_consequences": {
+                "Confidentiality": [
+                    "Read Data (Information Leakage)"
+                ]
+            },
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>The adversary uses directory listing to view sensitive files in the application. This is an example of accessing the backup file. The attack issues a request for http://www.example.com/admin/ and receives the following dynamic directory indexing content in the response: Index of /admin Name Last Modified Size Description backup/ 31-May-2007 08:18 - Apache/ 2.0.55 Server at www.example.com Port 80</xhtml:p>\n               <xhtml:p>The target application does not have direct hyperlink to the \"backup\" directory in the normal html webpage, however the attacker has learned of this directory due to indexing the content. The client then requests the backup directory URL and receives output which has a \"db_dump.php\" file in it. This sensitive data should not be disclosed publicly.</xhtml:p>\n            "
+            ],
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_prerequisites": [
+                "The target must be misconfigured to return a list of a directory's content when it receives a request that ends in a directory name rather than a file name.",
+                "The adversary must be able to control the path that is requested of the target.",
+                "The administrator must have failed to properly configure an ACL or has associated an overly permissive ACL with a particular directory.",
+                "The server version or patch level must not inherently prevent known directory listing attacks from working."
+            ],
+            "x_capec_resources_required": [
+                "Ability to send HTTP requests to a web application."
+            ],
+            "x_capec_skills_required": {
+                "High": "To bypass the access control of the directory of listings",
+                "Low": "To issue the request to URL without given a specific file name"
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Medium",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An attacker tries each of the words in a dictionary as passwords to gain access to the system via some user's account. If the password chosen by the user was a word within the dictionary, this attack will be successful (in the absence of other mitigations). This is a specific instance of the password brute forcing attack pattern.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-16",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/16.html"
+                },
+                {
+                    "external_id": "CWE-521",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/521.html"
+                },
+                {
+                    "external_id": "CWE-262",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/262.html"
+                },
+                {
+                    "external_id": "CWE-263",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/263.html"
+                },
+                {
+                    "external_id": "CWE-693",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html"
+                }
+            ],
+            "id": "attack-pattern--a9dc4914-409a-4f71-80df-c5cc3923d112",
+            "modified": "2014-06-23T00:00:00.000Z",
+            "name": "Dictionary-based Password Attack",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Detailed",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_example_instances": [
+                "A system user selects the word \"treacherous\" as their passwords believing that it would be very difficult to guess. The password-based dictionary attack is used to crack this password and gain access to the account.",
+                "\n               <xhtml:p>The Cisco LEAP challenge/response authentication mechanism uses passwords in a way that is susceptible to dictionary attacks, which makes it easier for remote attackers to gain privileges via brute force password guessing attacks.</xhtml:p>\n               <xhtml:p>Cisco LEAP is a mutual authentication algorithm that supports dynamic derivation of session keys. With Cisco LEAP, mutual authentication relies on a shared secret, the user's logon password (which is known by the client and the network), and is used to respond to challenges between the user and the Remote Authentication Dial-In User Service (RADIUS) server.</xhtml:p>\n               <xhtml:p>Methods exist for someone to write a tool to launch an offline dictionary attack on password-based authentications that leverage Microsoft MS-CHAP, such as Cisco LEAP. The tool leverages large password lists to efficiently launch offline dictionary attacks against LEAP user accounts, collected through passive sniffing or active techniques.</xhtml:p>See also: CVE-2003-1096"
+            ],
+            "x_capec_likelihood_of_attack": "Medium",
+            "x_capec_prerequisites": [
+                "The system uses one factor password based authentication.",
+                "The system does not have a sound password policy that is being enforced.",
+                "The system does not implement an effective password throttling mechanism."
+            ],
+            "x_capec_resources_required": [
+                "A machine with sufficient resources for the job (e.g. CPU, RAM, HD). Applicable dictionaries are required. Also a password cracking tool or a custom script that leverages the dictionary database to launch the attack."
+            ],
+            "x_capec_skills_required": {
+                "Low": "A variety of password cracking tools and dictionaries are available to launch this type of an attack."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An attack of this type exploits a system's configuration that allows an attacker to either directly access an executable file, for example through shell access; or in a possible worst case allows an attacker to upload a file and then execute it. Web servers, ftp servers, and message oriented middleware systems which have many integration points are particularly vulnerable, because both the programmers and the administrators must be in synch regarding the interfaces and the correct privileges for each interface.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-17",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/17.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "external_id": "CWE-285",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/285.html"
+                },
+                {
+                    "external_id": "CWE-272",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/272.html"
+                },
+                {
+                    "external_id": "CWE-59",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/59.html"
+                },
+                {
+                    "external_id": "CWE-282",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/282.html"
+                },
+                {
+                    "external_id": "CWE-275",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/275.html"
+                },
+                {
+                    "external_id": "CWE-264",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/264.html"
+                },
+                {
+                    "external_id": "CWE-270",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/270.html"
+                },
+                {
+                    "external_id": "CWE-693",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html"
+                },
+                {
+                    "description": "G. Hoglund, G. McGraw, Exploiting Software: How to Break Code, 2004--02, Addison-Wesley",
+                    "external_id": "REF-1",
+                    "source_name": "reference_from_CAPEC"
+                }
+            ],
+            "id": "attack-pattern--9ad2c2eb-9939-4590-9683-2e789692d262",
+            "modified": "2017-05-01T00:00:00.000Z",
+            "name": "Using Malicious Files",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Standard",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Availability": [
+                    "Execute Unauthorized Commands (Run Arbitrary Code)"
+                ],
+                "Confidentiality": [
+                    "Execute Unauthorized Commands (Run Arbitrary Code)",
+                    "Read Data",
+                    "Gain Privileges"
+                ],
+                "Integrity": [
+                    "Execute Unauthorized Commands (Run Arbitrary Code)",
+                    "Modify Data"
+                ]
+            },
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>Consider a directory on a web server with the following permissions</xhtml:p>\n               <xhtml:div style=\"margin-left:10px;\" class=\"informative\">drwxrwxrwx 5 admin public 170 Nov 17 01:08 webroot</xhtml:div>\n               <xhtml:p>This could allow an attacker to both execute and upload and execute programs' on the web server. This one vulnerability can be exploited by a threat to probe the system and identify additional vulnerabilities to exploit.</xhtml:p>\n            "
+            ],
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_prerequisites": [
+                "System's configuration must allow an attacker to directly access executable files or upload files to execute. This means that any access control system that is supposed to mediate communications between the subject and the object is set incorrectly or assumes a benign environment."
+            ],
+            "x_capec_resources_required": [
+                "Ability to communicate synchronously or asynchronously with server that publishes an over-privileged directory, program, or interface. Optionally, ability to capture output directly through synchronous communication or other method such as FTP."
+            ],
+            "x_capec_skills_required": {
+                "Low": "To identify and execute against an over-privileged system interface"
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Very High",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An attacker exploits a weakness in the configuration of access controls and is able to bypass the intended protection that these measures guard against and thereby obtain unauthorized access to the system or network. Sensitive functionality should always be protected with access controls. However configuring all but the most trivial access control systems can be very complicated and there are many opportunities for mistakes. If an attacker can learn of incorrectly configured access security settings, they may be able to exploit this in an attack. Most commonly, attackers would take advantage of controls that provided too little protection for sensitive activities in order to perform actions that should be denied to them. In some circumstances, an attacker may be able to take advantage of overly restrictive access control policies, initiating denial of services (if an application locks because it unexpectedly failed to be granted access) or causing other legitimate actions to fail due to security. The latter class of attacks, however, is usually less severe and easier to detect than attacks based on inadequate security restrictions. This attack pattern differs from CAPEC 1, \"Accessing Functionality Not Properly Constrained by ACLs\" in that the latter describes attacks where sensitive functionality lacks access controls, where, in this pattern, the access control is present, but incorrectly configured.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-180",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/180.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "description": "Silvio Cesare, Share Library Call Redirection Via ELF PLT Infection (Issue 56), Phrack Magazine, 2000",
+                    "external_id": "REF-29",
+                    "source_name": "reference_from_CAPEC",
+                    "url": "http://phrack.org/issues/56/7.html"
+                },
+                {
+                    "description": "OWASP Top 10 (2007), The Open Web Application Security Project (OWASP)",
+                    "external_id": "REF-45",
+                    "source_name": "reference_from_CAPEC",
+                    "url": "http://www.owasp.org/index.php/Top_10_2007-A3"
+                }
+            ],
+            "id": "attack-pattern--aac17300-6cdd-4f50-82c3-da5a01d225ac",
+            "modified": "2019-04-04T00:00:00.000Z",
+            "name": "Exploiting Incorrectly Configured Access Control Security Levels",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Standard",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Bypass Protection Mechanism"
+                ],
+                "Authorization": [
+                    "Execute Unauthorized Commands (Run Arbitrary Code)",
+                    "Gain Privileges",
+                    "Bypass Protection Mechanism"
+                ],
+                "Availability": [
+                    "Unreliable Execution"
+                ],
+                "Confidentiality": [
+                    "Read Data"
+                ],
+                "Integrity": [
+                    "Modify Data"
+                ]
+            },
+            "x_capec_example_instances": [
+                "For example, an incorrectly configured Web server, may allow unauthorized access to it, thus threaten the security of the Web application."
+            ],
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_prerequisites": [
+                "The target must apply access controls, but incorrectly configure them. However, not all incorrect configurations can be exploited by an attacker. If the incorrect configuration applies too little security to some functionality, then the attacker may be able to exploit it if the access control would be the only thing preventing an attacker's access and it no longer does so. If the incorrect configuration applies too much security, it must prevent legitimate activity and the attacker must be able to force others to require this activity.."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack."
+            ],
+            "x_capec_skills_required": {
+                "Low": "In order to discover unrestricted resources, the attacker does not need special tools or skills. He only has to observe the resources or access mechanisms invoked as each action is performed and then try and access those access mechanisms directly."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Medium",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "The attacker extracts credentials used for code signing from a production environment and then uses these credentials to sign malicious content with the developer's key. Many developers use signing keys to sign code or hashes of code. When users or applications verify the signatures are accurate they are led to believe that the code came from the owner of the signing key and that the code has not been modified since the signature was applied. If the attacker has extracted the signing credentials then they can use those credentials to sign their own code bundles. Users or tools that verify the signatures attached to the code will likely assume the code came from the legitimate developer and install or run the code, effectively allowing the attacker to execute arbitrary code on the victim's computer.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-206",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/206.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                }
+            ],
+            "id": "attack-pattern--3c71639a-ebbd-43a4-8d0d-8a0e4cf9ade3",
+            "modified": "2019-04-04T00:00:00.000Z",
+            "name": "Signing Malicious Code",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Detailed",
+            "x_capec_prerequisites": [
+                "The targeted developer must use a signing key to sign code bundles. (Note that not doing this is not a defense - it only means that the attacker does not need to steal the signing key before forging code bundles in the developer's name.)"
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack."
+            ],
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Very High",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "An attacker gains control of a process that is assigned elevated privileges in order to execute arbitrary code with those privileges. Some processes are assigned elevated privileges on an operating system, usually through association with a particular user, group, or role. If an attacker can hijack this process, they will be able to assume its level of privilege in order to execute their own code. Processes can be hijacked through improper handling of user input (for example, a buffer overflow or certain types of injection attacks) or by utilizing system utilities that support process control that have been inadequately secured.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-234",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/234.html"
+                },
+                {
+                    "external_id": "CWE-732",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html"
+                },
+                {
+                    "external_id": "CWE-648",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/648.html"
+                }
+            ],
+            "id": "attack-pattern--9f1d96c7-fcc8-4708-b98d-23f1fd86e07b",
+            "modified": "2017-08-04T00:00:00.000Z",
+            "name": "Hijacking a privileged process",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Standard",
+            "x_capec_prerequisites": [
+                "The targeted process or operating system must contain a bug that allows attackers to hijack the targeted process."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack."
+            ],
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Medium",
+            "x_capec_version": "3.2"
+        },
+        {
+            "created": "2014-06-23T00:00:00.000Z",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "description": "In this attack, the adversary tries every possible value for a password until they succeed. A brute force attack, if feasible computationally, will always be successful because it will essentially go through all possible passwords given the alphabet used (lower case letters, upper case letters, numbers, symbols, etc.) and the maximum length of the password. A system will be particularly vulnerable to this type of an attack if it does not have a proper enforcement mechanism in place to ensure that passwords selected by users are strong passwords that comply with an adequate password policy. In practice a pure brute force attack on passwords is rarely used, unless the password is suspected to be weak. Other password cracking methods exist that are far more effective (e.g. dictionary attacks, rainbow tables, etc.). Knowing the password policy on the system can make a brute force attack more efficient. For instance, if the policy states that all passwords must be of a certain level, there is no need to check smaller candidates.",
+            "external_references": [
+                {
+                    "external_id": "CAPEC-49",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/49.html"
+                },
+                {
+                    "external_id": "CWE-521",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/521.html"
+                },
+                {
+                    "external_id": "CWE-262",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/262.html"
+                },
+                {
+                    "external_id": "CWE-263",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/263.html"
+                },
+                {
+                    "external_id": "CWE-257",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/257.html"
+                },
+                {
+                    "external_id": "CWE-693",
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html"
+                }
+            ],
+            "id": "attack-pattern--8d88a81c-bde9-4fb3-acbe-901c783d6427",
+            "modified": "2019-04-04T00:00:00.000Z",
+            "name": "Password Brute Forcing",
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "type": "attack-pattern",
+            "x_capec_abstraction": "Standard",
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>A system does not enforce a strong password policy and the user picks a five letter password consisting of lower case English letters only. The system does not implement any password throttling mechanism. Assuming the adversary does not know the length of the users' password, an adversary can brute force this password in maximum 1+26+26^2+26^3+26^4+26^5 = 1 + 26 + 676 + 17576 + 456976 + 11,881,376 = 12,356,631 attempts, and half these tries (6,178,316) on average. Using modern hardware this attack is trivial. If the adversary were to assume that the user password could also contain upper case letters (and it was case sensitive) and/or numbers, than the number of trials would have been larger.</xhtml:p>\n               <xhtml:p>An adversary's job would have most likely been even easier because many users who choose easy to brute force passwords like this are also likely to use a word that can be found in the dictionary. Since there are far fewer valid English words containing up to five letters than 12,356,631, an attack that tries each of the entries in the English dictionary would go even faster.</xhtml:p>\n            ",
+                "A weakness exists in the automatic password generation routine of Mailman prior to 2.1.5 that causes only about five million different passwords to be generated. This makes it easy to brute force the password for all users who decided to let Mailman automatically generate their passwords for them. Users who chose their own passwords during the sign up process would not have been affected (assuming that they chose strong passwords). See also: CVE-2004-1143"
+            ],
+            "x_capec_likelihood_of_attack": "Medium",
+            "x_capec_prerequisites": [
+                "An adversary needs to know a username to target.",
+                "The system uses password based authentication as the one factor authentication mechanism.",
+                "An application does not have a password throttling mechanism in place. A good password throttling mechanism will make it almost impossible computationally to brute force a password as it may either lock out the user after a certain number of incorrect attempts or introduce time out periods. Both of these would make a brute force attack impractical."
+            ],
+            "x_capec_resources_required": [
+                "A powerful enough computer for the job with sufficient CPU, RAM and HD. Exact requirements will depend on the size of the brute force job and the time requirement for completion. Some brute forcing jobs may require grid or distributed computing (e.g. DES Challenge)."
+            ],
+            "x_capec_skills_required": {
+                "Low": "A brute force attack is very straightforward. A variety of password cracking tools are widely available."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.2"
+        }
+    ],
+    "spec_version": "2.0",
+    "type": "bundle"
+}

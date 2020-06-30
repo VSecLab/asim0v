@@ -40,10 +40,26 @@ public class ExecutorMain {
 
 	@RequestMapping("/execute")
 	@PostMapping
-	public String execute(String cve, String targetAddress) throws ExecutorCustomException {
+	public String execute(@RequestParam String attack, @RequestParam String targetPlatform) throws ExecutorCustomException {
+		String result=null;
+		return result;
+	}
+
+	@RequestMapping("/attacks")
+	public List<String> findAttacks(@RequestParam String cve, @RequestParam (required=false)String targetPlatform) throws ExecutorCustomException {
 		Bundle bundle = service.retrieveBundle(cve);
-		List<String> postModules = service.retrieveAttacks(bundle);
-		return bundle.toJsonString();
+		List<String> postModules = service.retrieveAttacks(bundle, targetPlatform);
+		return postModules;
+	}
+
+	@RequestMapping("/payload")
+	@PostMapping
+	public String createPayload(@RequestParam String targetPlatform, 
+								@RequestParam (required=false, defaultValue = "${metasploit.address}")String metasploitAddress,
+								@RequestParam (required=false, defaultValue = "4444") String reverseShellPort){
+		String payload = service.generatePayload( targetPlatform,  metasploitAddress,  reverseShellPort);
+		return payload;
+
 	}
 
 	public static void main(final String[] args) {

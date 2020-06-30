@@ -99,7 +99,7 @@ public class ExplorerService {
 
                         }
                         throw new RuntimeException("Parsing Error, wrong data on elasticsearch?");
-                }).collect(Collectors.toList());
+                }).collect(Collectors.toList());//TODO filter x_capec_abstraction != Meta
                 return capecAttacks;
         }
 

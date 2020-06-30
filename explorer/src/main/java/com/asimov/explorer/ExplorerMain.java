@@ -49,9 +49,9 @@ public class ExplorerMain {
 	}
 
 	@RequestMapping("/search")
-	public String search(String cve) throws ExplorerCustomException {
+	public String buildSTIXFor(String cve) throws ExplorerCustomException {
 		Vulnerability vulnerability = service.findVulnerability(cve);
-		if(vulnerability== null){
+		if (vulnerability == null) {
 			return "{\"error\":\"vulnerability not found\"}";
 		}
 		List<CustomObject> cwes = service.findCWE(vulnerability);
@@ -60,8 +60,9 @@ public class ExplorerMain {
 		mitreAttacks.forEach(x -> System.out.println(x.getExternalReferences()));
 		List<Relationship> relationships = new ArrayList<>();
 		for (AttackPattern attackPattern : capecAttacks) {
-			Relationship relationship = Relationship.builder().sourceRef(attackPattern).relationshipType("targets")
-					.targetRef(vulnerability).build();
+			Relationship relationship = Relationship.builder().sourceRef(attackPattern)
+										.relationshipType("targets")
+										.targetRef(vulnerability).build();
 			relationships.add(relationship);
 		}
 
@@ -74,7 +75,8 @@ public class ExplorerMain {
 						.collect(Collectors.toList());
 				if (filteredList.contains(capecID)) {
 					Relationship relationship = Relationship.builder().sourceRef(attackPattern)
-							.relationshipType("related-to").targetRef(capecAttack).build();
+												.relationshipType("related-to")
+												.targetRef(capecAttack).build();
 					relationships.add(relationship);
 				}
 			}

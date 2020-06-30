@@ -123,10 +123,66 @@ class ExecutorApplicationTests {
                 System.out.println(res);
 
         }
+
         @Test
-         void gatewayCommandTest() {
-                Map<String, JsonNode> response = gateway.executeCommand("module.info", new String[] { "post", "linux/purple/t1016" });
+        void gatewayModuleInfoTest() {
+                Map<String, JsonNode> response = gateway.executeCommand("module.info",
+                                new String[] { "post", "linux/purple/t1016" });
                 JsonNode options = response.get("options");
         }
 
+        @Test
+        void gatewayCommandTest() throws IOException, ExecutorCustomException, InterruptedException {
+                // "CVE-2017-15906", "CVE-2017-15906", "CVE-2019-19272", "CVE-2019-19271",
+                // "CVE-2019-10211","CVE-2017-14798","CVE-2019-10210"
+                // "CVE-2017-14798", "CVE-2019-10210",
+                String[] cves = new String[] { "CVE-2010-4478", "CVE-2016-10708", "CVE-2010-4755", "CVE-2008-5161",
+                                "CVE-2011-4130", "CVE-2010-3867", "CVE-2010-4652", "CVE-2009-0543", "CVE-2009-3639",
+                                "CVE-2011-1137", "CVE-2008-7265", "CVE-2012-6095", "CVE-2016-7048", "CVE-2015-3166",
+                                "CVE-2015-0244", "CVE-2015-0243", "CVE-2015-0242", "CVE-2015-0241", "CVE-2018-1115",
+                                "CVE-2015-3167", "CVE-2012-2143", "CVE-2014-8161", "CVE-2010-0733" };
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+                Map<String, JsonNode> response = gateway.executeCommand("console.create", new String[] {});
+                for (String cve : cves) {
+                        JsonNode id = response.get("id");
+                        Bundle bundle = service.retrieveBundle(cve);
+                        System.out.println(cve);
+                        List<String> techniques = service.retrieveAttacks(bundle,"Windows");
+                        for (String string : techniques) {
+                                Map<String, JsonNode> commandResult = gateway.executeCommand("console.write",
+                                                new String[] { id.asText(), "search " + string + "\r\n" });
+                                System.out.println(commandResult);
+                                Thread.sleep(500);
+                                Map<String, JsonNode> readResponse = gateway.executeCommand("console.read",
+                                                new String[] { id.asText() });
+                                System.out.println(readResponse);
+                        }
+                }
+
+        }
+
+        @Test
+        void gatewaySearchTest() throws InterruptedException {
+                // String[] techniques = new String[] { "T1134", "T1100", "T1018", "T1130", "T1031", "T1050", "T1058",
+                //                 "T1018", };
+                String[] techniques = new String[] { "T1018" };
+                Map<String, JsonNode> response = gateway.executeCommand("console.list", new String[] {});
+                System.out.println(response);
+                for (String string : techniques) {
+                        Map<String, JsonNode> commandResult = gateway.executeCommand("console.write",
+                                        new String[] { "1", "search post/linux/purple/" + string.toLowerCase() + "\r\n" });
+                        System.out.println(commandResult);
+                        Thread.sleep(500);
+                        Map<String, JsonNode> readResponse = gateway.executeCommand("console.read",
+                                        new String[] { "1" });
+                        System.out.println(readResponse);
+                }
+
+        }
+
+        @Test
+        void generatePayloadTest(){
+                service.generatePayload("linux/x86", "metasploit", "4444");
+        }
 }
