@@ -14,7 +14,7 @@
         },
         {
             "type": "java",
-            "name": "Local Debug (Launch)-executorMain<executor>",
+            "name": "Local Debug (Launch)-ExecutorMain<executor>",
             "request": "launch",
             "mainClass": "com.asimov.executor.ExecutorMain",
             "projectName": "executor",
@@ -22,19 +22,19 @@
         },
         {
             "type": "java",
-            "name": "Remote Debug (Attach)-executorMain<executor>",
+            "name": "Remote Debug (Attach)-ExecutorMain<executor>",
             "projectName": "executor",
             "request": "attach",
             "hostName": "localhost",
-            "port": 9091
+            "port": 9292
         },
         {
             "type": "java",
-            "name": "Remote Run LiveReload (Attach)-executorMain<executor>",
+            "name": "Remote Run LiveReload (Attach)-ExecutorMain<executor>",
             "projectName": "executor",
             "request": "launch",
             "mainClass": "org.springframework.boot.devtools.RemoteSpringApplication",
-            "args": "http://localhost:9191"
+            "args": "http://localhost:9393"
         }
     ]
 }

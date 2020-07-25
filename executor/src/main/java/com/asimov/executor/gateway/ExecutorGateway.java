@@ -54,6 +54,7 @@ public class ExecutorGateway {
         logger.info("executing metasploit method {}, having params {}", method, params);
         Map<String, JsonNode> res = rpcClient.createRequest().method(method).id(1).params(params)
                 .returnAsMap(HashMap.class, JsonNode.class).execute();
+                logger.debug("metasploit result {}", res);
         return res;
     }
 

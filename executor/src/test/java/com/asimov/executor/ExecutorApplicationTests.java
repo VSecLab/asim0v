@@ -185,4 +185,14 @@ class ExecutorApplicationTests {
         void generatePayloadTest(){
                 service.generatePayload("linux/x86", "metasploit", "4444");
         }
+
+        @Test
+        void exploitMultiHandlerTest(){
+                service.exploitMultiHandler("linux", "0.0.0.0", "4444");
+        }
+
+        @Test
+        void sessionListTest(){
+                service.sessionList("1");
+        }
 }

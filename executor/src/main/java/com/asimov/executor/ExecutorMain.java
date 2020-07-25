@@ -40,13 +40,27 @@ public class ExecutorMain {
 
 	@RequestMapping("/execute")
 	@PostMapping
-	public String execute(@RequestParam String attack, @RequestParam String targetPlatform) throws ExecutorCustomException {
-		String result=null;
+	public String execute(@RequestParam String attack, @RequestParam String targetPlatform,
+			@RequestParam(required = false, defaultValue = "${metasploit.reverseShellPort}") String reverseShellPort)
+			throws ExecutorCustomException {
+		String jobId = service.exploitMultiHandler(targetPlatform, "0.0.0.0", reverseShellPort);
+		String result = null;
+		if (service.sessionList(jobId) != null) {
+			String executionResult = service.runPostModule(jobId, targetPlatform, attack);
+			if (executionResult.equals("success")) {
+				result = service.readPostModuleResult(jobId);
+			}
+			else {
+				result = "Post Module Execution Failed";
+			}
+		}
 		return result;
 	}
 
 	@RequestMapping("/attacks")
-	public List<String> findAttacks(@RequestParam String cve, @RequestParam (required=false)String targetPlatform) throws ExecutorCustomException {
+	// targetPlatform Windows,Linux,macOS
+	public List<String> findAttacks(@RequestParam String cve, @RequestParam(required = false) String targetPlatform)
+			throws ExecutorCustomException {
 		Bundle bundle = service.retrieveBundle(cve);
 		List<String> postModules = service.retrieveAttacks(bundle, targetPlatform);
 		return postModules;
@@ -54,10 +68,10 @@ public class ExecutorMain {
 
 	@RequestMapping("/payload")
 	@PostMapping
-	public String createPayload(@RequestParam String targetPlatform, 
-								@RequestParam (required=false, defaultValue = "${metasploit.address}")String metasploitAddress,
-								@RequestParam (required=false, defaultValue = "4444") String reverseShellPort){
-		String payload = service.generatePayload( targetPlatform,  metasploitAddress,  reverseShellPort);
+	public String createPayload(@RequestParam String targetPlatform,
+			@RequestParam(required = false, defaultValue = "${metasploit.address}") String metasploitAddress,
+			@RequestParam(required = false, defaultValue = "${metasploit.reverseShellPort}") String reverseShellPort) {
+		String payload = service.generatePayload(targetPlatform, metasploitAddress, reverseShellPort);
 		return payload;
 
 	}

