@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  ms:
+    environment:
+      # example of setting LHOST
+      LHOST: 127.0.0.1  
+      MSF_UID: 0
+      MSF_GID: 0
+    # example of adding more ports
+    ports:
+      - 8080:8080
+      - 443:443
+      - 55553:55553
+    networks:
+      - dataloader_elastic
+    volumes: 
+      - type: bind
+        source: ./msf-ws-cert.pem
+        target: /root/.msf4/msf-ws-cert.pem
+      - type: bind
+        source: ./msf-ws-key.pem
+        target: /root/.msf4/msf-ws-key.pem
+      - ./nmap_scripts:/usr/share/nmap/scripts/custom
+  db:
+    environment: 
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+     - dataloader_elastic
+networks: 
+ dataloader_elastic:
+   external: true
+volumes:
+  nmap_scripts:

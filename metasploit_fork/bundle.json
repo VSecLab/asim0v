@@ -1,0 +1,286 @@
+{
+    "id": "bundle--613d4c79-80f2-414b-a574-4792b13abcf0",
+    "objects": [
+        {
+            "created": "2020-05-24T00:01:19.399Z",
+            "description": "OpenSSH 5.6 and earlier, when J-PAKE is enabled, does not properly validate the public parameters in the J-PAKE protocol, which allows remote attackers to bypass the need for knowledge of the shared secret, and successfully authenticate, by sending crafted values in each round of the protocol, a related issue to CVE-2010-4252.",
+            "external_references": [
+                {
+                    "external_id": "CVE-2010-4478",
+                    "source_name": "cve"
+                }
+            ],
+            "id": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "modified": "2020-05-24T00:01:19.399Z",
+            "name": "CVE-2010-4478",
+            "type": "vulnerability",
+            "x_CWE": [
+                "CWE-287"
+            ],
+            "x_data_type": "CVE",
+            "x_references": [
+                {
+                    "name": "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10673",
+                    "refsource": "CONFIRM",
+                    "tags": [],
+                    "url": "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10673"
+                },
+                {
+                    "name": "http://seb.dbzteam.org/crypto/jpake-session-key-retrieval.pdf",
+                    "refsource": "MISC",
+                    "tags": [
+                        "Exploit"
+                    ],
+                    "url": "http://seb.dbzteam.org/crypto/jpake-session-key-retrieval.pdf"
+                },
+                {
+                    "name": "http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/jpake.c#rev1.5",
+                    "refsource": "CONFIRM",
+                    "tags": [
+                        "Patch"
+                    ],
+                    "url": "http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/jpake.c#rev1.5"
+                },
+                {
+                    "name": "http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/jpake.c.diff?r1=1.4;r2=1.5;f=h",
+                    "refsource": "CONFIRM",
+                    "tags": [
+                        "Patch"
+                    ],
+                    "url": "http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/jpake.c.diff?r1=1.4;r2=1.5;f=h"
+                },
+                {
+                    "name": "https://bugzilla.redhat.com/show_bug.cgi?id=659297",
+                    "refsource": "CONFIRM",
+                    "tags": [
+                        "Patch"
+                    ],
+                    "url": "https://bugzilla.redhat.com/show_bug.cgi?id=659297"
+                },
+                {
+                    "name": "https://github.com/seb-m/jpake",
+                    "refsource": "MISC",
+                    "tags": [],
+                    "url": "https://github.com/seb-m/jpake"
+                },
+                {
+                    "name": "oval:org.mitre.oval:def:12338",
+                    "refsource": "OVAL",
+                    "tags": [],
+                    "url": "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A12338"
+                }
+            ]
+        },
+        {
+            "created": "2020-06-04T19:13:06.010Z",
+            "id": "relationship--7692c1ae-6d7d-438d-be3c-c173dab388b7",
+            "modified": "2020-06-04T19:13:06.010Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--2e2ed1f8-f736-4fc9-83bc-308595fc6e03",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.011Z",
+            "id": "relationship--3b124c6d-bcdf-4420-9187-accc963ce7b3",
+            "modified": "2020-06-04T19:13:06.011Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--8f665166-dfd1-40cb-91e8-b78bee1ceb6a",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.011Z",
+            "id": "relationship--48564c79-4823-4ebf-8826-6464c4452171",
+            "modified": "2020-06-04T19:13:06.011Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--22802ed6-ddc6-4da7-b6be-60b10d26198b",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.011Z",
+            "id": "relationship--efb3a30a-e6ee-48ad-a5ad-396f6f8da84e",
+            "modified": "2020-06-04T19:13:06.011Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--862d18f1-a87c-4f1b-acc2-882697d5d6e5",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.011Z",
+            "id": "relationship--2a0f0869-f712-4c89-8f95-386bdb18fa3d",
+            "modified": "2020-06-04T19:13:06.011Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--1fa1539d-4a13-4453-bf43-ad0987b2fbf5",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--ca1049c4-7a18-4c87-a297-2a90178b2628",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--359d056e-6d5c-4d54-97d6-5a9f586bcccf",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--cf4bbcf2-cca0-4442-86c6-b7c900c3483e",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--63f43efb-7a34-4302-b3dc-8245100fdea9",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--4688c6d6-19d3-478b-b7f5-36b36d49a753",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--bec2babe-f38d-49ed-a901-4c7dbbe87b1e",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--3a16573c-a8c0-47ce-ab1f-305e7ab8e4d2",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--b9cddd44-a617-4a56-8560-0ca1cd9af42a",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--5cb6b9b7-993e-4ec7-86b6-d17948545895",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--38964770-4f39-4191-89cf-73a625162b2b",
+            "target_ref": "vulnerability--48d34a1b-1142-3301-88bd-f9de667acadd",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.012Z",
+            "id": "relationship--32b1cb85-a6c1-4774-9ca1-ea0379c2637c",
+            "modified": "2020-06-04T19:13:06.012Z",
+            "relationship_type": "related-to",
+            "source_ref": "attack-pattern--dcaa092b-7de9-4a21-977f-7fcb77e89c48",
+            "target_ref": "attack-pattern--bec2babe-f38d-49ed-a901-4c7dbbe87b1e",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-06-04T19:13:06.013Z",
+            "id": "relationship--9ce846a1-2dad-4248-8559-1e3e592731e5",
+            "modified": "2020-06-04T19:13:06.013Z",
+            "relationship_type": "related-to",
+            "source_ref": "attack-pattern--c16e5409-ee53-4d79-afdc-4099dc9292df",
+            "target_ref": "attack-pattern--b9cddd44-a617-4a56-8560-0ca1cd9af42a",
+            "type": "relationship"
+        },
+        {
+            "created": "2017-12-14T16:46:06.044Z",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "description": "Windows uses access tokens to determine the ownership of a running process. A user can manipulate access tokens to make a running process appear as though it belongs to someone other than the user that started the process. When this occurs, the process also takes on the security context associated with the new token. For example, Microsoft promotes the use of access tokens as a security best practice. Administrators should log in as a standard user but run their tools with administrator privileges using the built-in access token manipulation command <code>runas</code>.(Citation: Microsoft runas)\n  \nAdversaries may use access tokens to operate under a different user or system security context to perform actions and evade detection. An adversary can use built-in Windows API functions to copy access tokens from existing processes; this is known as token stealing. An adversary must already be in a privileged user context (i.e. administrator) to steal a token. However, adversaries commonly use token stealing to elevate their security context from the administrator level to the SYSTEM level. An adversary can use a token to authenticate to a remote system as the account for that token if the account has appropriate permissions on the remote system.(Citation: Pentestlab Token Manipulation)\n\nAccess tokens can be leveraged by adversaries through three methods:(Citation: BlackHat Atkinson Winchester Token Manipulation)\n\n**Token Impersonation/Theft** - An adversary creates a new access token that duplicates an existing token using <code>DuplicateToken(Ex)</code>. The token can then be used with <code>ImpersonateLoggedOnUser</code> to allow the calling thread to impersonate a logged on user's security context, or with <code>SetThreadToken</code> to assign the impersonated token to a thread. This is useful for when the target user has a non-network logon session on the system.\n\n**Create Process with a Token** - An adversary creates a new access token with <code>DuplicateToken(Ex)</code> and uses it with <code>CreateProcessWithTokenW</code> to create a new process running under the security context of the impersonated user. This is useful for creating a new process under the security context of a different user.\n\n**Make and Impersonate Token** - An adversary has a username and password but the user is not logged onto the system. The adversary can then create a logon session for the user using the <code>LogonUser</code> function. The function will return a copy of the new session's access token and the adversary can use <code>SetThreadToken</code> to assign the token to a thread.\n\nAny standard user can use the <code>runas</code> command, and the Windows API functions, to create impersonation tokens; it does not require access to an administrator account.\n\nMetasploit\u2019s Meterpreter payload allows arbitrary token manipulation and uses token impersonation to escalate privileges.(Citation: Metasploit access token) The Cobalt Strike beacon payload allows arbitrary token impersonation and can also create tokens. (Citation: Cobalt Strike Access Token)",
+            "external_references": [
+                {
+                    "external_id": "T1134",
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1134"
+                },
+                {
+                    "external_id": "CAPEC-633",
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/633.html"
+                },
+                {
+                    "description": "Microsoft TechNet. (n.d.). Runas. Retrieved April 21, 2017.",
+                    "source_name": "Microsoft runas",
+                    "url": "https://technet.microsoft.com/en-us/library/bb490994.aspx"
+                },
+                {
+                    "description": "netbiosX. (2017, April 3). Token Manipulation. Retrieved April 21, 2017.",
+                    "source_name": "Pentestlab Token Manipulation",
+                    "url": "https://pentestlab.blog/2017/04/03/token-manipulation/"
+                },
+                {
+                    "description": "Atkinson, J., Winchester, R. (2017, December 7). A Process is No One: Hunting for Token Manipulation. Retrieved December 21, 2017.",
+                    "source_name": "BlackHat Atkinson Winchester Token Manipulation",
+                    "url": "https://www.blackhat.com/docs/eu-17/materials/eu-17-Atkinson-A-Process-Is-No-One-Hunting-For-Token-Manipulation.pdf"
+                },
+                {
+                    "description": "Offensive Security. (n.d.). What is Incognito. Retrieved April 21, 2017.",
+                    "source_name": "Metasploit access token",
+                    "url": "https://www.offensive-security.com/metasploit-unleashed/fun-incognito/"
+                },
+                {
+                    "description": "Mudge, R. (n.d.). Windows Access Tokens and Alternate Credentials. Retrieved April 21, 2017.",
+                    "source_name": "Cobalt Strike Access Token",
+                    "url": "https://blog.cobaltstrike.com/2015/12/16/windows-access-tokens-and-alternate-credentials/"
+                },
+                {
+                    "description": "Mathers, B. (2017, March 7). Command line process auditing. Retrieved April 21, 2017.",
+                    "source_name": "Microsoft Command-line Logging",
+                    "url": "https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/manage/component-updates/command-line-process-auditing"
+                },
+                {
+                    "description": "Microsoft TechNet. (n.d.). Retrieved April 25, 2017.",
+                    "source_name": "Microsoft LogonUser",
+                    "url": "https://msdn.microsoft.com/en-us/library/windows/desktop/aa378184(v=vs.85).aspx"
+                },
+                {
+                    "description": "Microsoft TechNet. (n.d.). Retrieved April 25, 2017.",
+                    "source_name": "Microsoft DuplicateTokenEx",
+                    "url": "https://msdn.microsoft.com/en-us/library/windows/desktop/aa446617(v=vs.85).aspx"
+                },
+                {
+                    "description": "Microsoft TechNet. (n.d.). Retrieved April 25, 2017.",
+                    "source_name": "Microsoft ImpersonateLoggedOnUser",
+                    "url": "https://msdn.microsoft.com/en-us/library/windows/desktop/aa378612(v=vs.85).aspx"
+                }
+            ],
+            "id": "attack-pattern--dcaa092b-7de9-4a21-977f-7fcb77e89c48",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "modified": "2019-10-14T20:45:04.451Z",
+            "name": "Access Token Manipulation",
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "type": "attack-pattern",
+            "x_mitre_contributors": [
+                "Tom Ueltschi @c_APT_ure",
+                "Travis Smith, Tripwire",
+                "Robby Winchester, @robwinchester3",
+                "Jared Atkinson, @jaredcatkinson"
+            ],
+            "x_mitre_data_sources": [
+                "API monitoring",
+                "Access tokens",
+                "Process monitoring",
+                "Process command-line parameters"
+            ],
+            "x_mitre_detection": "If an adversary is using a standard command-line shell, analysts can detect token manipulation by auditing command-line activity. Specifically, analysts should look for use of the <code>runas</code> command. Detailed command-line logging is not enabled by default in Windows.(Citation: Microsoft Command-line Logging)\n\nIf an adversary is using a payload that calls the Windows token APIs directly, analysts can detect token manipulation only through careful analysis of user network activity, examination of running processes, and correlation with other endpoint and network behavior. \n\nThere are many Windows API calls a payload can take advantage of to manipulate access tokens (e.g., <code>LogonUser</code> (Citation: Microsoft LogonUser), <code>DuplicateTokenEx</code>(Citation: Microsoft DuplicateTokenEx), and <code>ImpersonateLoggedOnUser</code>(Citation: Microsoft ImpersonateLoggedOnUser)). Please see the referenced Windows API pages for more information.\n\nQuery systems for process and thread token information and look for inconsistencies such as user owns processes impersonating the local SYSTEM account.(Citation: BlackHat Atkinson Winchester Token Manipulation)",
+            "x_mitre_effective_permissions": [
+                "SYSTEM"
+            ],
+            "x_mitre_permissions_required": [
+                "User",
+                "Administrator"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_version": "1.0"
+        }
+    ]
+}

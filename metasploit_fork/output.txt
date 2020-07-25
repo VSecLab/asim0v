@@ -1,0 +1,1277 @@
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-06-04 12:56 UTC
+Nmap scan report for metasploitable (172.26.0.4)
+Host is up (0.000036s latency).
+rDNS record for 172.26.0.4: metasploitable.dataloader_elastic
+Not shown: 980 closed ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+| vulscan: exploitdb.csv:
+| [17491] VSFTPD 2.3.4 - Backdoor Command Execution
+| [16270] vsftpd 2.3.2 - Denial of Service Vulnerability
+| 
+|_
+22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| vulners: 
+|   cpe:/a:openbsd:openssh:4.7p1: 
+|     	CVE-2010-4478	7.5	https://vulners.com/cve/CVE-2010-4478
+|     	CVE-2017-15906	5.0	https://vulners.com/cve/CVE-2017-15906
+|     	CVE-2016-10708	5.0	https://vulners.com/cve/CVE-2016-10708
+|     	CVE-2010-4755	4.0	https://vulners.com/cve/CVE-2010-4755
+|_    	CVE-2008-5161	2.6	https://vulners.com/cve/CVE-2008-5161
+| vulscan: exploitdb.csv:
+| [21402] OpenSSH 2.x/3.x Kerberos 4 TGT/AFS Token Buffer Overflow Vulnerability
+| [3303] Portable OpenSSH <= 3.6.1p-PAM / 4.1-SUSE Timing Attack Exploit
+| [2444] OpenSSH <= 4.3 p1 (Duplicated Block) Remote Denial of Service Exploit
+| 
+|_
+23/tcp   open  telnet      Linux telnetd
+| vulscan: exploitdb.csv:
+| [30902] Linux Kernel 2.6.22 IPv6 Hop-By-Hop Header Remote Denial of Service Vulnerability
+| [30605] Linux Kernel 2.6.x ALSA snd-page-alloc Local Proc File Information Disclosure Vulnerability
+| [30604] Linux Kernel 2.6.x Ptrace Local Privilege Escalation Vulnerability
+| [30469] Red Hat CloudForms Management Engine 5.1 - agent/linuxpkgs Path Traversal
+| [30080] Linux Kernel 2.6.x VFat Compat IOCTLS Local Denial of Service Vulnerability
+| [29916] Linux Kernel 2.6.x NETLINK_FIB_LOOKUP Local Denial of Service Vulnerability
+| [29826] Linux Kernel 2.6.x AppleTalk ATalk_Sum_SKB Function Denial of Service Vulnerability
+| [29781] Linux Kernel 2.6.x - IPv6_SockGlue.c NULL Pointer Dereference Vulnerability
+| [29714] Linux Kernel 2.6.17 - Sys_Tee Local Privilege Escalation Vulnerability
+| [29683] Linux Kernel 2.6.x Audit Subsystems Local Denial of Service Vulnerability
+| [29436] MIPS Little Endian Reverse Shell Shellcode (Linux)
+| [28912] Linux Kernel 2.6.x ISO9660 Denial of Service Vulnerability
+| [28895] Linux Kernel 2.6.x SquashFS Double Free Denial of Service Vulnerability
+| [28679] Evince PDF Reader - 2.32.0.145 (Windows) and 3.4.0 (Linux) - Denial of Service
+| [28474] Linux/x86 Multi-Egghunter
+| [28386] Linux-HA Heartbeat <= 2.0.6 - Remote Denial of Service Vulnerability
+| [28358] Linux Kernel NFS and EXT3 Combination Remote Denial of Service Vulnerability
+| [28333] D-Link Devices UPnP SOAP Telnetd Command Execution
+| [28287] Linux-HA Heartbeat 1.2.3/2.0.x Insecure Default Permissions on Shared Memory Vulnerability
+| [27925] Linux Kernel 2.6.x Proc dentry_unused Corruption Local Denial of Service Vulnerability
+| [27769] Linux Kernel 2.6.x CIFS CHRoot Security Restriction Bypass Vulnerability
+| [27766] Linux Kernel 2.6.x SMBFS CHRoot Security Restriction Bypass Vulnerability
+| [27461] Linux Kernel 2.4.x.2.5.x/2.6.x Ssockaddr_In.Sin_Zero Kernel Memory Disclosure Vulnerabilities
+| [27297] Linux Kernel 'MSR' Driver Local Privilege Escalation
+| [27031] Linux Kernel 2.6.x SET_MEMPOLICY Local Denial of Service Vulnerability
+| [26811] Linux Kernel 2.6.x INVALIDATE_INODE_PAGES2 Local Integer Overflow Vulnerability
+| [26749] Linux Kernel 2.6.x File Lock Lease Local Denial of Service Vulnerability
+| [26648] Linux Kernel 2.6.x Time_Out_Leases PrintK Local Denial of Service Vulnerability
+| [26489] Linux Kernel 2.6.x Sysctl Unregistration Local Denial of Service Vulnerability
+| [26382] Linux Kernel 2.6.x - IPV6 Local Denial of Service Vulnerability
+| [26353] Linux Kernel <= 2.6 Console Keymap Local Command Injection Vulnerability
+| [26248] Linux Kernel 2.6.x SCSI ProcFS Denial of Service Vulnerability
+| [26198] Astaro Security Linux 6.0 01 HTTP CONNECT Unauthorized Access Weakness
+| [26131] Linux kernel perf_swevent_init - Local root Exploit
+| [25707] Linux Kernel 2.6.x Cryptoloop Information Disclosure Vulnerability
+| [25647] Linux Kernel 2.2.x.2.3.x/2.4.x/2.5.x/2.6.x ELF Core Dump Local Buffer Overflow Vulnerability
+| [25497] Linux/x86 Reverse TCP Bind Shellcode (92 bytes)
+| [25450] Linux Kernel open-time Capability file_ns_capable() Privilege Escalation
+| [25444] Linux PERF_EVENTS - Local Root Exploit
+| [25322] Linux Kernel 2.6.10 File Lock Local Denial of Service Vulnerability
+| [25307] Linux Kernel open-time Capability file_ns_capable() - Privilege Escalation Vulnerability
+| [25290] Linux Kernel 2.4.x/2.6.x Bluetooth Signed Buffer Index Vulnerability (4)
+| [25289] Linux Kernel 2.4.x/2.6.x Bluetooth Signed Buffer Index Vulnerability (3)
+| [25288] Linux Kernel 2.4.x/2.6.x Bluetooth Signed Buffer Index Vulnerability (2)
+| [25287] Linux Kernel 2.4.x/2.6.x Bluetooth Signed Buffer Index Vulnerability (1)
+| [25234] Linux Kernel 2.4.x/2.6.x Multiple Unspecified ISO9660 Filesystem Handling Vulnerabilities
+| [25203] Linux Kernel 2.6.x SYS_EPoll_Wait Local Integer Overflow Vulnerability (2)
+| [25202] Linux Kernel 2.6.x SYS_EPoll_Wait Local Integer Overflow Vulnerability (1)
+| [25017] UML_Utilities User-Mode Linux uml_utilities 20030903 UML_Net Slip Network Interface Denial of Service Vulnerability
+| [24804] Linux Kernel 2.6.x AIO_Free_Ring Local Denial of Service Vulnerability
+| [24777] Linux Kernel 2.4.x/2.6.x Local Denial of Service And Memory Disclosure Vulnerabilities
+| [24747] Linux Kernel 'SCTP_GET_ASSOC_STATS()' - Stack-Based Buffer Overflow
+| [24703] LinuxStat 2.x Remote Directory Traversal Vulnerability
+| [24696] Linux Kernel 2.6.x IPTables Logging Rules Integer Underflow Vulnerability
+| [24555] Archlinux x86-64 3.3.x-3.7.x x86-64 sock_diag_handlers[] Local Root
+| [24459] Linux Kernel /dev/ptmx Key Stroke Timing Local Disclosure
+| [24043] Linux Kernel 2.5.x/2.6.x CPUFreq Proc Handler Integer Handling Vulnerability
+| [23946] Linux Kernel 2.4/2.6 Sigqueue Blocking Denial of Service Vulnerability
+| [23674] Linux Kernel Samba 2.2.8 Share Local Privilege Elevation Vulnerability
+| [23658] Linux VServer Project 1.2x CHRoot Breakout Vulnerability
+| [23622] Linux/x86 Remote Port Forwarding Shellcode 87 bytes
+| [23604] Antologic Antolinux 1.0 Administrative Interface NDCR Parameter Remote Command Execution
+| [23360] PostgreSQL for Linux Payload Execution
+| [23223] SuSE Linux Professional 8.2 SuSEWM Configuration File Insecure Temporary File Vulnerability
+| [23126] RealOne Player for Linux 2.2 Alpha Insecure Configuration File Permission Local Privilege Escalation
+| [23077] MySQL (Linux) Database Privilege Elevation Zeroday Exploit
+| [23076] MySQL (Linux) Heap Based Overrun PoC Zeroday
+| [23075] MySQL (Linux) Stack Based Buffer Overrun PoC Zeroday
+| [23045] ViRobot Linux Server 2.0 - Local Vulnerabilities
+| [22840] Linux 2.4 Kernel execve() System Call Race Condition Vulnerability
+| [22813] Linux kernel 2.2./2.4.x /proc Filesystem Potential Information Disclosure Vulnerability
+| [22781] Linux-PAM 0.77 Pam_Wheel Module getlogin() Username Spoofing Privileged Escalation Vulnerability
+| [22540] Linux-ATM LES 2.4 Command Line Argument Buffer Overflow Vulnerability
+| [22458] Linux kernel 2.2.x/2.4.x I/O System Call File Existence Weakness
+| [22363] Linux Kernel 2.2.x/2.4.x Privileged Process Hijacking Vulnerability (2)
+| [22362] Linux Kernel 2.2.x/2.4.x Privileged Process Hijacking Vulnerability (1)
+| [22131] Linux Kernel 2.0.x/2.2.x/2.4.x,FreeBSD 4.x Network Device Driver Frame Padding Information Disclosure
+| [22105] Linux Kernel 2.2 mmap() Local Denial of Service Vulnerability
+| [21848] Linux udev Netlink Local Privilege Escalation
+| [21763] Linuxconf 1.1.x/1.2.x Local Environment Variable Buffer Overflow Vulnerability (3)
+| [21762] Linuxconf 1.1.x/1.2.x Local Environment Variable Buffer Overflow Vulnerability (2)
+| [21761] Linuxconf 1.1.x/1.2.x Local Environment Variable Buffer Overflow Vulnerability (1)
+| [21701] ISDN4Linux 3.1 IPPPD Device String SysLog Format String Vulnerability (2)
+| [21700] ISDN4Linux 3.1 IPPPD Device String SysLog Format String Vulnerability (1)
+| [21598] Linux Kernel 2.4.18/19 Privileged File Descriptor Resource Exhaustion Vulnerability
+| [21458] grsecurity Kernel Patch 1.9.4 Linux Kernel Memory Protection Weakness
+| [21353] Linux Kernel 2.2.x/2.3/2.4.x d_path() Path Truncation Vulnerability
+| [21302] Century Software Term For Linux 6.27.869 Command Line Buffer Overflow
+| [21254] "[Raspberry Pi] Linux/ARM - chmod(""/etc/shadow"", 0777) - 41 bytes"
+| [21253] "[Raspberry Pi] Linux/ARM - execve(""/bin/sh"", [0], [0 vars]) - 30 bytes"
+| [21252] [Raspberry Pi] Linux/ARM - reverse_shell(tcp,10.1.1.2,0x1337)
+| [21248] User-Mode Linux Kernel 2.4.17 -8 Memory Access Vulnerability
+| [21124] Linux Kernel 2.2/2.4 Ptrace/Setuid Exec Vulnerability
+| [21122] Linux kernel 2.2/2.4 Deep Symbolic Link Denial of Service Vulnerability
+| [21112] Red Hat Linux 7.0 Apache Remote Username Enumeration Vulnerability
+| [21018] Solaris 2.x/7.0/8,IRIX 6.5.x,OpenBSD 2.x,NetBSD 1.x,Debian 3,HP-UX 10 Telnetd Buffer Overflow
+| [21011] 3Com SuperStack II PS Hub 40 TelnetD Weak Password Protection Vulnerability
+| [20997] HP-UX 11,Linux kernel 2.4,Windows 2000/NT 4.0,IRIX 6.5 Small TCP MSS DoS
+| [20979] Linux kernel 2.2/2.4 procfs Stream Redirection to Process Memory Vulnerability
+| [20926] Linux 6.1/6.2/7.0/7.1 Man Page Source Buffer Overflow Vulnerability
+| [20904] Pragma Systems InterAccess TelnetD Server 4.0 - Denial of Service
+| [20881] Beck IPC GmbH IPC@CHIP TelnetD Login Account Brute Force Vulnerability
+| [20805] SGI IRIX 3/4/5/6,OpenLinux 1.0/1.1 routed traceon Vulnerability
+| [20765] Linux kernel 2.4 IPTables FTP Stateful Inspection Arbitrary Filter Rule Insertion
+| [20750] Trend Micro Interscan Viruswall (Linux) 3.0.1 - Multiple Program Buffer Overflow
+| [20721] Linux kernel <= 2.2.18 ptrace/execve Race Condition Vulnerability (2)
+| [20720] Linux kernel <= 2.2.18 ptrace/execve Race Condition Vulnerability (1)
+| [20626] Linux sysctl() Kernel 2.2.x Memory Reading Vulnerability
+| [20619] Linuxconf 1.1.6 r10 Remote Buffer Overflow Vulnerablity
+| [20566] Linux kernel 2.1.89/2.2.x Zero-Length Fragment Vulnerability
+| [20556] Debian Linux 2.2 splitvt Format String Vulnerability
+| [20494] RedHat Linux 7.0 Roaring Penguin PPPoE Denial of Service Vulnerability
+| [20472] IBM DB2 Universal Database for Linux 6.1/Windows NT 6.1 Known Default Password Vulnerability
+| [20458] Linux Kernel 2.2.x Non-Readable File Ptrace Vulnerability
+| [20450] Trlinux Postaci Webmail 1.1.3 Password Disclosure Vulnerability
+| [20402] Linux modutils 2.3.9 modprobe Arbitrary Command Execution Vulnerability
+| [20378] Debian GNU/Linux 3.1 top Format String Vulnerability
+| [20246] TalentSoft Web+ Application Server (Linux) 4.6 Example Script File Disclosure
+| [20236] S.u.S.E. Linux 6.3/6.4 Installed Package Disclosure Vulnerability
+| [20217] RedHat Linux 6.1 i386 Tmpwatch Recursive Write DoS Vulnerability
+| [20201] Nvidia Linux Driver Privilege Escalation
+| [20196] Linux x86 chmod 666 /etc/passwd & /etc/shadow - 57 bytes
+| [20195] Linux x86 ASLR deactivation - 83 bytes
+| [20149] IRIX 5.2/5.3/6.x telnetd Environment Variable Format String Vulnerability
+| [20026] OpenLinux 2.3/2.4,RedHat 6.0/6.1,SCO eServer 2.3 - Denial of Service
+| [19969] Mandriva Linux Mandrake 7.0 - Buffer Overflow Vulnerability
+| [19954] S.u.S.E. 4.x/5.x/6.x/7.0,Slackware 3.x/4.0,Turbolinux 6,OpenLinux 7.0 fdmount Buffer Overflow (3)
+| [19953] S.u.S.E. 4.x/5.x/6.x/7.0,Slackware 3.x/4.0,Turbolinux 6,OpenLinux 7.0 fdmount Buffer Overflow (2)
+| [19952] S.u.S.E. 4.x/5.x/6.x/7.0,Slackware 3.x/4.0,Turbolinux 6,OpenLinux 7.0 fdmount Buffer Overflow (1)
+| [19933] Linux Kernel Sendpage Local Privilege Escalation
+| [19900] RedHat Linux 6.0/6.1/6.2 pam_console Vulnerability
+| [19883] S.u.S.E. Linux 6.3/6.4 Gnomelib Buffer Overflow Vulnerability
+| [19867] S.u.S.E. Linux 6.x Arbitrary File Deletion Vulnerability
+| [19850] RedHat Linux 6.x X Font Server DoS and Buffer Overflow Vulnerabilities
+| [19837] Bray Systems Linux Trustees 1.5 Long Pathname Vulnerability
+| [19818] Linux kernel 2.2.12/2.2.14/2.3.99,RedHat 6.x Socket Denial of Service
+| [19813] Halloween Linux 4.0,S.u.S.E. Linux 6.0/6.1/6.2/6.3 kreatecd Vulnerability
+| [19812] Halloween Linux 4.0,RedHat Linux 6.1/6.2 imwheel Vulnerability (2)
+| [19811] Halloween Linux 4.0,RedHat Linux 6.1/6.2 imwheel Vulnerability (1)
+| [19804] AT Computing atsar_linux 1.4 File Manipulation Vulnerability
+| [19796] Matt Kimball and Roger Wolff mtr 0.28/0.41,Turbolinux 3.5 b2/4.2/4.4/6.0 mtr Vulnerability.2
+| [19795] Caldera OpenLinux 2.3 rpm_query CGI Vulnerability
+| [19794] Oracle8i Standard Edition 8.1.5 for Linux Installer Vulnerability
+| [19787] Corel Linux OS 1.0 Dosemu Distribution Configuration Vulnerability
+| [19779] RedHat 4.x/5.x/6.x,RedHat man 1.5,Turbolinux man 1.5,Turbolinux 3.5/4.x man Buffer Overrun (2)
+| [19778] RedHat 4.x/5.x/6.x,RedHat man 1.5,Turbolinux man 1.5,Turbolinux 3.5/4.x man Buffer Overrun (1)
+| [19765] Corel Linux OS 1.0 setxconf Vulnerability
+| [19764] Corel Linux OS 1.0 buildxconfig Vulnerabilities
+| [19763] RedHat Linux 6.0 Single User Mode Authentication Vulnerability
+| [19760] Pragma Systems InterAccess TelnetD Server 4.0 Terminal Configuration Vulnerability
+| [19755] Pragma Systems InterAccess TelnetD Server 4.0 Build 4 Buffer Overflow
+| [19735] Debian Linux 2.1 apcd Symlink Vulnerability
+| [19723] Corel Linux OS 1.0 get_it PATH Vulnerability
+| [19710] Mandrake 6.x,RedHat 6.x,Turbolinux 3.5 b2/4.x/6.0.2 userhelper/PAM Path Vulnerability (2)
+| [19709] Mandrake 6.x,RedHat 6.x,Turbolinux 3.5 b2/4.x/6.0.2 userhelper/PAM Path Vulnerability (1)
+| [19677] FreeBSD 3.3,Linux Mandrake 7.0 'xsoldier' Buffer Overflow Vulnerability (2)
+| [19676] FreeBSD 3.3,Linux Mandrake 7.0 'xsoldier' Buffer Overflow Vulnerability (1)
+| [19675] Debian 2.1,Linux kernel 2.0.x,RedHat 5.2 Packet Length with Options Vulnerability
+| [19605] Linux Kernel fs/eventpoll.c Local Denial of Service
+| [19583] Turbolinux 3.5 b2 'canuum' Buffer Overflow Vulnerability
+| [19582] IRIX <= 6.5,Solaris <= 7.0,Turbolinux 4.2 'uum' Buffer Overflow Vulnerability
+| [19565] S.u.S.E. Linux 6.1/6.2 cwdtools Vulnerabilities
+| [19522] Linux kernel 2.2 Predictable TCP Initial Sequence Number Vulnerability
+| [19520] BSD telnetd Remote Root Exploit
+| [19512] Mandriva Linux Mandrake 6.0,Gnome Libs 1.0.8 espeaker Local Buffer Overflow
+| [19508] S.u.S.E. Linux 6.2 sscw HOME Environment Variable Buffer Overflow Vulnerability
+| [19480] ISC INN <= 2.2,RedHat Linux <= 6.0 inews Buffer Overflow Vulnerability
+| [19479] BSD/OS 3.1/4.0.1,FreeBSD 3.0/3.1/3.2,RedHat Linux <= 6.0 amd Buffer Overflow Vulnerability (2)
+| [19478] BSD/OS 3.1/4.0.1,FreeBSD 3.0/3.1/3.2,RedHat Linux <= 6.0 amd Buffer Overflow Vulnerability (1)
+| [19474] Caldera OpenLinux 2.2 ,Debian 2.1/2.2,RedHat <= 6.0 Vixie Cron MAILTO Sendmail Vulnerability
+| [19470] RedHat Linux 4.2/5.2/6.0,S.u.S.E. Linux 6.0/6.1 Cron Buffer Overflow Vulnerability (2)
+| [19469] RedHat Linux 4.2/5.2/6.0,S.u.S.E. Linux 6.0/6.1 Cron Buffer Overflow Vulnerability (1)
+| [19465] RedHat Linux <= 6.0, Slackware Linux <= 4.0 Termcap tgetent() Buffer Overflow (2)
+| [19464] RedHat Linux <= 6.0, Slackware Linux <= 4.0 Termcap tgetent() Buffer Overflow (1)
+| [19463] S.u.S.E. Linux <= 6.2,Slackware Linux 3.2/3.6 identd Denial of Service
+| [19458] Linux kernel 2.0.30/2.0.35/2.0.36/2.0.37 - Blind TCP Spoofing Vulnerability
+| [19426] SGI Advanced Linux Environment 3.0,SGI IRIX <= 6.5.4,SGI UNICOS <= 10.0 6 arrayd.auth Default Configuration Vulnerability
+| [19423] BSD/OS <= 4.0,FreeBSD <= 3.2,Linux kernel <= 2.3,NetBSD <= 1.4 Shared Memory Denial of Service Vulnerability
+| [19419] Linux kernel 2.0.37 Segment Limit Vulnerability
+| [19384] Debian Linux <= 2.1 Print Queue Control Vulnerability
+| [19374] Debian Linux 2.0/2.0 r5,FreeBSD <= 3.2,OpenBSD 2.4,RedHat Linux 5.2 i386,S.u.S.E. Linux <= 6.1 Lsof Buffer Overflow Vulnerability (2)
+| [19373] Debian Linux 2.0/2.0 r5,FreeBSD <= 3.2,OpenBSD 2.4,RedHat Linux 5.2 i386,S.u.S.E. Linux <= 6.1 Lsof Buffer Overflow Vulnerability (1)
+| [19360] Linux libc 5.3.12/5.4,RedHat Linux 4.0 vsyslog() Buffer Overflow Vulnerability
+| [19315] RedHat Linux 5.0/5.1/5.2,Slackware Linux <= 3.5 klogd Buffer Overflow Vulnerability (2)
+| [19314] RedHat Linux 5.0/5.1/5.2,Slackware Linux <= 3.5 klogd Buffer Overflow Vulnerability (1)
+| [19312] RedHat Linux 4.2,SGI IRIX <= 6.3,Solaris <= 2.6 mailx Vulnerability (2)
+| [19311] RedHat Linux 4.2,SGI IRIX <= 6.3,Solaris <= 2.6 mailx Vulnerability (1)
+| [19308] Linux kernel 2.0/2.0.33 i_count Overflow Vulnerability
+| [19305] RedHat Linux 5.0 msgchk Vulnerability
+| [19302] Linux libc 5.3.12,RedHat Linux 4.0,Slackware Linux 3.1 libc NLSPATH Vulnerability
+| [19301] Linux kernel 2.0.33 IP Fragment Overlap Vulnerability
+| [19286] Slackware Linux 3.1/3.2 color_xterm Buffer Overflow Vulnerability (2)
+| [19285] Slackware Linux 3.1/3.2 color_xterm Buffer Overflow Vulnerability (1)
+| [19283] Slackware Linux 3.1 - Buffer Overflow Vulnerability
+| [19282] Linux kernel 2.0 Sendmail Denial of Service Vulnerability
+| [19281] RedHat Linux 5.1 xosview Vulnerability
+| [19279] RedHat Linux 2.1 abuse.console Vulnerability
+| [19272] Linux kernel 2.2 ldd core Vulnerability
+| [19271] Linux kernel 2.0 TCP Port DoS Vulnerability
+| [19270] Debian Linux 2.0 Super Syslog Buffer Overflow Vulnerability
+| [19256] Stanford University bootpd 2.4.3,Debian Linux <= 2.0 netstd Vulnerabilities
+| [19255] RedHat Linux 5.2 i386/6.0 No Logging Vulnerability
+| [19254] S.u.S.E. Linux 5.2 gnuplot Vulnerability
+| [19253] Debian Linux 2.1 httpd Vulnerability
+| [19250] Linux kernel 2.0/2.1/2.2 autofs Vulnerability
+| [19241] Debian Linux 2.1,Linux kernel 2.2/2.3,RedHat Linux 6.0,S.u.S.E. Linux 6.1 IP Options Vulnerability
+| [19240] Caldera kdenetwork 1.1.1 -1,Caldera OpenLinux 1.3/2.2,KDE KDE 1.1/1.1.1, RedHat Linux 6.0 K-Mail File Creation Vulnerability
+| [19203] BSD/OS <= 2.1,DG/UX <= 4.0,Debian Linux 0.93,Digital UNIX <= 4.0 B,FreeBSD <= 2.1.5,HP-UX <= 10.34,IBM AIX <= 4.1.5,NetBSD 1.0/1.1,NeXTstep <= 4.0, SGI IRIX <= 6.3,SunOS <= 4.1.4 rlogin Vulnerability
+| [19173] BSD/OS 2.1,DG/UX <= 7.0,Debian Linux <= 1.3,HP-UX <= 10.34,IBM AIX <= 4.2,SGI IRIX <= 6.4,Solaris <= 2.5.1 xlock Vulnerability (2)
+| [19172] BSD/OS 2.1,DG/UX <= 7.0,Debian Linux <= 1.3,HP-UX <= 10.34,IBM AIX <= 4.2,SGI IRIX <= 6.4,Solaris <= 2.5.1 xlock Vulnerability (1)
+| [19122] Slackware Linux <= 3.5 /etc/group missing results in root access Vulnerability
+| [19117] Digital UNIX <= 4.0 D,FreeBSD <= 2.2.4,HP HP-UX 10.20/11.0,IBM AIX <= 3.2.5,Linux kernel 2.0/2.1,NetBSD 1.2,Solaris <= 2.5.1 Smurf Denial of Service Vulnerability
+| [19113] Microsoft Windows NT 3.5.1 SP2/3.5.1 SP3/3.5.1 SP4/3.5.1 SP5/4.0/4.0 SP1/4.0 SP2/4.0 SP3/4.0 SP4/4.0 SP5 Telnetd Vulnerability
+| [19112] BSDI BSD/OS <= 2.1,Caldera OpenLinux Standard 1.0,Data General DG/UX <= 5.4 4.11,IBM AIX <= 4.3,ISC BIND <= 8.1.1,NetBSD <= 1.3.1,RedHat Linux <= 5.0,SCO Open Desktop 3.0/Server 5.0,Unixware 2.1/7.0,SGI IRIX <= 6.3,Solaris <= 2.5.1 BIND buffer overflow(2)
+| [19111] BSDI BSD/OS <= 2.1,Caldera OpenLinux Standard 1.0,Data General DG/UX <= 5.4 4.11,IBM AIX <= 4.3,ISC BIND <= 8.1.1,NetBSD <= 1.3.1,RedHat Linux <= 5.0,SCO Open Desktop 3.0/Server 5.0,Unixware 2.1/7.0,SGI IRIX <= 6.3,Solaris <= 2.5.1 BIND buffer overflow(1)
+| [19096] RedHat Linux <= 5.1,Caldera OpenLinux Standard 1.2 Mountd Vulnerability
+| [19085] Linux kernel 2.0/2.1 SIGIO Vulnerability
+| [19074] Slackware Linux 3.4 pkgtool temporary file Vulnerability
+| [19073] Slackware Linux 3.4 netconfig temporary file Vulnerability
+| [19071] Slackware Linux 3.4 makebootdisk temporary file Vulnerability
+| [19070] Slackware Linux 3.4 liloconfig-color temporary file Vulnerability
+| [18885] linux/x86 execve(/bin/dash) 42 bytes
+| [18585] Linux x86_64 - add user with passwd (189 bytes)
+| [18411] Mempodipper - Linux Local Root => 2.6.39 (32-bit & 64-bit)
+| [18379] Linux/x86 Search For php,html Writable Files and Add Your Code
+| [18378] Linux IGMP Remote Denial of Service (Introduced in linux-2.6.36)
+| [18368] Linux BSD-derived Telnet Service Encryption Key ID Buffer Overflow
+| [18343] Enigma2 Webinterface 1.7.x 1.6.x 1.5.x (linux) Remote File Disclosure
+| [18294] Linux/x86 Polymorphic ShellCode - setuid(0)+setgid(0)+add user 'iph' without password to /etc/passwd
+| [18280] Telnetd encrypt_keyid: Remote Root function pointer overwrite
+| [18227] Linux/MIPS - reboot() - 32 bytes.
+| [18226] Linux/MIPS - connect back shellcode (port 0x7a69) - 168 bytes.
+| [18197] linux/x86-64 execve(/bin/sh) 52 bytes
+| [18163] Linux/MIPS - add user(UID 0) with password - 164 bytes
+| [18162] Linux/MIPS - execve /bin/sh - 48 bytes
+| [18154] "Linux/SuperH - sh4 - setuid(0) 
+| [18080] Linux <= 2.6.37-rc1 serial_multiport_struct Local Info Leak Exploit
+| [17996] MIPS Linux XOR Shellcode Encoder (60 Bytes)
+| [17940] 52 byte Linux MIPS execve
+| [17932] PolicyKit polkit-1 <= 0.101- linux local privilege escalation
+| [17787] Linux Kernel < 2.6.36.2 Econet Privilege Escalation Exploit
+| [17769] Linux Kernel 'perf_count_sw_cpu_clock' event Denial of Service
+| [17648] HP Data Protector - Remote Root Shell (Linux Version)
+| [17559] Linux x86 egghunt shellcode
+| [17432] "Linux/SuperH - sh4 - setuid(0) - chmod(""/etc/shadow"", 0666) - exit(0) - 43 bytes"
+| [17400] Conky Linux 1.8.0 - Local DoS/PoC Exploit
+| [17391] DEC Alpha Linux <= 3.0 - Local Root Exploit
+| [17371] Linux/x86-32 - ConnectBack with SSL connection - 422 bytes
+| [17194] Linux/x86 - netcat bindshell port 6666 - 69 bytes
+| [16973] Linux <= 2.6.37-rc1 serial_core TIOCGICOUNT Leak Exploit
+| [16960] Linux NTP query client 4.2.6p1 - Heap Overflow Vulnerability
+| [16952] Linux Kernel < 2.6.37-rc2 TCP_MAXSEG Kernel Panic DoS
+| [16861] Samba trans2open Overflow (Linux x86)
+| [16860] Samba chain_reply Memory Corruption (Linux x86)
+| [16855] PeerCast <= 0.1216 URL Handling Buffer Overflow (linux)
+| [16852] ProFTPD 1.2 - 1.3.0 sreplace Buffer Overflow (Linux)
+| [16851] ProFTPD 1.3.2rc3 - 1.3.3b Telnet IAC Buffer Overflow (Linux)
+| [16848] "Unreal Tournament 2004 ""secure"" Overflow (Linux)"
+| [16327] Solaris in.telnetd TTYPROMPT Buffer Overflow
+| [16263] Linux Kernel <= 2.6.37 Local Kernel Denial of Service
+| [16216] Red Hat Linux stickiness of /tmp
+| [15944] Linux Kernel CAP_SYS_ADMIN to Root Exploit 2 (32 and 64-bit)
+| [15916] Linux Kernel CAP_SYS_ADMIN to root Exploit
+| [15774] Linux Kernel < 2.6.37-rc2 ACPI custom_method Privilege Escalation
+| [15704] Linux Kernel <= 2.6.37 Local Privilege Escalation
+| [15622] Linux Kernel Unix Sockets Local Denial of Service
+| [15619] Linux Kernel 'setup_arg_pages()' Denial of Service Vulnerability
+| [15616] Linux/ARM - add root user with password - 151 bytes
+| [15481] Linux Kernel Stack Infoleaks Vulnerability
+| [15344] Linux Kernel VIDIOCSMICROCODE IOCTL Local Memory Overwrite Vulnerability
+| [15285] Linux RDS Protocol Local Privilege Escalation
+| [15150] Linux Kernel < 2.6.36-rc6 pktcdvd Kernel Memory Disclosure
+| [15074] Ubuntu Linux 'mountall' Local Privilege Escalation Vulnerability
+| [15024] Linux Kernel 2.6.27+ x86_64 compat exploit
+| [15023] x86_64 Linux Kernel ia32syscall Emulation Privilege Escalation
+| [14907] "Linux/ARM - execve(""/bin/sh"", [0], [0 vars]) - 27 bytes"
+| [14818] McAfee LinuxShield <= 1.5.1 - Local/Remote Root Code Execution
+| [14814] Linux Kernel < 2.6.36-rc1 CAN BCM Privilege Escalation Exploit
+| [14691] Linux x86 /bin/sh Null-Free Polymorphic Shellcode - 46 bytes
+| [14594] Linux Kernel <= 2.6.33.3 SCTP INIT Remote DoS
+| [14334] Linux x86 netcat connect back port 8080 - 76 bytes
+| [14332] Linux x86 netcat bindshell port 8080 - 75 bytes
+| [14305] "Linux/x86-64 - execve(""/sbin/iptables"", [""/sbin/iptables"", ""-F""], NULL) - 49 bytes"
+| [14276] Find all writeable folder in filesystem linux polymorphic shellcode - 91 bytes
+| [14235] 91 bytes nc -lp 31337 -e /bin//sh polymorphic linux shellcode .
+| [14234] 125 bind port to 6778 XOR encoded polymorphic linux shellcode .
+| [14219] "62 bytes setreuid(0,0) execve(""/bin/sh"",NULL,NULL) XOR Encoded Linux Shellcode"
+| [14218] 161 bytes Drop suid shell root in /tmp/.hiddenshell Linux Polymorphic Shellcode
+| [14190] "Linux/ARM - Polymorphic execve(""/bin/sh"", [""/bin/sh""], NULL)
+| [14142] "Linux/ARM - polymorphic chmod(""/etc/shadow"", 0777) - 84 Bytes"
+| [14139] Linux/ARM - Disable ASLR Security - 102 bytes
+| [14122] "Linux/ARM chmod(""/etc/shadow"", 0777) Shellcode 35 Bytes"
+| [14119] Polymorphic /bin/sh x86 linux shellcode
+| [14116] Linux/ARM - setuid(0) & kill(-1, SIGKILL) - 28 bytes
+| [14113] "Linux/ARM - setuid(0) & execve(""/bin/sh"",""/bin/sh"",0) - 38 bytes"
+| [14097] "Linux/ARM - execve(""/bin/sh"",""/bin/sh"",0) - 30 bytes"
+| [13943] Linux/x86-64 - Add root user with password - 390 bytes
+| [13915] "Linux/x86-64 - setuid(0) & chmod (""/etc/passwd"", 0777) & exit(0) - 63 bytes"
+| [13910] Polymorphic Bindport 31337 with setreuid (0,0) linux/x86
+| [13908] Linux/x86-64 - Disable ASLR Security - 143 bytes
+| [13743] 45 bytes give all user root access when execute /bin/sh x86 linux shellcode
+| [13742] 48 bytes chown root:root /bin/sh x86 linux shellcode
+| [13732] x86 linux hard / unclean reboot (33 bytes)
+| [13731] x86 linux hard / unclean reboot (29 bytes)
+| [13730] "33 bytes unlink ""/etc/shadow"" x86 linux shellcode"
+| [13728] "39 bytes sys_setuid(0) & sys_setgid(0) & execve (""/bin/sh"") x86 linux shellcode"
+| [13726] "45 bytes sys_execve(""/bin/sh"", ""-c"", ""reboot"") x86 linux shellcode"
+| [13724] kill all running process x86/linux
+| [13722] "linux/x86 Shellcode Polymorphic - setuid(0) + chmod(""/etc/shadow"", 0666) Shellcode 61 Bytes"
+| [13716] Linux/x86 alphanumeric Bomb FORK Shellcode 117 Bytes
+| [13715] "Linux/x86 pwrite(""/etc/shadow"", hash, 32, 8) Shellcode 83"
+| [13712] Linux/x86 - Disable randomize stack addresse - 106 bytes
+| [13703] "linux/x86 sys_execve(""/bin/sh"", ""0"", ""0"") with umask 16 (sys_umask(14)) 45 bytes"
+| [13702] "Linux x86 execve(""/usr/bin/wget"", ""aaaa"")
+| [13698] "Linux x86 - polymorphic execve(""/bin/bash"",""-p"",NULL) - 57 bytes"
+| [13697] "Linux x86 - execve(""/bin/bash"",""-p"",NULL) - 33 bytes"
+| [13692] "linux/x86 sends ""Phuck3d!"" to all terminals (60 bytes) shellcode"
+| [13691] "Linux/x86_64 execve(""/bin/sh"")
+| [13688] Linux/x86_64 reboot(POWER_OFF) 19 bytes shellcode
+| [13681] Linux x86 forkbombe
+| [13680] Linux x86 polymorphic forkbombe - 30 bytes
+| [13679] Linux write() & exit(0) shellcode genearator with customizable text
+| [13661] linux x86 nc -lvve/bin/sh -p13377 shellcode
+| [13632] Linux x86 - disabled modsecurity - 64 bytes
+| [13628] Linux x86 - execve /bin/sh - 21 bytes
+| [13627] Linux x86 - /bin/sh 8 bytes
+| [13609] Linux bin/cat /etc/passwd 43 bytes
+| [13602] Linux i686 - pacman -R <package> - 59 bytes
+| [13601] Linux i686 - pacman -S <package> (default package: backdoor) - 64 bytes
+| [13600] Linux x86 - ip6tables -F - 47 bytes
+| [13599] Linux x86 - polymorphic shellcode ip6tables -F - 71 bytes
+| [13586] linux/x86 eject /dev/cdrom 42 bytes
+| [13579] "linux/x86 append ""/etc/passwd"" & exit() 107 bytes"
+| [13578] linux/x86 fork bomb 6 bytes
+| [13577] linux/x86 break chroot 79 bytes
+| [13576] linux/x86 chmod 666 /etc/shadow 27 bytes
+| [13572] linux/x86 unlink(/etc/passwd) & exit() 35 bytes
+| [13566] Linux - setreuid (0,0) & execve(/bin/rm /etc/shadow)
+| [13563] linux/x86 overwrite MBR on /dev/sda with `LOL!' 43 bytes
+| [13553] Linux - linux/x86 execve() - 51bytes
+| [13551] Linux - chmod(/etc/shadow, 0666) & exit() - 33 bytes
+| [13550] Linux - setuid(0) and cat /etc/shadow
+| [13549] "Linux - setuid(0) & execve(""/sbin/poweroff -f"")"
+| [13548] linux/x86 kill all processes 9 bytes
+| [13469] linux/x86 bsd/x86 execve /bin/sh 38 bytes
+| [13468] linux/x86 unix/SPARC execve /bin/sh 80 bytes
+| [13467] linux/x86 unix/SPARC irix/mips execve /bin/sh irx.mips 141 bytes
+| [13465] "linux/PPC/x86 execve(""/bin/sh"",{""/bin/sh"",NULL},NULL) 99 bytes"
+| [13464] linux/x86-64 execve(/bin/sh) 33 bytes
+| [13463] linux/x86-64 bindshell port:4444 shellcode 132 bytes
+| [13462] linux/x86 break chroot setuid(0) + /bin/sh 132 bytes
+| [13461] linux/x86 add user 70 bytes
+| [13460] linux/x86 execve /bin/sh toupper() evasion 55 bytes
+| [13459] linux chroot()/execve() code
+| [13457] linux/x86 execve /bin/sh tolower() evasion 41 bytes
+| [13456] linux/x86 execve /bin/sh xor encrypted 55 bytes
+| [13455] linux/x86 execve /bin/sh encrypted 58 bytes
+| [13454] linux/x86 break chroot execve /bin/sh 80 bytes
+| [13453] linux/x86 break chroot 46 bytes
+| [13452] linux/x86 break chroot 34 bytes
+| [13451] linux/x86 add user 104 bytes
+| [13450] linux/x86 add user t00r 82 bytes
+| [13449] linux/x86 portbind port 5074 + fork() 130 bytes
+| [13448] linux/x86 portbind port 5074 92 bytes
+| [13447] linux/x86 execve /bin/sh setreuid(12,12) 50 bytes
+| [13446] linux/x86 execve /bin/sh 30 bytes
+| [13445] linux/x86 execve /bin/sh 38 bytes
+| [13444] linux/x86 execve /bin/sh 24 bytes
+| [13443] linux/x86 execve /bin/sh 29 bytes
+| [13442] linux/x86 chmod 666 /etc/shadow 82 bytes
+| [13441] linux/x86 ipchains -F 49 bytes
+| [13440] linux/x86 xterm -ut -display [IP]:0 132 bytes
+| [13439] linux/x86 eject /dev/cdrom 64 bytes
+| [13438] "linux/x86 cp /bin/sh /tmp/katy 
+| [13437] linux/x86 chmod 666 /etc/shadow 41 bytes
+| [13436] linux/x86 connect 120 bytes
+| [13435] linux/x86 Reverse telnet 134 bytes
+| [13434] linux/x86 iptables -F 58 bytes
+| [13433] linux/x86 iptables -F 45 bytes
+| [13432] linux/x86 shared memory exec 50 bytes
+| [13431] linux/x86 kill snort 151 bytes
+| [13430] linux/x86 symlink . /bin/sh 32 bytes
+| [13429] linux/x86 chmod 666 shadow ENCRYPT 75 bytes
+| [13428] linux/x86 add user t00r ENCRYPT 116 bytes
+| [13427] linux/x86 portbind port 5074 toupper 226 bytes
+| [13426] linux/x86 symlink /bin/sh xoring 56 bytes
+| [13425] linux/x86 execve /bin/sh IA32 0xff-less 45 bytes
+| [13424] linux/x86 execve /bin/sh alphanumeric 392 bytes
+| [13423] "linux/x86 execve(""/bin/ash"",0,0)
+| [13422] linux/x86 execve code 23 bytes
+| [13421] linux/x86 Magic Byte Self Modifying Code 76 bytes
+| [13420] linux/x86 Radically Self Modifying Code 70 bytes
+| [13419] linux/x86 alpha-numeric using IMUL Method shellcode 88 bytes
+| [13418] linux/x86 alpha-numeric shellcode 64 bytes
+| [13417] linux/x86 setreuid/execve 31 bytes
+| [13416] linux/x86 upload & exec 189 bytes
+| [13415] linux/x86 chroot & standart 66 bytes
+| [13414] linux/x86 /bin/sh sysenter Opcode Array Payload 45 bytes
+| [13413] linux/x86 /bin/sh sysenter Opcode Array Payload 27 Bytes
+| [13412] linux/x86 /bin/sh sysenter Opcode Array Payload 23 Bytes
+| [13411] linux/x86 examples of long-term payloads hide-wait-change 187 bytes+
+| [13410] linux/x86 examples of long-term payloads hide-wait-change (.s)
+| [13409] linux/x86 /bin/sh Standard Opcode Array Payload 21 Bytes
+| [13408] linux/x86 snoop /dev/dsp shellcode 172 bytes
+| [13407] "linux/x86 write(0,""Hello core!\n"",12)
+| [13406] "linux/x86 read(0,buf,2541)
+| [13405] "linux/x86 _exit(1)
+| [13404] "linux/x86 if(read(fd,buf,512)<=2) _exit(1) else buf()
+| [13403] "linux/x86 dup2(0,0)
+| [13402] linux/x86 socket-proxy shellcode 372 bytes
+| [13401] linux/x86 Connect Back shellcode 90 bytes
+| [13400] linux/x86 cat /dev/urandom > /dev/console, just for kicks - 63 bytes
+| [13399] linux/x86 execve(/bin/sh) / PUSH - 23 bytes
+| [13398] linux/x86 setreuid(0, 0) + execve(/bin/sh) 31 bytes
+| [13397] linux/x86 reboot() - 20 bytes
+| [13396] linux/x86 quick (yet conditional, eax != 0 and edx == 0) exit 4 bytes
+| [13395] linux/x86 getppid() + execve(/proc/pid/exe) 51 bytes
+| [13394] linux/x86 normal exit with random (so to speak) return value 5 bytes
+| [13393] linux/x86 connect-back shellcode 127.0.0.1:31337/tcp 74 bytes
+| [13392] linux/x86 chmod(/etc/shadow, 0666) + exit() 32 bytes
+| [13391] linux/x86 eject/close cd-rom loop (follows /dev/cdrom symlink) 45 bytes
+| [13390] linux/x86 eject cd-rom (follows /dev/cdrom symlink) + exit() 40 bytes
+| [13389] linux/x86 24/7 open cd-rom loop (follows /dev/cdrom symlink) 39 bytes
+| [13388] linux/x86 Bind /bin/sh to 31337/tcp + fork() 98 bytes
+| [13387] linux/x86 Bind /bin/sh to 31337/tcp 80 bytes
+| [13386] linux/x86 anti-debug trick (INT 3h trap) + execve /bin/sh 39 bytes
+| [13385] linux/x86 Adduser without Password to /etc/passwd 59 bytes
+| [13384] linux/x86 execve /bin/sh (encoded by +1) 39 bytes
+| [13383] linux/x86 execve /bin/sh xored for Intel x86 CPUID 41 bytes
+| [13382] linux/x86 execve /bin/sh anti-ids 40 bytes
+| [13381] linux/x86 TCP Proxy Shellcode 236 bytes
+| [13380] linux/x86 HTTP/1.x GET, Downloads and JMP - 68 bytes+
+| [13379] "linux/x86 setreuid(0,0) execve(""/bin/sh"", [""/bin/sh"", NULL]) 33 bytes"
+| [13378] linux/x86 setuid(0),setgid(0) execve(/bin/sh, [/bin/sh, NULL]) 37 bytes
+| [13377] "linux/x86 setuid(0) + execve(""/bin/sh"", [""/bin/sh"", NULL]) 31 bytes"
+| [13376] "linux/x86 execve(""/bin/sh"", [""/bin/sh"", NULL]) 23 bytes"
+| [13375] "linux/x86 execve(""/bin/sh"", [""/bin/sh"", NULL]) 25 bytes"
+| [13374] linux/x86 portbind (port 64713) 86 bytes
+| [13373] linux/x86 Password Authentication portbind Shellcode 166 bytes
+| [13372] linux/x86 SWAP store shellcode 99 bytes
+| [13371] linux/x86 SWAP restore shellcode 109 bytes
+| [13370] linux/x86 execve(/bin/sh) + Bitmap Header 27 bytes
+| [13369] linux/x86 execve(/bin/sh) + RIFF Header 28 bytes
+| [13368] linux/x86 execve(/bin/sh) + RTF Header 30 bytes
+| [13367] linux/x86 execve(/bin/sh) + ZIP Header 28 bytes
+| [13366] linux/x86 xor-encoded Connect Back Shellcode 371 bytes
+| [13365] linux/x86 execve(/bin/sh) 24 bytes
+| [13364] linux/x86 SET_IP() Connectback Shellcode 82 bytes
+| [13363] linux/x86 SET_PORT() portbind 100 bytes
+| [13362] linux/x86 execve() Diassembly Obfuscation Shellcode 32 bytes
+| [13361] linux/x86 portbind (define your own port) 84 bytes
+| [13360] linux/x86 setuid/portbind shellcode 96 bytes
+| [13359] linux/x86 setuid(0) and /bin/sh execve() shellcode 30 bytes
+| [13358] linux/x86 re-use of /bin/sh string in .rodata shellcode 16 bytes
+| [13357] linux/x86 stdin re-open and /bin/sh exec shellcode
+| [13356] linux/x86 executes command after setreuid (9 + 40 bytes + cmd)
+| [13355] linux/x86 HTTP/1.x GET, Downloads and execve() 111 bytes+
+| [13354] linux/x86 execve(/bin/sh) 22 bytes
+| [13353] linux/x86 setuid(0) + execve(/bin/sh) 28 bytes
+| [13352] linux/x86 execve(rm -rf /) shellcode 45 bytes
+| [13351] linux/x86 forkbomb 7 bytes
+| [13350] linux/x86 chmod 0666 /etc/shadow 36 bytes
+| [13349] linux/x86 add root user r00t with no password to /etc/passwd 69 bytes
+| [13348] linux/x86 set system time to 0 and exit 12 bytes
+| [13347] linux/x86 /sbin/ipchains -F 40 bytes
+| [13346] linux/x86 execve read shellcode - 92 bytes
+| [13345] linux/x86 kill all processes 11 bytes
+| [13344] linux/x86 /sbin/iptables -F 40 bytes
+| [13343] linux/x86 raw-socket ICMP/checksum shell 235 byte
+| [13342] linux/x86 setuid(0) . setgid(0) . aslr_off 79 bytes
+| [13341] linux/x86 rm -rf / attempts to block the process from being stopped
+| [13340] linux/x86 writes a php connectback shell to the fs 508 bytes
+| [13339] linux/x86 connect back.send.exit /etc/shadow 155 bytes
+| [13338] linux/86 setreuid(geteuid, geteuid) + execve(/bin/sh) shellcode
+| [13337] linux/x86 connect back, download a file and execute 149 bytes
+| [13336] linux/x86 system-beep shellcode 45 bytes
+| [13335] "linux/x86 iopl(3)
+| [13334] linux/x86 setresuid(0,0,0) /bin/sh shellcode 35 bytes
+| [13333] linux/x86 setuid(0) & execve(/bin/sh,0,0) shellcode 28 bytes
+| [13331] linux/x86 edit /etc/sudoers for full access 86 bytes
+| [13330] linux/x86 append rsa key to /root/.ssh/authorized_keys2 295 bytes
+| [13329] linux/x86 connect-back port UDP/54321 live packet capture 151 bytes
+| [13328] linux x86 shellcode obfuscator
+| [13327] linux/x86 PUSH reboot() - 30 bytes
+| [13326] linux/x86 killall5 shellcode 34 bytes
+| [13325] "linux/x86 chmod(""/etc/shadow"",666) & exit(0) 30 bytes"
+| [13324] linux/x86 file reader 65 bytes + pathname
+| [13323] linux/x86 Perl script execution 99 bytes + script length
+| [13322] linux/x86 File unlinker 18 bytes + file path length
+| [13320] linux/x86-64 setuid(0) + execve(/bin/sh) 49 bytes
+| [13319] linux/x86 Bind ASM Code Linux 179 bytes.
+| [13318] linux/x86 bindport 8000 & add user with root access 225+ bytes
+| [13317] linux/x86 bindport 8000 & execve iptables -F 176 bytes
+| [13316] "linux/x86 setreuid(geteuid(),geteuid()),execve(""/bin/sh"",0,0) 34 bytes"
+| [13315] "linux/x86 Shellcode Polymorphic chmod(""/etc/shadow"",666) 54 bytes"
+| [13314] linux/x86 reboot() polymorphic shellcode 57 bytes
+| [13313] Linux/x86 Port Binding Shellcode (xor-encoded) 152 bytes
+| [13312] linux/x86 /bin/sh polymorphic shellcode 48 bytes
+| [13311] linux/x86 killall5 polymorphic shellcode 61 bytes
+| [13310] linux/x86 Polymorphic shellcode disable Network Card 75 bytes
+| [13309] linux/x86 listens for shellcode on tcp/5555 and jumps to it
+| [13308] linux/x86 shellcode that forks a HTTP Server on port tcp/8800 166 bytes
+| [13307] linux/x86 Self-modifying shellcode for IDS evasion 64 bytes
+| [13306] linux/SPARC portbind port 8975 284 bytes
+| [13305] linux/SPARC connect back 216 bytes
+| [13304] linux/ppc execve /bin/sh 112 bytes
+| [13303] linux/ppc connect back execve /bin/sh 240 bytes
+| [13302] linux/ppc read & exec shellcode 32 bytes
+| [13301] linux/ppc execve /bin/sh 60 bytes
+| [13300] linux/mips execve /bin/sh 56 bytes
+| [13299] linux/mips (Linksys WRT54G/GL) execve shellcode 60 bytes
+| [13298] linux/mips (Linksys WRT54G/GL) port bind shellcode 276 bytes
+| [13297] linux/amd64 connect-back semi-stealth shellcode 88+ bytes
+| [13296] linux/amd64 flush iptables rules shellcode 84 bytes
+| [13285] linux/x86 shellcode generator / null free
+| [13282] linux/x86 generate portbind payload
+| [13281] linux/x86 execve shellcode generator null byte free
+| [12130] Linux Kernel <= 2.6.34-rc3 ReiserFS xattr Privilege Escalation
+| [10980] Skype for Linux <= 2.1 Beta - Multiple Strange Behavior
+| [10334] VLC Media Player <= 1.0.3 RTSP Buffer Overflow PoC (OSX/Linux)
+| [10207] VMWare Virtual 8086 Linux Local Ring0 Exploit
+| [10202] Linux Kernel < 2.6.31-rc4 nfs4_proc_lock() Denial of Service
+| [10022] Linux Kernel 'unix_stream_connect()' Local Denial of Service Vulnerability
+| [10018] Linux Kernel 'pipe.c' Local Privilege Escalation Vulnerability
+| [10017] Linux Kernel 'fput()' NULL Pointer Dereference Local Denial of Service Vulnerabilty
+| [9917] Solaris in.telnetd TTYPROMPT Buffer Overflow
+| [9844] Linux Kernel 2.4.1-2.4.37 and 2.6.1-2.6.32-rc5 Pipe.c Privelege Escalation
+| [9641] Linux Kernel 2.4/2.6 sock_sendpage() Local Root Exploit [3]
+| [9627] Enlightenment - Linux Null PTR Dereference Exploit Framework
+| [9598] Linux Kernel 2.4/2.6 sock_sendpage() Local Root Exploit [2]
+| [9575] Linux Kernel < 2.6.19 udp_sendmsg Local Root Exploit
+| [9574] Linux Kernel < 2.6.19 - udp_sendmsg Local Root Exploit (x86/x64)
+| [9545] Linux Kernel 2.4/2.6 sock_sendpage() Local Root Exploit (ppc)
+| [9543] Linux Kernel < 2.6.31-rc7 - AF_IRDA 29-Byte Stack Disclosure Exploit
+| [9542] Linux Kernel 2.6 < 2.6.19 - (32bit) ip_append_data() ring0 Root Exploit
+| [9521] Linux Kernel <= 2.6.30 atalk_getname() 8-bytes Stack Disclosure Exploit
+| [9513] Linux Kernel <= 2.6.31-rc7 AF_LLC getsockname 5-Byte Stack Disclosure
+| [9479] Linux Kernel 2.4/2.6 - sock_sendpage() ring0 Root Exploit (simple ver)
+| [9477] Linux Kernel 2.x - sock_sendpage() Local Root Exploit (Android Edition)
+| [9442] Linux Kernel < 2.6.30.5 cfg80211 Remote Denial of Service Exploit
+| [9436] Linux Kernel 2.x sock_sendpage() Local Root Exploit #2
+| [9435] Linux Kernel 2.x sock_sendpage() Local Ring0 Root Exploit
+| [9363] Linux Kernel < 2.6.14.6 procfs Kernel Memory Disclosure Exploit
+| [9352] Linux Kernel <= 2.6.31-rc5 sigaltstack 4-Byte Stack Disclosure Exploit
+| [9191] Linux 2.6.30+/SELinux/RHEL5 Test Kernel Local Root Exploit 0day
+| [9083] Linux Kernel <= 2.6.28.3 - set_selection() UTF-8 Off By One Local Exploit
+| [8678] Linux Kernel 2.6.29 ptrace_attach() Local Root Race Condition Exploit
+| [8673] Linux Kernel 2.6.x ptrace_attach Local Privilege Escalation Exploit
+| [8572] Linux Kernel 2.6 UDEV < 141 Local Privilege Escalation Exploit
+| [8559] webSPELL <= 4.2.0d Local File Disclosure Exploit (.c linux)
+| [8556] Linux Kernel 2.6.x SCTP FWD Memory Corruption Remote Exploit
+| [8478] Linux Kernel 2.6 UDEV Local Privilege Escalation Exploit
+| [8369] Linux Kernel < 2.6.29 exit_notify() Local Privilege Escalation Exploit
+| [8008] Netgear embedded Linux for the SSL312 router DoS Vulnerability
+| [7681] Debian GNU/Linux XTERM (DECRQSS/comments) Weakness Vulnerability
+| [7618] Linux Kernel < 2.6.26.4 - SCTP Kernel Memory Disclosure Exploit
+| [7454] Linux Kernel 2.6.27.7-generic - 2.6.18 - 2.6.24-1 Local DoS Exploit
+| [7405] Linux Kernel <= 2.6.27.8 - ATMSVC Local Denial of Service Exploit
+| [7313] Debian GNU/Linux (symlink attack in login) Arbitrary File Ownership PoC
+| [7091] Linux Kernel < 2.4.36.9/2.6.27.5 Unix Sockets Local Kernel Panic Exploit
+| [6851] Linux Kernel < 2.6.22 ftruncate()/open() Local Exploit
+| [6094] Debian OpenSSH Remote SELinux Privilege Elevation Exploit (auth)
+| [5093] Linux Kernel 2.6.23 - 2.6.24 vmsplice Local Root Exploit
+| [5092] Linux Kernel 2.6.17 - 2.6.24.1 vmsplice Local Root Exploit
+| [4893] Linux Kernel <= 2.6.21.1 - IPv6 Jumbo Bug Remote DoS Exploit
+| [4756] Linux Kernel < 2.6.11.5 BLUETOOTH Stack Local Root Exploit
+| [4460] Linux Kernel 2.4/2.6 x86-64 System Call Emulation Exploit
+| [4172] Linux Kernel < 2.6.20.2 - IPv6_Getsockopt_Sticky Memory Leak PoC
+| [3821] 3proxy 0.5.3g proxy.c logurl() Remote Buffer Overflow Exploit (linux)
+| [3609] Snort 2.6.1 DCE/RPC Preprocessor Remote Buffer Overflow Exploit (linux)
+| [3595] Linux Kernel <= 2.6.20 with DCCP Support Memory Disclosure Exploit (2)
+| [3587] Linux Kernel <= 2.6.20 with DCCP Support Memory Disclosure Exploit
+| [3441] Linux Omnikey Cardman 4040 driver Local Buffer Overflow Exploit PoC
+| [3356] Nortel SSL VPN Linux Client <= 6.0.3 - Local Privilege Escalation Exploit
+| [3293] SunOS 5.10/5.11 in.telnetd Remote Authentication Bypass Exploit
+| [3154] GNU/Linux mbse-bbs <= 0.70.0 - Local Buffer Overflow Exploit
+| [2527] Invision Gallery <= 2.0.7 ReadFile() & SQL Injection Exploit (linux)
+| [2031] Linux Kernel 2.6.13 <= 2.6.17.4 - prctl() Local Root Exploit (logrotate)
+| [2013] Linux Kernel <= 2.6.17.4 - (proc) Local Root Exploit
+| [2011] Linux Kernel 2.6.13 <= 2.6.17.4 - sys_prctl() Local Root Exploit (4)
+| [2006] Linux Kernel 2.6.13 <= 2.6.17.4 - sys_prctl() Local Root Exploit (3)
+| [2005] Linux Kernel 2.6.13 <= 2.6.17.4 - sys_prctl() Local Root Exploit (2)
+| [2004] Linux Kernel 2.6.13 <= 2.6.17.4 - sys_prctl() Local Root Exploit
+| [1880] Linux Kernel < 2.6.16.18 - (Netfilter NAT SNMP Module) Remote DoS Exploit
+| [1657] Linux Kernel 2.6.x sys_timer_create() Local Denial of Service Exploit
+| [1474] Mozilla Firefox 1.5 location.QueryInterface() Code Execution (linux)
+| [1464] Arescom NetDSL-1000 (telnetd) Remote Denial of Service Exploit
+| [1397] Linux Kernel <= 2.6.11 (CPL 0) Local Root Exploit (k-rad3.c)
+| [1299] SuSE Linux <= 9.3, 10 (chfn) Local Root Privilege Escalation Exploit
+| [1297] F-Secure Internet Gatekeeper for linux < 2.15.484 Local Root Exploit
+| [1295] linux-ftpd-ssl 0.17 (MKD/CWD) Remote Root Exploit
+| [1263] Veritas NetBackup <= 6.0 (bpjava-msvc) Remote Exploit (linux)
+| [1232] RealPlayer/Helix Player Remote Format String Exploit (linux)
+| [1229] Qpopper <= 4.0.8 (poppassd) Local Root Exploit (linux)
+| [998] Linux Kernel <= 2.6.12-rc4 (ioctl_by_bdev) Local Denial of Service Exploit
+| [997] Linux Mandrake <= 10.2 cdrdao Local Root Exploit (unfixed)
+| [981] dSMTP Mail Server 3.1b Linux Remote Root Format String Exploit
+| [926] Linux Kernel 2.4/2.6 bluez Local Root Privilege Escalation Exploit (update)
+| [914] Aeon 0.2a Local Linux Exploit (c code)
+| [913] Aeon 0.2a Local Linux Exploit (perl code)
+| [911] Linux Kernel PPC64/IA64 (AIO) Local Denial of Service Exploit
+| [904] Linux Kernel <= 2.6.10 Local Denial of Service Exploit
+| [895] Linux Kernel 2.4.x / 2.6.x uselib() Local Privilege Escalation Exploit
+| [826] Medal of Honor Spearhead Server Remote Buffer Overflow (Linux)
+| [804] MSN Messenger PNG Image Buffer Overflow (linux compile)
+| [779] Linux ncpfs Local Exploit
+| [778] Linux Kernel 2.4 uselib() Privilege Elevation Exploit
+| [744] Linux Kernel <= 2.4.29-rc2 uselib() Privilege Elevation
+| [718] Linux Kernel 2.6.x chown() Group Ownership Alteration Exploit
+| [712] SHOUTcast DNAS/Linux 1.9.4 Format String Remote Exploit
+| [692] Linux Kernel <= 2.6.9 / <= 2.4.28 - ip_options_get Local Overflow
+| [691] Linux Kernel <= 2.6.9 / <= 2.4.28 - Memory Leak Local DoS
+| [690] Linux Kernel <= 2.6.9 / <= 2.4.28 - vc_resize int Local Overflow Exploit
+| [686] Linux Kernel (<= 2.6.9, 2.4.22-28) (igmp.c) Local Denial of Service Exploit
+| [685] Linux Kernel <= 2.4.28 and <= 2.6.9 scm_send local DoS Exploit
+| [624] Linux Kernel (<= 2.4.27 , 2.6.8) binfmt_elf Executable File Read Exploit
+| [411] Sendmail 8.11.x Exploit (i386-Linux)
+| [409] BSD (telnetd) Remote Root Exploit
+| [385] MS Messenger Denial of Service Exploit (MS03-043) (linux ver)
+| [375] Linux Kernel File Offset Pointer Handling Memory Disclosure Exploit
+| [340] Linux imapd Remote Overflow File Retrieve Exploit
+| [325] BSD and Linux lpr Command Local Root Exploit
+| [321] Linux & BSD umount Local Root Exploit
+| [317] Resolv+ (RESOLV_HOST_CONF) Linux Library Local Exploit
+| [306] Linux Kernel 2.4.x-2.6.x Assembler Inline Function Local DoS Exploit
+| [300] CVS Remote Entry Line Heap Overflow Root Exploit (Linux/FreeBSD)
+| [274] Linux Kernel <= 2.6.3 (setsockopt) Local Denial of Service Exploit
+| [269] BeroFTPD 1.3.4(1) - Remote Root Exploit (Linux x86)
+| [252] Seyon 2.1 rev. 4b i586-Linux Exploit
+| [237] Linux Kernel 2.2 (TCP/IP Weakness) Exploit
+| [229] Linux xsoldier-0.96 exploit (Red Hat 6.2)
+| [211] phf buffer overflow exploit for Linux-x86
+| [185] Slackware Linux /usr/bin/ppp-off Insecure /tmp Call Exploit
+| [160] Linux Kernel 2.x mremap missing do_munmap Exploit
+| [154] "Linux Kernel ""mremap()""#2 Local Proof-of-concept"
+| [145] Linux Kernel 2.4.x mremap() bound checking Root Exploit
+| [144] SuSE linux 9.0 YaST config Skribt Local Exploit
+| [142] "Linux Kernel ""do_mremap"" Local Proof of Concept II"
+| [141] "Linux Kernel ""do_mremap"" Local Proof of Concept"
+| [131] Linux Kernel <= 2.4.22 (do_brk) Local Root Exploit (working)
+| [129] "Linux Kernel 2.4.22 ""do_brk()"" local Root Exploit (PoC)"
+| [89] Linux pam_lib_smb < 1.1.6 /bin/login Remote Exploit
+| [86] Real Server 7/8/9 Remote Root Exploit (Windows & Linux)
+| [68] Linux Kernel <= 2.4.20 decode_fh Denial of Service Exploit
+| [49] Linux eXtremail 1.5.x Remote Format Strings Exploit
+| [40] Mandrake Linux 8.2 /usr/mail local exploit (d86mail.pl)
+| [12] Linux Kernel < 2.4.20 Module Loader Local Root Exploit
+| [11] Apache <= 2.0.44 Linux Remote Denial of Service Exploit
+| [3] Linux Kernel 2.2.x - 2.4.x ptrace/kmod Local Root Exploit
+| 
+|_
+25/tcp   open  smtp        Postfix smtpd
+| vulscan: exploitdb.csv:
+| [25392] Salim Gasmi GLD 1.x Postfix Greylisting Daemon Buffer Overflow Vulnerability
+| [22982] Postfix 1.1.x Denial of Service Vulnerabilities (2)
+| [22981] Postfix 1.1.x Denial of Service Vulnerabilities (1)
+| [16841] GLD (Greylisting Daemon) Postfix Buffer Overflow
+| [10023] Salim Gasmi GLD 1.0 - 1.4 Postfix Greylisting Buffer Overflow
+| [6472] Postfix < 2.4.9, 2.5.5, 2.6-20080902 - (.forward) Local DoS Exploit
+| [6337] Postfix <= 2.6-20080814 - (symlink) Local Privilege Escalation Exploit
+| [934] gld 1.4 (Postfix Greylisting Daemon) Remote Format String Exploit
+| 
+|_
+111/tcp  open  rpcbind     2 (RPC #100000)
+| rpcinfo: 
+|   program version   port/proto  service
+|   100000  2            111/tcp  rpcbind
+|   100003  2,3,4       2049/tcp  nfs
+|   100003  2,3,4       2049/udp  nfs
+|   100005  1,2,3      50419/tcp  mountd
+|   100005  1,2,3      58275/udp  mountd
+|   100021  1,3,4      33414/tcp  nlockmgr
+|   100021  1,3,4      58022/udp  nlockmgr
+|   100024  1          42939/tcp  status
+|_  100024  1          49024/udp  status
+|_vulners: ERROR: Script execution failed (use -d to debug)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+| vulscan: exploitdb.csv:
+| [20223] Sambar Server 4.3/4.4 beta 3 Search CGI Vulnerability
+| [10095] Samba 3.0.10 - 3.3.5 Format String And Security Bypass Vulnerabilities
+| [9950] Samba 3.0.21-3.0.24 LSA trans names Heap Overflow
+| [7701] Samba < 3.0.20 - Remote Heap Overflow Exploit
+| [4732] Samba 3.0.27a send_mailslot() Remote Buffer Overflow PoC
+| [364] Samba <= 3.0.4 SWAT Authorization Buffer Overflow Exploit
+| 
+|_
+445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+| vulscan: exploitdb.csv:
+| [20223] Sambar Server 4.3/4.4 beta 3 Search CGI Vulnerability
+| [10095] Samba 3.0.10 - 3.3.5 Format String And Security Bypass Vulnerabilities
+| [9950] Samba 3.0.21-3.0.24 LSA trans names Heap Overflow
+| [7701] Samba < 3.0.20 - Remote Heap Overflow Exploit
+| [4732] Samba 3.0.27a send_mailslot() Remote Buffer Overflow PoC
+| [364] Samba <= 3.0.4 SWAT Authorization Buffer Overflow Exploit
+| 
+|_
+512/tcp  open  exec?
+513/tcp  open  login
+514/tcp  open  tcpwrapped
+1099/tcp open  rmiregistry GNU Classpath grmiregistry
+| vulscan: exploitdb.csv:
+| [30985] 'libcdio' 0.7x GNU Compact Disc Input and Control Library Buffer Overflow Vulnerabilities
+| [30766] GNU TAR <= 1.15.91 and CPIO <= 2.5.90 safer_name_suffix Remote Denial of Service Vulnerability
+| [30736] GNU Emacs 22.1 Local Variable Handling Code Execution Vulnerability
+| [30082] GNUTurk Mods.PHP Cross Site Scripting Vulnerability
+| [29691] Gnome Evolution 2.x GnuPG Arbitrary Content Injection Vulnerability
+| [29690] KMail 1.x GnuPG Arbitrary Content Injection Vulnerability
+| [29689] GnuPG 1.x Signed Message Arbitrary Content Injection Weakness
+| [29160] GNU Tar 1.1x GNUTYPE_NAMES Remote Directory Traversal Vulnerability
+| [28552] e107 website system 0.7.5 signup.php Query String (PATH_INFO) Parameter XSS
+| [28397] GNU BinUtils 2.1x GAS Buffer Overflow Vulnerability
+| [28306] Banex PHP MySQL Banner Exchange 2.21 signup.php site_name Parameter SQL Injection
+| [28257] GnuPG 1.4/1.9 Parse_Comment Remote Buffer Overflow Vulnerability
+| [28077] GnuPG 1.4.3/1.9.x Parse_User_ID Remote Buffer Overflow Vulnerability
+| [27856] GNU BinUtils 2.1x Buffer Overflow Vulnerability
+| [27788] OrbitHYIP 2.0 signup.php referral Parameter XSS
+| [27231] GnuPG 1.x Detached Signature Verification Bypass Vulnerability
+| [26467] PHP Handicapper Process_signup.PHP HTTP Response Splitting Vulnerability
+| [25947] GNU GNATS 4.0/4.1 Gen-Index Arbitrary Local File Disclosure/Overwrite Vulnerability
+| [25706] GNU Mailutils 0.6 Mail Email Header Buffer Overflow Vulnerability
+| [25030] GNU UnRTF 0.19.3 - Font Table Conversion Buffer Overflow Vulnerability
+| [24865] GnuTLS libgnutls Double-free Certificate List Parsing Remote DoS
+| [24813] gnu wget 1.x Multiple Vulnerabilities
+| [24406] GNU a2ps 4.13 File Name Command Execution Vulnerability
+| [24392] Mantis 0.x New Account Signup Mass Emailing Vulnerability
+| [24361] GNU CFEngine 2.0.x/2.1 AuthenticationDialogue Remote Heap Based Buffer Overrun Vulnerability (2)
+| [24360] GNU CFEngine 2.0.x/2.1 AuthenticationDialogue Remote Heap Based Buffer Overrun Vulnerability (1)
+| [24355] GNU Info 4.7 Follow XRef Buffer Overrun Vulnerability
+| [23838] GNU Make For IBM AIX 4.3.3 CC Path Local Buffer Overflow Vulnerability
+| [23801] GNU MyProxy 20030629 Cross-Site Scripting Vulnerability
+| [23772] GNU Anubis 3.6.x/3.9.x auth.c auth_ident() Function Overflow
+| [23771] GNU Anubis 3.6.x/3.9.x Multiple Format String
+| [23523] gdb (GNU debugger) <= 7.5.1NULL Pointer Dereference
+| [23479] GNU Indent 2.2.9 - Local Heap Overflow Vulnerability
+| [23375] GNU Zebra 0.9x / Quagga 0.96 Remote Denial of Service Vulnerability
+| [22939] GNU GNATS 3.113 .1_6 Queue-PR Database Command Line Option Buffer Overflow Vulnerability
+| [22861] GNU AN Local Command Line Option Buffer Overflow Vulnerability
+| [22860] GNU Chess 5.0 - Local Buffer Overflow Vulnerability
+| [22815] GNU GNATS 3.113 Environment Variable Buffer Overflow Vulnerability
+| [22814] GNU GNATS 3.0 02 PR-Edit Command Line Option Heap Corruption Vulnerablity
+| [22199] GNU Mailman 2.1 Error Page Cross Site Scripting Vulnerability
+| [22198] GNU Mailman 2.1 'email' Cross Site Scripting Vulnerability
+| [22168] vSignup 2.1 - Remote SQL Injection Vulnerability
+| [21642] GNU Mailman 2.0.x Admin Login Variant Cross-Site Scripting Vulnerability
+| [21641] GNU Mailman 2.0.x Subscribe Cross-Site Scripting Vulnerability
+| [21480] GNU Mailman 2.0.x Admin Login Cross-Site Scripting Vulnerability
+| [21414] GNU Screen 3.9.x Braille Module Buffer Overflow Vulnerability
+| [21295] GNUJSP 1.0 File Disclosure Vulnerability
+| [21043] GNU findutils 4.0/4.1 Locate Arbitrary Command Execution Vulnerability
+| [21037] GNU groff 1.1x xploitation Via LPD Vulnerability
+| [20889] GNU Privacy Guard 1.0.x Format String Vulnerability
+| [20378] Debian GNU/Linux 3.1 top Format String Vulnerability
+| [20327] GNU Ffingerd 1.19 Username Validity Disclosure Vulnerability
+| [19926] Cygnus Network Security 4.0/KerbNet 5.0,MIT Kerberos 4/5,RedHat 6.2 Compatibility krb_rd_req() Buffer Overflow (3)
+| [19925] Cygnus Network Security 4.0/KerbNet 5.0,MIT Kerberos 4/5,RedHat 6.2 Compatibility krb_rd_req() Buffer Overflow (2)
+| [19924] Cygnus Network Security 4.0/KerbNet 5.0,MIT Kerberos 4/5,RedHat 6.2 Compatibility krb_rd_req() Buffer Overflow (1)
+| [19467] GNU glibc 2.1/2.1.1 -6 pt_chown Vulnerability
+| [19430] GNU groff 1.11 a,HP-UX 10.0/11.0,SGI IRIX <= 6.5.3 Malicious Manpage Vulnerabilities
+| [19254] S.u.S.E. Linux 5.2 gnuplot Vulnerability
+| [19095] GNU GNU bash 1.14 Path Embedded Code Execution Vulnerability
+| [17992] Gnuboard <= 4.33.02 tp.php PATH_INFO SQL Injection
+| [17120] GNU glibc < 2.12.2 'fnmatch()' Function Stack Corruption Vulnerability
+| [15935] GNU libc/regcomp(3) Multiple Vulnerabilities
+| [15808] WORDPRESS Plugin Accept Signups 0.1 XSS
+| [15705] GNU inetutils 1.8-1 - FTP Client Heap Overflow
+| [15304] GNU C library dynamic linker LD_AUDIT arbitrary DSO load Vulnerability
+| [15274] GNU C library dynamic linker $ORIGIN expansion Vulnerability
+| [14754] Microsoft Internet Connection Signup Wizard DLL Hijacking Exploit (smmscrpt.dll)
+| [10039] GPG4Win GNU Privacy Assistant PoC
+| [7927] GNUBoard 4.31.04 (09.01.30) Multiple Local/Remote Vulnerabilities
+| [7792] GNUBoard 4.31.03 (08.12.29) Local File Inclusion Vulnerability
+| [7681] Debian GNU/Linux XTERM (DECRQSS/comments) Weakness Vulnerability
+| [7313] Debian GNU/Linux (symlink attack in login) Arbitrary File Ownership PoC
+| [7032] U&M Software Signup 1.1 Auth Bypass Vulnerability
+| [5647] GNU/Gallery <= 1.1.1.0 (admin.php) Local File Inclusion Vulnerability
+| [3876] GNUEDU 1.3b2 Multiple Remote File Inclusion Vulnerabilities
+| [3787] GNU Mailutils imap4d 0.6 - Remote Format String Exploit (exec-shield)
+| [3154] GNU/Linux mbse-bbs <= 0.70.0 - Local Buffer Overflow Exploit
+| [2936] GNU InetUtils ftpd 1.4.2 (ld.so.preload) Remote Root Exploit
+| [2378] GNUTURK <= 2G (t_id) Remote SQL Injection Exploit
+| [1792] GNUnet <= 0.7.0d (Empty UDP Packet) Remote Denial of Service Exploit
+| [1478] CPGNuke Dragonfly 9.0.6.1 - Remote Commands Execution Exploit
+| [1234] GNU Mailutils imap4d 0.6 (search) Remote Format String Exploit (fbsd)
+| [1209] GNU Mailutils imap4d 0.6 (search) Remote Format String Exploit
+| [1123] GNU Mailutils imap4d <= 0.6 - Remote Format String Exploit
+| [1038] GNU Mailutils imap4d 0.5 < 0.6.90 Remote Format String Exploit
+| [831] GNU Cfengine 2.17p1 RSA Authentication Heap Overflow Exploit
+| [816] "GNU a2ps ""Anything to PostScript"" Local Exploit (not suid)"
+| [479] GNU Sharutils <= 4.2.1 - Local Format String PoC Exploit
+| [105] GNU Cfengine 2.-2.0.3 - Remote Stack Overflow Exploit
+| 
+|_
+1524/tcp open  ingreslock?
+| fingerprint-strings: 
+|   GenericLines: 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/#
+|   GetRequest: 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# GET / HTTP/1.0
+|     <HTML>
+|     <HEAD>
+|     <TITLE>Directory /</TITLE>
+|     <BASE HREF="file:/">
+|     </HEAD>
+|     <BODY>
+|     <H1>Directory listing of /</H1>
+|     <UL>
+|     <LI><A HREF="./">./</A>
+|     <LI><A HREF="../">../</A>
+|     <LI><A HREF=".dockerenv">.dockerenv</A>
+|     <LI><A HREF="bin/">bin/</A>
+|     <LI><A HREF="boot/">boot/</A>
+|     <LI><A HREF="cdrom/">cdrom/</A>
+|     <LI><A HREF="core">core</A>
+|     <LI><A HREF="dev/">dev/</A>
+|     <LI><A HREF="etc/">etc/</A>
+|     <LI><A HREF="home/">home/</A>
+|     <LI><A HREF="initrd/">initrd/</A>
+|     <LI><A HREF="initrd.img">initrd.img</A>
+|     <LI><A HREF="lib/">lib/</A>
+|     <LI><A HREF="lost%2Bfound/">lost+found/</A>
+|     <LI><A HREF="media/">media/</A>
+|     <LI><A HREF="mnt/">mnt/</A>
+|     <LI><A HREF="nohup.out">nohup.out</A>
+|     <LI><A HREF="opt/">opt/</A>
+|     <LI><A HREF="proc/">proc/</A>
+|     <LI><A HREF="root/">root/</A>
+|     <LI><A HREF="sbin/">sbin/</A>
+|     <LI><A HREF="srv/">srv/</A>
+|     <LI><A HREF="sys/">sys/</A>
+|     <LI><A HREF="tmp/
+|   HTTPOptions: 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# OPTIONS / HTTP/1.0
+|     bash: OPTIONS: command not found
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/#
+|   NULL: 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/#
+|   RTSPRequest: 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# OPTIONS / RTSP/1.0
+|     bash: OPTIONS: command not found
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|     root@d60bdb92bdb1:/# 
+|     ]0;@d60bdb92bdb1: /
+|_    root@d60bdb92bdb1:/#
+2121/tcp open  ftp         ProFTPD 1.3.1
+| vulners: 
+|   cpe:/a:proftpd:proftpd:1.3.1: 
+|     	CVE-2011-4130	9.0	https://vulners.com/cve/CVE-2011-4130
+|     	CVE-2010-3867	7.1	https://vulners.com/cve/CVE-2010-3867
+|     	CVE-2010-4652	6.8	https://vulners.com/cve/CVE-2010-4652
+|     	CVE-2009-0543	6.8	https://vulners.com/cve/CVE-2009-0543
+|     	CVE-2009-3639	5.8	https://vulners.com/cve/CVE-2009-3639
+|     	CVE-2019-19272	5.0	https://vulners.com/cve/CVE-2019-19272
+|     	CVE-2019-19271	5.0	https://vulners.com/cve/CVE-2019-19271
+|     	CVE-2011-1137	5.0	https://vulners.com/cve/CVE-2011-1137
+|     	CVE-2008-7265	4.0	https://vulners.com/cve/CVE-2008-7265
+|_    	CVE-2012-6095	1.2	https://vulners.com/cve/CVE-2012-6095
+| vulscan: exploitdb.csv:
+| [20690] wu-ftpd 2.4/2.5/2.6,Trolltech ftpd 1.2,ProFTPD 1.2,BeroFTPD 1.3.4 FTP glob Expansion Vulnerability
+| [16878] ProFTPD 1.3.2rc3 - 1.3.3b Telnet IAC Buffer Overflow (FreeBSD)
+| [16852] ProFTPD 1.2 - 1.3.0 sreplace Buffer Overflow (Linux)
+| [16851] ProFTPD 1.3.2rc3 - 1.3.3b Telnet IAC Buffer Overflow (Linux)
+| [15662] ProFTPD 1.3.3c compromised source remote root Trojan
+| [10044] ProFTPd 1.3.0 mod_ctrls Local Stack Overflow (opensuse)
+| [3730] ProFTPD 1.3.0/1.3.0a (mod_ctrls) Local Overflow Exploit (exec-shield)
+| [3333] ProFTPD 1.3.0/1.3.0a (mod_ctrls support) Local Buffer Overflow Exploit 2
+| [3330] ProFTPD 1.3.0/1.3.0a (mod_ctrls support) Local Buffer Overflow Exploit
+| [2928] ProFTPD <= 1.3.0a (mod_ctrls support) Local Buffer Overflow PoC
+| [2856] ProFTPD 1.3.0 (sreplace) Remote Stack Overflow Exploit (meta)
+| 
+|_
+3306/tcp open  mysql       MySQL 5.0.51a-3ubuntu5
+| vulscan: exploitdb.csv:
+| [30020] MySQL 5.0.x - IF Query Handling Remote Denial of Service Vulnerability
+| [29724] MySQL 5.0.x Single Row SubSelect Remote Denial of Service Vulnerability
+| [27326] MySQL 5.0.18 Query Logging Bypass Vulnerability
+| [20044] Symantec Web Gateway 5.0.3.18 Blind SQLi Backdoor via MySQL Triggers
+| [9085] MySQL <= 5.0.45 COM_CREATE_DB Format String PoC (auth)
+| [4615] MySQL <= 5.0.45 (Alter) Denial of Service Vulnerability
+| [1742] MySQL (<= 4.1.18, 5.0.20) Local/Remote Information Leakage Exploit
+| [1741] MySQL <= 5.0.20 COM_TABLE_DUMP Memory Leak/Remote BoF Exploit
+| 
+|_
+5432/tcp open  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
+| vulners: 
+|   cpe:/a:postgresql:postgresql:8.3: 
+|     	CVE-2016-7048	9.3	https://vulners.com/cve/CVE-2016-7048
+|     	CVE-2019-10211	7.5	https://vulners.com/cve/CVE-2019-10211
+|     	CVE-2015-3166	7.5	https://vulners.com/cve/CVE-2015-3166
+|     	CVE-2015-0244	7.5	https://vulners.com/cve/CVE-2015-0244
+|     	CVE-2017-14798	6.9	https://vulners.com/cve/CVE-2017-14798
+|     	CVE-2015-0243	6.5	https://vulners.com/cve/CVE-2015-0243
+|     	CVE-2015-0242	6.5	https://vulners.com/cve/CVE-2015-0242
+|     	CVE-2015-0241	6.5	https://vulners.com/cve/CVE-2015-0241
+|     	CVE-2018-1115	6.4	https://vulners.com/cve/CVE-2018-1115
+|     	CVE-2015-3167	5.0	https://vulners.com/cve/CVE-2015-3167
+|     	CVE-2012-2143	4.3	https://vulners.com/cve/CVE-2012-2143
+|     	CVE-2014-8161	4.0	https://vulners.com/cve/CVE-2014-8161
+|     	CVE-2010-0733	3.5	https://vulners.com/cve/CVE-2010-0733
+|_    	CVE-2019-10210	1.9	https://vulners.com/cve/CVE-2019-10210
+| vulscan: exploitdb.csv:
+| [288] Progress Database Server 8.3b (prodb) Local Root Exploit
+| 
+|_
+5900/tcp open  vnc         VNC (protocol 3.3)
+| vulscan: exploitdb.csv:
+| [28338] Vino VNC Server 3.7.3 - Persistent Denial of Service
+| [27569] UltraVNC 1.0.1 - Multiple Remote Error Logging Buffer Overflow Vulnerabilities (2)
+| [27568] UltraVNC 1.0.1 - Multiple Remote Error Logging Buffer Overflow Vulnerabilities (1)
+| [27292] EchoVNC Viewer Remote DoS Vulnerability
+| [24412] RealVNC Server 4.0 - Remote Denial of Service Vulnerability
+| [21592] Sun SunPCi II VNC Software 2.3 Password Disclosure Vulnerability
+| [18666] UltraVNC 1.0.2 Client (vncviewer.exe) Buffer Overflow
+| [17719] RealVNC Authentication Bypass
+| [16491] WinVNC Web Server <= 3.3.3r7 - GET Overflow
+| [16490] UltraVNC 1.0.1 Client Buffer Overflow
+| [16489] RealVNC 3.3.7 Client Buffer Overflow
+| [14634] SmartCode ServerX VNC Server ActiveX 1.1.5.0 (scvncsrvx.dll) DoS Exploit
+| [8024] TightVNC Authentication Failure Integer Overflow PoC
+| [7990] UltraVNC/TightVNC Multiple VNC Clients Multiple Integer Overflow PoC
+| [7943] RealVNC 4.1.2 (vncviewer.exe) RFB Protocol Remote Code Execution PoC
+| [6181] RealVNC Windows Client 4.1.2 - Remote DoS Crash PoC
+| [4123] AMX Corp. VNC ActiveX Control (AmxVnc.dll 1.0.13.0) BoF Exploit
+| [3873] SmartCode VNC Manager 3.6 (scvncctrl.dll) Denial of Service Exploit
+| [3257] Chicken of the VNC 2.0 (NULL-pointer) Remote Denial of Service Exploit
+| [1799] RealVNC 4.1.0 - 4.1.1 (VNC Null Authentication) Vulnerability Scanners
+| [1794] RealVNC 4.1.0 - 4.1.1 (Null Authentication) Auth Bypass Exploit (meta)
+| [1791] RealVNC 4.1.0 - 4.1.1 - VNC Null Authentication - Auth Bypass Patch (EXE)
+| [1664] Ultr@VNC <= 1.0.1 client Log::ReallyPrint Buffer Overflow Exploit
+| [1643] Ultr@VNC <= 1.0.1 client Log::ReallyPrint Buffer Overflow PoC
+| [1642] Ultr@VNC <= 1.0.1 VNCLog::ReallyPrint Remote Buffer Overflow PoC
+| 
+|_
+6000/tcp open  X11         (access denied)
+6667/tcp open  irc         UnrealIRCd
+| vulscan: exploitdb.csv:
+| [27407] UnrealIRCd 3.x Remote Denial of Service Vulnerability
+| [18011] UnrealIRCd 3.2.8.1 - Local Configuration Stack Overflow
+| [16922] UnrealIRCD 3.2.8.1 Backdoor Command Execution
+| 
+|_
+8009/tcp open  ajp13       Apache Jserv (Protocol v1.3)
+| vulscan: exploitdb.csv:
+| [31130] Apache Tomcat <= 6.0.15 Cookie Quote Handling Remote Information Disclosure Vulnerability
+| [31052] Apache <= 2.2.6 'mod_negotiation' HTML Injection and HTTP Response Splitting Vulnerability
+| [30901] Apache HTTP Server 2.2.6 Windows Share PHP File Extension Mapping Information Disclosure Vulnerability
+| [30835] Apache HTTP Server <= 2.2.4 413 Error HTTP Request Method Cross-Site Scripting Weakness
+| [30563] Apache Tomcat <= 5.5.15 Cal2.JSP Cross-Site Scripting Vulnerability
+| [30496] Apache Tomcat <= 6.0.13 Cookie Handling Quote Delimiter Session ID Disclosure
+| [30495] Apache Tomcat <= 6.0.13 Host Manager Servlet Cross Site Scripting Vulnerability
+| [30191] Apache MyFaces Tomahawk JSF Framework 1.1.5 Autoscroll Parameter Cross Site Scripting Vulnerability
+| [30189] Apache Tomcat <= 6.0.13 JSP Example Web Applications Cross Site Scripting Vulnerability
+| [30052] Apache Tomcat 6.0.10 Documentation Sample Application Multiple Cross-Site Scripting Vulnerabilities
+| [29930] Apache AXIS 1.0 Non-Existent WSDL Path Information Disclosure Vulnerability
+| [29859] Apache Roller OGNL Injection
+| [29739] Apache HTTP Server Tomcat 5.x/6.0.x Directory Traversal Vulnerability
+| [29435] Apache Tomcat 5.5.25 - CSRF Vulnerabilities
+| [29316] Apache + PHP 5.x - Remote Code Execution (Multithreaded Scanner) (2)
+| [29290] Apache / PHP 5.x Remote Code Execution Exploit
+| [28713] Apache Tomcat/JBoss EJBInvokerServlet / JMXInvokerServlet (RMI over HTTP) Marshalled Object RCE
+| [28424] Apache 2.x HTTP Server Arbitrary HTTP Request Headers Security Weakness
+| [28365] Apache 2.2.2 CGI Script Source Code Information Disclosure Vulnerability
+| [28254] Apache Tomcat 5 Information Disclosure Vulnerability
+| [27915] Apache James 2.2 SMTP Denial of Service Vulnerability
+| [27397] Apache suEXEC Privilege Elevation / Information Disclosure
+| [27135] Apache Struts 2 DefaultActionMapper Prefixes OGNL Code Execution
+| [27096] Apache Geronimo 1.0 Error Page XSS
+| [27095] Apache Tomcat / Geronimo 1.0 Sample Script cal2.jsp time Parameter XSS
+| [26710] Apache CXF prior to 2.5.10, 2.6.7 and 2.7.4 - Denial of Service
+| [26542] Apache Struts 1.2.7 Error Response Cross-Site Scripting Vulnerability
+| [25986] Plesk Apache Zeroday Remote Exploit
+| [25980] Apache Struts includeParams Remote Code Execution
+| [25625] Apache 1.3.x HTDigest Realm Command Line Argument Buffer Overflow Vulnerability (2)
+| [25624] Apache 1.3.x HTDigest Realm Command Line Argument Buffer Overflow Vulnerability (1)
+| [24874] Apache Struts ParametersInterceptor Remote Code Execution
+| [24744] Apache Rave 0.11 - 0.20 - User Information Disclosure
+| [24694] Apache 1.3.x mod_include Local Buffer Overflow Vulnerability
+| [24590] Apache 2.0.x mod_ssl Remote Denial of Service Vulnerability
+| [23751] Apache Cygwin 1.3.x/2.0.x Directory Traversal Vulnerability
+| [23581] Apache 2.0.4x mod_perl Module File Descriptor Leakage Vulnerability
+| [23482] Apache 2.0.4x mod_php Module File Descriptor Leakage Vulnerability (2)
+| [23481] Apache 2.0.4x mod_php Module File Descriptor Leakage Vulnerability (1)
+| [23296] Red Hat Apache 2.0.40 Directory Index Default Configuration Error
+| [23282] apache cocoon 2.14/2.2 - Directory Traversal vulnerability
+| [23245] Apache Tomcat 4.0.x Non-HTTP Request Denial of Service Vulnerability
+| [23119] Apache::Gallery 0.4/0.5/0.6 Insecure Local File Storage Privilege Escalation Vulnerability
+| [22775] FreeWnn 1.1.1 JServer Logging Option Data Corruption Vulnerability
+| [22505] Apache Mod_Access_Referer 1.0.2 NULL Pointer Dereference Denial of Service Vulnerability
+| [22205] Apache Tomcat 3.x Null Byte Directory/File Disclosure Vulnerability
+| [22191] Apache Web Server 2.0.x MS-DOS Device Name Denial of Service Vulnerability
+| [22068] Apache 1.3.x,Tomcat 4.0.x/4.1.x Mod_JK Chunked Encoding Denial of Service Vulnerability
+| [21885] Apache 1.3/2.0.x Server Side Include Cross Site Scripting Vulnerability
+| [21882] Apache Tomcat 3.2 Directory Disclosure Vulnerability
+| [21854] Apache 2.0.39/40 Oversized STDERR Buffer Denial of Service Vulnerability
+| [21853] Apache Tomcat 3/4 DefaultServlet File Disclosure Vulnerability
+| [21734] Apache Tomcat 4.1 JSP Request Cross Site Scripting Vulnerability
+| [21719] Apache 2.0 Path Disclosure Vulnerability
+| [21697] Apache 2.0 Encoded Backslash Directory Traversal Vulnerability
+| [21605] Apache Tomcat 4.0.3 DoS Device Name Cross Site Scripting Vulnerability
+| [21604] Apache Tomcat 4.0.3 Servlet Mapping Cross Site Scripting Vulnerability
+| [21560] Apache 1.x/2.0.x Chunked-Encoding Memory Corruption Vulnerability (2)
+| [21559] Apache 1.x/2.0.x Chunked-Encoding Memory Corruption Vulnerability (1)
+| [21534] Apache Tomcat 3/4 JSP Engine Denial of Service Vulnerability
+| [21492] Apache Tomcat 3.2.3/3.2.4 RealPath.JSP Malformed Request Information Disclosure
+| [21491] Apache Tomcat 3.2.3/3.2.4 Example Files Web Root Path Disclosure
+| [21490] Apache Tomcat 3.2.3/3.2.4 Source.JSP Malformed Request Information Disclosure
+| [21412] Apache Tomcat 4.0/4.1 Servlet Path Disclosure Vulnerability
+| [21350] Apache Win32 1.3.x/2.0.x Batch File Remote Command Execution Vulnerability
+| [21215] FreeWnn 1.1 jserver JS_MKDIR Metacharacter Command Execution Vulnerability
+| [21204] Apache 1.3.20 Win32 PHP.EXE Remote File Disclosure Vulnerability
+| [21112] Red Hat Linux 7.0 Apache Remote Username Enumeration Vulnerability
+| [21067] Apache 1.0/1.2/1.3 Server Address Disclosure Vulnerability
+| [21002] Apache 1.3 Possible Directory Index Disclosure Vulnerability
+| [20911] Apache 1.3.14 Mac File Protection Bypass Vulnerability
+| [20716] apache tomcat 3.0 - Directory Traversal vulnerability
+| [20695] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (4)
+| [20694] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (3)
+| [20693] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (2)
+| [20692] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (1)
+| [20595] NCSA 1.3/1.4.x/1.5,Apache httpd 0.8.11/0.8.14 ScriptAlias Source Retrieval Vulnerability
+| [20558] Apache 1.2 Web Server DoS Vulnerability
+| [20466] Apache 1.3 Web Server with Php 3 File Disclosure Vulnerability
+| [20435] Apache 0.8.x/1.0.x,NCSA httpd 1.x test-cgi Directory Listing Vulnerability
+| [20272] Apache 1.2.5/1.3.1,UnityMail 2.0 MIME Header DoS Vulnerability
+| [20210] Apache 1.3.12 WebDAV Directory Listings Vulnerability
+| [20131] Apache Tomcat 3.1 Path Revealing Vulnerability
+| [19975] Apache 1.3.6/1.3.9/1.3.11/1.3.12/1.3.20 Root Directory Access Vulnerability
+| [19828] Cobalt RaQ 2.0/3.0 Apache .htaccess Disclosure Vulnerability
+| [19536] Apache <= 1.1,NCSA httpd <= 1.5.2,Netscape Server 1.12/1.1/2.0 a nph-test-cgi Vulnerability
+| [19231] PHP apache_request_headers Function Buffer Overflow
+| [18984] Apache Struts <= 2.2.1.1 - Remote Command Execution
+| [18897] Oracle Weblogic Apache Connector POST Request Buffer Overflow
+| [18619] Apache Tomcat Remote Exploit (PUT Request) and Account Scanner
+| [18452] Apache Struts Multiple Persistent Cross-Site Scripting Vulnerabilities
+| [18442] Apache httpOnly Cookie Disclosure
+| [18329] Apache Struts2 <= 2.3.1 - Multiple Vulnerabilities
+| [18221] Apache HTTP Server Denial of Service
+| [17969] Apache mod_proxy Reverse Proxy Exposure Vulnerability PoC
+| [17696] Apache httpd Remote Denial of Service (memory exhaustion)
+| [17691] Apache Struts < 2.2.0 - Remote Command Execution
+| [16798] Apache mod_jk 1.2.20 Buffer Overflow
+| [16782] Apache Win32 Chunked Encoding
+| [16752] Apache module mod_rewrite LDAP protocol Buffer Overflow
+| [16317] Apache Tomcat Manager Application Deployer Authenticated Code Execution
+| [15710] Apache Archiva 1.0 - 1.3.1 CSRF Vulnerability
+| [15319] Apache 2.2 (Windows) Local Denial of Service
+| [14617] Apache JackRabbit 2.0.0 webapp XPath Injection
+| [14489] Apache Tomcat < 6.0.18 utf8 - Directory Traversal vulnerability
+| [12721] Apache Axis2 1.4.1 - Local File Inclusion Vulnerability
+| [12689] Authenticated Cross-Site Scripting Vulnerability (XSS) within Apache Axis2 administration console
+| [12343] Apache Tomcat 5.5.0 to 5.5.29 & 6.0.0 to 6.0.26 - Information Disclosure Vulnerability
+| [12330] Apache OFBiz - Multiple XSS
+| [12264] Apache OFBiz - FULLADMIN Creator PoC Payload
+| [12263] Apache OFBiz - SQL Remote Execution PoC Payload
+| [11662] Apache Spamassassin Milter Plugin Remote Root Command Execution
+| [11650] Apache 2.2.14 mod_isapi Dangling Pointer Remote SYSTEM Exploit
+| [10811] Joomla.Tutorials GHDB: Apache directory listing Download Vulnerability
+| [10292] Apache Tomcat 3.2.1 - 404 Error Page Cross Site Scripting Vulnerability
+| [9995] Apache Tomcat Form Authentication Username Enumeration Weakness
+| [9994] Apache Tomcat Cookie Quote Handling Remote Information Disclosure Vulnerability
+| [9993] Apache mod_perl 'Apache::Status' and 'Apache2::Status' Cross Site Scripting Vulnerability
+| [8842] Apache mod_dav / svn Remote Denial of Service Exploit
+| [8458] Apache Geronimo <= 2.1.3 - Multiple Directory Traversal Vulnerabilities
+| [7264] Apache Tomcat runtime.getRuntime().exec() Privilege Escalation (win)
+| [6229] apache tomcat < 6.0.18 utf8 - Directory Traversal vulnerability
+| [6100] Apache mod_jk 1.2.19 Remote Buffer Overflow Exploit (win32)
+| [6089] Bea Weblogic Apache Connector Code Exec / Denial of Service Exploit
+| [5386] Apache Tomcat Connector jk2-2.0.2 (mod_jk2) Remote Overflow Exploit
+| [5330] Apache 2.0 mod_jk2 2.0.2 - Remote Buffer Overflow Exploit (win32)
+| [4552] Apache Tomcat (webdav) Remote File Disclosure Exploit (ssl support)
+| [4530] Apache Tomcat (webdav) Remote File Disclosure Exploit
+| [4162] Apache Tomcat Connector (mod_jk) Remote Exploit (exec-shield)
+| [4093] Apache mod_jk 1.2.19/1.2.20 Remote Buffer Overflow Exploit
+| [3996] Apache 2.0.58 mod_rewrite Remote Overflow Exploit (win2k3)
+| [3680] Apache Mod_Rewrite Off-by-one Remote Overflow Exploit (win32)
+| [3384] Ubuntu/Debian Apache 1.3.33/1.3.34 (CGI TTY) Local Root Exploit
+| [2237] Apache < 1.3.37, 2.0.59, 2.2.3 (mod_rewrite) Remote Overflow PoC
+| [2061] Apache Tomcat < 5.5.17 Remote Directory Listing Vulnerability
+| [1056] Apache <= 2.0.49 Arbitrary Long HTTP Headers Denial of Service
+| [855] Apache <= 2.0.52 HTTP GET request Denial of Service Exploit
+| [764] Apache OpenSSL - Remote Exploit (Multiple Targets) (OpenFuckV2.c)
+| [587] Apache <= 1.3.31 mod_include Local Buffer Overflow Exploit
+| [466] htpasswd Apache 1.3.31 - Local Exploit
+| [371] Apache HTTPd Arbitrary Long HTTP Headers DoS (c version)
+| [360] Apache HTTPd Arbitrary Long HTTP Headers DoS
+| [132] Apache 1.3.x - 2.0.48 - mod_userdir Remote Users Disclosure Exploit
+| [126] Apache mod_gzip (with debug_mode) <= 1.2.26.1a Remote Exploit
+| [67] Apache 1.3.x mod_mylo Remote Code Execution Exploit
+| [38] Apache <= 2.0.45 APR Remote Exploit -Apache-Knacker.pl
+| [34] Webfroot Shoutbox < 2.32 (Apache) Remote Exploit
+| [11] Apache <= 2.0.44 Linux Remote Denial of Service Exploit
+| [9] Apache HTTP Server 2.x Memory Leak Exploit
+| 
+|_
+8180/tcp open  http        Apache Tomcat/Coyote JSP engine 1.1
+|_http-server-header: Apache-Coyote/1.1
+| vulscan: exploitdb.csv:
+| [30191] Apache MyFaces Tomahawk JSF Framework 1.1.5 Autoscroll Parameter Cross Site Scripting Vulnerability
+| [27095] Apache Tomcat / Geronimo 1.0 Sample Script cal2.jsp time Parameter XSS
+| [23244] WrenSoft Zoom Search Engine 2.0 Build: 1018 Cross-Site Scripting Vulnerability
+| [19536] Apache <= 1.1,NCSA httpd <= 1.5.2,Netscape Server 1.12/1.1/2.0 a nph-test-cgi Vulnerability
+| [30983] ExpressionEngine 1.2.1 HTTP Response Splitting and Cross Site Scripting Vulnerabilities
+| [30980] AwesomeTemplateEngine 1 Multiple Cross-Site Scripting Vulnerabilities
+| [30543] Doomsday Engine 1.8.6/1.9 - Multiple Remote Vulnerabilities
+| [29930] Apache AXIS 1.0 Non-Existent WSDL Path Information Disclosure Vulnerability
+| [29012] DMXReady Site Engine Manager 1.0 Index.ASP SQL Injection Vulnerability
+| [28874] Exhibit Engine 1.22 fstyles.php toroot Parameter Remote File Inclusion
+| [28873] Exhibit Engine 1.22 fetchsettings.php toroot Parameter Remote File Inclusion
+| [27980] Alex DownloadEngine 1.4.1 Comments.PHP SQL Injection Vulnerability
+| [27823] OpenEngine 1.7/1.8 Template Unauthorized Access Vulnerability
+| [27574] Basic Analysis and Security Engine 1.2.4 PrintFreshPage Cross-Site Scripting Vulnerability
+| [27127] PMachine ExpressionEngine 1.4.1 HTTP Referrer HTML Injection Vulnerability
+| [27096] Apache Geronimo 1.0 Error Page XSS
+| [26542] Apache Struts 1.2.7 Error Response Cross-Site Scripting Vulnerability
+| [26395] Basic Analysis And Security Engine 1.2 Base_qry_main.PHP SQL Injection Vulnerability
+| [25625] Apache 1.3.x HTDigest Realm Command Line Argument Buffer Overflow Vulnerability (2)
+| [25624] Apache 1.3.x HTDigest Realm Command Line Argument Buffer Overflow Vulnerability (1)
+| [24694] Apache 1.3.x mod_include Local Buffer Overflow Vulnerability
+| [23752] Digital Reality Game Engine 1.0.x Remote Denial of Service Vulnerability
+| [23751] Apache Cygwin 1.3.x/2.0.x Directory Traversal Vulnerability
+| [23314] Serious Sam Engine 1.0.5 - Remote Denial of Service Vulnerability
+| [22961] Gallery 1.2/1.3.x Search Engine Cross-Site Scripting Vulnerability
+| [22505] Apache Mod_Access_Referer 1.0.2 NULL Pointer Dereference Denial of Service Vulnerability
+| [22068] Apache 1.3.x,Tomcat 4.0.x/4.1.x Mod_JK Chunked Encoding Denial of Service Vulnerability
+| [21885] Apache 1.3/2.0.x Server Side Include Cross Site Scripting Vulnerability
+| [21560] Apache 1.x/2.0.x Chunked-Encoding Memory Corruption Vulnerability (2)
+| [21559] Apache 1.x/2.0.x Chunked-Encoding Memory Corruption Vulnerability (1)
+| [21534] Apache Tomcat 3/4 JSP Engine Denial of Service Vulnerability
+| [21350] Apache Win32 1.3.x/2.0.x Batch File Remote Command Execution Vulnerability
+| [21295] GNUJSP 1.0 File Disclosure Vulnerability
+| [21257] AHG Search Engine 1.0 Search.CGI Arbitrary Command Execution Vulnerability
+| [21204] Apache 1.3.20 Win32 PHP.EXE Remote File Disclosure Vulnerability
+| [21067] Apache 1.0/1.2/1.3 Server Address Disclosure Vulnerability
+| [21002] Apache 1.3 Possible Directory Index Disclosure Vulnerability
+| [20911] Apache 1.3.14 Mac File Protection Bypass Vulnerability
+| [20695] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (4)
+| [20694] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (3)
+| [20693] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (2)
+| [20692] Apache 1.3 Artificially Long Slash Path Directory Listing Vulnerability (1)
+| [20595] NCSA 1.3/1.4.x/1.5,Apache httpd 0.8.11/0.8.14 ScriptAlias Source Retrieval Vulnerability
+| [20558] Apache 1.2 Web Server DoS Vulnerability
+| [20466] Apache 1.3 Web Server with Php 3 File Disclosure Vulnerability
+| [20457] Microsoft SQL Server 7.0/2000,Data Engine 1.0/2000 xp_peekqueue Buffer Overflow Vulnerability
+| [20456] Microsoft SQL Server 7.0/2000,Data Engine 1.0/2000 xp_showcolv Buffer Overflow Vulnerability
+| [20451] Microsoft SQL Server 7.0/2000,Data Engine 1.0/2000 xp_displayparamstmt Buffer Overflow Vulnerability
+| [20435] Apache 0.8.x/1.0.x,NCSA httpd 1.x test-cgi Directory Listing Vulnerability
+| [20429] Caucho Technology Resin 1.2 JSP Source Disclosure Vulnerability
+| [20272] Apache 1.2.5/1.3.1,UnityMail 2.0 MIME Header DoS Vulnerability
+| [20210] Apache 1.3.12 WebDAV Directory Listings Vulnerability
+| [20172] ManageEngine Mobile Application Manager 10 - SQL Injection
+| [20171] ManageEngine Application Manager 10 - Multiple Vulnerabilities
+| [19975] Apache 1.3.6/1.3.9/1.3.11/1.3.12/1.3.20 Root Directory Access Vulnerability
+| [18031] phpLDAPadmin <= 1.2.1.1 (query_engine) Remote PHP Code Injection
+| [18021] phpLDAPadmin <= 1.2.1.1 (query_engine) Remote PHP Code Injection Exploit
+| [17639] XpressEngine 1.4.5.7 Persistent XSS Vulnerability
+| [16798] Apache mod_jk 1.2.20 Buffer Overflow
+| [15710] Apache Archiva 1.0 - 1.3.1 CSRF Vulnerability
+| [15557] openEngine 2.0 100226 LFI and XSS Vulnerabilities
+| [12721] Apache Axis2 1.4.1 - Local File Inclusion Vulnerability
+| [12550] Netvidade engine 1.0 - Multiple Vulnerabilities
+| [8994] AWScripts Gallery Search Engine 1.x Insecure Cookie Vulnerability
+| [8414] XEngineSoft PMS/MGS/NM/AMS 1.0 (Auth Bypass) SQL Injection Vulns
+| [8408] X10Media Mp3 Search Engine < 1.6.2 Admin Access Vulnerability
+| [7158] Alex Article-Engine 1.3.0 (fckeditor) Arbitrary File Upload Vulnerability
+| [7157] Alex News-Engine 1.5.1 - Remote Arbitrary File Upload Vulnerability
+| [7074] X10media Mp3 Search Engine <= 1.6 - Remote File Disclosure Vulnerability
+| [6480] x10media mp3 search engine 1.5.5 - Remote File Inclusion Vulnerability
+| [6239] Ruby <= 1.9 (regex engine) Remote Socket Memory Leak Exploit
+| [6100] Apache mod_jk 1.2.19 Remote Buffer Overflow Exploit (win32)
+| [5834] Comparison Engine Power 1.0 - Blind SQL Injection Exploit
+| [4093] Apache mod_jk 1.2.19/1.2.20 Remote Buffer Overflow Exploit
+| [3605] Picture-Engine <= 1.2.0 (wall.php cat) Remote SQL Injection Exploit
+| [3384] Ubuntu/Debian Apache 1.3.33/1.3.34 (CGI TTY) Local Root Exploit
+| [3104] PPC Search Engine 1.61 (INC) Multiple Remote File Include Vulnerabilities
+| [2850] Exhibit Engine <= 1.22 (styles.php) Remote File Include Vulnerability
+| [2521] Download-Engine <= 1.4.2 (spaw) Remote File Include Vulnerability
+| [2509] Exhibit Engine <= 1.5 RC 4 (photo_comment.php) File Include Exploit
+| [2480] phpBB Security Suite Mod 1.0.0 (logger_engine.php) Remote File Include
+| [2237] Apache < 1.3.37, 2.0.59, 2.2.3 (mod_rewrite) Remote Overflow PoC
+| [1750] Quake 3 Engine 1.32b R_RemapShader() Remote Client BoF Exploit
+| [587] Apache <= 1.3.31 mod_include Local Buffer Overflow Exploit
+| [466] htpasswd Apache 1.3.31 - Local Exploit
+| [132] Apache 1.3.x - 2.0.48 - mod_userdir Remote Users Disclosure Exploit
+| [126] Apache mod_gzip (with debug_mode) <= 1.2.26.1a Remote Exploit
+| [67] Apache 1.3.x mod_mylo Remote Code Execution Exploit
+| 
+|_
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port1524-TCP:V=7.70%I=7%D=6/4%Time=5ED8EF92%P=x86_64-alpine-linux-musl%
+SF:r(NULL,2A,"\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20")%r(
+SF:GenericLines,D6,"\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x2
+SF:0\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d6
+SF:0bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d60bdb92bdb1:\x2
+SF:0/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60
+SF:bdb92bdb1:/#\x20")%r(GetRequest,7CA,"\x1b\]0;@d60bdb92bdb1:\x20/\x07roo
+SF:t@d60bdb92bdb1:/#\x20GET\x20/\x20HTTP/1\.0\n<HTML>\n<HEAD>\n<TITLE>Dire
+SF:ctory\x20/</TITLE>\n<BASE\x20HREF=\"file:/\">\n</HEAD>\n<BODY>\n<H1>Dir
+SF:ectory\x20listing\x20of\x20/</H1>\n<UL>\n<LI><A\x20HREF=\"\./\">\./</A>
+SF:\n<LI><A\x20HREF=\"\.\./\">\.\./</A>\n<LI><A\x20HREF=\"\.dockerenv\">\.
+SF:dockerenv</A>\n<LI><A\x20HREF=\"bin/\">bin/</A>\n<LI><A\x20HREF=\"boot/
+SF:\">boot/</A>\n<LI><A\x20HREF=\"cdrom/\">cdrom/</A>\n<LI><A\x20HREF=\"co
+SF:re\">core</A>\n<LI><A\x20HREF=\"dev/\">dev/</A>\n<LI><A\x20HREF=\"etc/\
+SF:">etc/</A>\n<LI><A\x20HREF=\"home/\">home/</A>\n<LI><A\x20HREF=\"initrd
+SF:/\">initrd/</A>\n<LI><A\x20HREF=\"initrd\.img\">initrd\.img</A>\n<LI><A
+SF:\x20HREF=\"lib/\">lib/</A>\n<LI><A\x20HREF=\"lost%2Bfound/\">lost\+foun
+SF:d/</A>\n<LI><A\x20HREF=\"media/\">media/</A>\n<LI><A\x20HREF=\"mnt/\">m
+SF:nt/</A>\n<LI><A\x20HREF=\"nohup\.out\">nohup\.out</A>\n<LI><A\x20HREF=\
+SF:"opt/\">opt/</A>\n<LI><A\x20HREF=\"proc/\">proc/</A>\n<LI><A\x20HREF=\"
+SF:root/\">root/</A>\n<LI><A\x20HREF=\"sbin/\">sbin/</A>\n<LI><A\x20HREF=\
+SF:"srv/\">srv/</A>\n<LI><A\x20HREF=\"sys/\">sys/</A>\n<LI><A\x20HREF=\"tm
+SF:p/")%r(HTTPOptions,109,"\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb
+SF:1:/#\x20OPTIONS\x20/\x20HTTP/1\.0\nbash:\x20OPTIONS:\x20command\x20not\
+SF:x20found\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b
+SF:\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d60bdb92b
+SF:db1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d60bdb92bdb1:\x20/\x07r
+SF:oot@d60bdb92bdb1:/#\x20")%r(RTSPRequest,109,"\x1b\]0;@d60bdb92bdb1:\x20
+SF:/\x07root@d60bdb92bdb1:/#\x20OPTIONS\x20/\x20RTSP/1\.0\nbash:\x20OPTION
+SF:S:\x20command\x20not\x20found\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60b
+SF:db92bdb1:/#\x20\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x2
+SF:0\n\x1b\]0;@d60bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20\n\x1b\]0;@d6
+SF:0bdb92bdb1:\x20/\x07root@d60bdb92bdb1:/#\x20");
+MAC Address: 02:42:AC:1A:00:04 (Unknown)
+Service Info: Hosts:  metasploitable.localdomain, localhost, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 153.60 seconds

